@@ -1,5 +1,0 @@
-interface:
-  display_name: "Setup MCP"
-  short_description: "Configure Model Context Protocol servers"
-policy:
-  allow_implicit_invocation: false

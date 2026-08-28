@@ -63,7 +63,7 @@ People keep asking for one in the README. This skill is that list: it is what it
 
 **It told me half the skills aren't installed.**
 
-A known bug, unfixed. Most of the skills the router routes you through set `disable-model-invocation: true`, which means the harness leaves them out of the skill list it injects into the agent's context. The agent reads that list as exhaustive and reports them missing. One reported session had it declare the whole spec-and-tickets flow absent and reroute to bare `/grilling` and `/tdd`. Thirteen of the plugin's twenty-two skills carry the flag, so this is the common case rather than an edge. They are installed. Type the slash command anyway, or check `.claude-plugin/plugin.json`, which is the authority on what is present.
+A known edge case with router skills. When user-invoked skills are scoped primarily for manual slash commands, an agent might report them missing if it expects them in its autonomous tool catalog. They are installed. Type the slash command anyway, or check `.agents/skills.json` and the `skills/` directory, which are the authorities on what is registered.
 
 **It described a skill's behaviour, and the skill doesn't do that.**
 

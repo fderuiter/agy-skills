@@ -10,15 +10,15 @@ agy-skills is distributed for Google Antigravity (AGY).
 
 Add .agents/skills.json to the target project, pointing at this repository:
 
-`json
+```json
 {
-   entries: [
+  "entries": [
     {
-      path: path/to/agy-skills/skills
+      "path": "path/to/agy-skills/skills"
     }
   ]
 }
-`
+```
 
 ### 2. Global Installation
 
@@ -35,6 +35,6 @@ Copy any individual skill folder from skills/ directly into your workspace .agen
 
 In your agent session, run once per repository:
 
-`
+```
 /setup-agy-skills
-`
+```

@@ -4,7 +4,7 @@ Skills I use daily for code work.
 
 ## User-invoked
 
-Reachable only when you type them (Antigravity: `disable-model-invocation: true`; Antigravity: `policy.allow_implicit_invocation: false` in `agents/openai.yaml`).
+Reachable primarily when triggered by the user as a slash command.
 
 - **[ask-fred](./ask-fred/SKILL.md)**: Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo.
 - **[grill-with-docs](./grill-with-docs/SKILL.md)**: Grilling session that also builds your project's domain model, sharpening terminology and updating `CONTEXT.md` and ADRs inline.

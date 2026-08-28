@@ -62,7 +62,7 @@ Lessons are built from **components** in `assets/`: stylesheets, quiz widgets, s
 
 ## Common questions
 
-**Where does it put the files? Mine ended up in `~/.claude/skills`.**
+**Where does it put the files? Mine ended up in the global skills directory.**
 A real, open bug ([#377](https://github.com/fderuiter/agy-skills/issues/377)). `SKILL.md` uses `./` for two different roots at once: `./MISSION-FORMAT.md` and its siblings really do sit next to `SKILL.md` in the installed skill, while `./lessons/`, `./reference/`, `./learning-records/` and `./assets/` are meant to be in your directory. An agent that resolves the first kind against the skill's install directory goes on to resolve the second kind there too, and writes your course into the skill folder. Check where the first lesson landed before you build on it, and name the directory explicitly when you start rather than relying on "the current directory" being understood.
 
 **Do I stay in one session, or start a new one per lesson?**

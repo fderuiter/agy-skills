@@ -1,3 +1,8 @@
 {
-  \ name\: \agy-skills\
+  "name": "agy-skills",
+  "version": "1.2.4",
+  "description": "Curated, low-cognitive-load agent skills and workflows tailored for Google Antigravity (AGY)",
+  "author": "Fred de Ruiter",
+  "repository": "https://github.com/fderuiter/agy-skills"
 }
+

@@ -1,16 +1,16 @@
 {
-   entries: [
+  "entries": [
     {
-      path: skills/engineering
+      "path": "skills/engineering"
     },
     {
-      path: skills/productivity
+      "path": "skills/productivity"
     },
     {
-      path: skills/in-progress
+      "path": "skills/in-progress"
     },
     {
-      path: skills/misc
+      "path": "skills/misc"
     }
   ]
 }

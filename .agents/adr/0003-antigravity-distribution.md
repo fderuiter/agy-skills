@@ -2,12 +2,12 @@
 
 ## Context
 
-The upstream repository (mattpocock/skills) was originally packaged as a Claude Code plugin and distributed via skills.sh. This fork (gy-skills), maintained by Fred de Ruiter, targets Google Antigravity (AGY) as its primary agent platform.
+The upstream repository (mattpocock/skills) was originally packaged as a Claude Code plugin and distributed via skills.sh. This fork (agy-skills), maintained by Fred de Ruiter, targets Google Antigravity (AGY) as its primary agent platform.
 
 Antigravity uses a different customization and discovery architecture:
 - Project-level skills are discovered in .agents/skills/ or declared via .agents/skills.json.
 - Global skills live in ~/.gemini/config/skills/.
-- Plugins in Antigravity use .agents/plugins/<name>/plugin.json containing { \ name\: \...\ }, without Claude-specific skill path arrays.
+- Plugins in Antigravity use .agents/plugins/<name>/plugin.json containing {"name": "..."}, without Claude-specific skill path arrays.
 - Rules are loaded from AGENTS.md or GEMINI.md.
 
 ## Decision
