@@ -1,0 +1,16 @@
+{
+   entries: [
+    {
+      path: skills/engineering
+    },
+    {
+      path: skills/productivity
+    },
+    {
+      path: skills/in-progress
+    },
+    {
+      path: skills/misc
+    }
+  ]
+}
