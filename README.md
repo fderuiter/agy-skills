@@ -1,4 +1,4 @@
-# agy-skills: Agent Skills For Google Antigravity
+# [fderuiter/agy-skills: mattpocock skills, with an google twist.](https://github.com/fderuiter/agy-skills)
 
 [![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://fderuiter.github.io/agy-skills/)
 
@@ -16,35 +16,35 @@ These skills are designed to be small, easy to adapt, and composable. They work 
 
 Antigravity discovers skills in your project workspace or global configuration directory.
 
-### Method 1: Per-Repo via skills.json (Recommended)
+### Method 1: Per-Repo via `skills.json` (Recommended)
 
-Add .agents/skills.json to the root of your target repository:
+Add `.agents/skills.json` to the root of your target repository:
 
-`json
+```json
 {
-   entries: [
+  "entries": [
     {
-      path: path/to/agy-skills/skills
+      "path": "path/to/agy-skills/skills"
     }
   ]
 }
-`
+```
 
 ### Method 2: Global Installation
 
-Link or copy the skills/ folder into your global Antigravity configuration directory:
+Link or copy the `skills/` folder into your global Antigravity configuration directory:
 
-- **Windows**: %USERPROFILE%\.gemini\config\skills\
-- **macOS / Linux**: ~/.gemini/config/skills/
+- **Windows**: `%USERPROFILE%\.gemini\config\skills\`
+- **macOS / Linux**: `~/.gemini/config/skills/`
 
 For developers maintaining this repository, run:
-`ash
+```bash
 ./scripts/link-skills.sh
-`
+```
 
 ### Method 3: Direct Workspace Copy
 
-Copy any individual skill folder from skills/ into your project'\''s .agents/skills/ directory.
+Copy any individual skill folder from `skills/` into your project's `.agents/skills/` directory.
 
 ---
 
@@ -52,9 +52,9 @@ Copy any individual skill folder from skills/ into your project'\''s .agents/ski
 
 In your Antigravity session, run once per repository:
 
-`
+```
 /setup-agy-skills
-`
+```
 
 It will:
 - Ask which issue tracker you use (GitHub, GitLab, or local markdown files)
@@ -67,24 +67,24 @@ It will:
 
 These skills solve common failure modes when building software with AI coding agents:
 
-### #1: The Agent Didn'\''t Do What I Want
+### #1: The Agent Didn't Do What I Want
 The communication gap between human intent and code execution is solved by **grilling**:
-- [/grill-me](./skills/productivity/grill-me/SKILL.md): Stateless interview for plans and non-code tasks
-- [/grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md): Stateful interview that records decisions into CONTEXT.md and ADRs
+- [`/grill-me`](./skills/productivity/grill-me/SKILL.md): Stateless interview for plans and non-code tasks
+- [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md): Stateful interview that records decisions into `CONTEXT.md` and ADRs
 
 ### #2: The Agent Is Way Too Verbose
-Ubiquitous language reduces context token consumption and clarifies intent. CONTEXT.md gives the agent domain-specific shorthand.
+Ubiquitous language reduces context token consumption and clarifies intent. `CONTEXT.md` gives the agent domain-specific shorthand.
 
-### #3: The Code Doesn'\''t Work
+### #3: The Code Doesn't Work
 Feedback loops ensure correctness:
-- [/tdd](./skills/engineering/tdd/SKILL.md): Red-green-refactor loop
-- [/diagnosing-bugs](./skills/engineering/diagnosing-bugs/SKILL.md): Disciplined root-cause isolation and regression testing
+- [`/tdd`](./skills/engineering/tdd/SKILL.md): Red-green-refactor loop
+- [`/diagnosing-bugs`](./skills/engineering/diagnosing-bugs/SKILL.md): Disciplined root-cause isolation and regression testing
 
 ### #4: We Built A Ball Of Mud
 Caring about system design:
-- [/to-spec](./skills/engineering/to-spec/SKILL.md): Creates comprehensive specs from conversation
-- [/to-tickets](./skills/engineering/to-tickets/SKILL.md): Breaks specs into vertical tracer-bullet slices with blocking edges
-- [/improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md): Surveys the codebase for deep-module opportunities
+- [`/to-spec`](./skills/engineering/to-spec/SKILL.md): Creates comprehensive specs from conversation
+- [`/to-tickets`](./skills/engineering/to-tickets/SKILL.md): Breaks specs into vertical tracer-bullet slices with blocking edges
+- [`/improve-codebase-architecture`](./skills/engineering/improve-codebase-architecture/SKILL.md): Surveys the codebase for deep-module opportunities
 
 ---
 
