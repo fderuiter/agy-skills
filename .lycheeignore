@@ -1,0 +1,4 @@
+# Ignore self-referencing docs URLs that are not yet deployed or route differently
+https://fderuiter\.github\.io/.*
+# Ignore repo issue URLs that originated from upstream repository
+https://github\.com/fderuiter/agy-skills/issues/.*
