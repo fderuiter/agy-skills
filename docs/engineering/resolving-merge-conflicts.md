@@ -13,7 +13,7 @@ Reach for it when git has already stopped on conflicts it could not resolve itse
 | Your situation | Skill |
 | --- | --- |
 | Mid-merge or mid-rebase, conflict markers in the tree | This one |
-| Merge finished, something now misbehaves for reasons you can't see | [diagnosing-bugs](https://aihero.dev/skills-diagnosing-bugs) |
+| Merge finished, something now misbehaves for reasons you can't see | [diagnosing-bugs](https://fderuiter.github.io/agy-skills/skills-diagnosing-bugs) |
 | Planning how to slice work so branches collide less | Neither: see the parallel-work question below |
 
 ## Primary sources over `ours` and `theirs`
@@ -24,7 +24,7 @@ You cannot preserve an intent you have not read. So the work starts in the histo
 
 ## Common questions
 
-**Claude Code already resolves conflicts pretty well on its own. Why does this need a skill?**
+**Antigravity already resolves conflicts pretty well on its own. Why does this need a skill?**
 
 The added value is the "find the primary sources" and "run feedback loops" steps, which otherwise have to be prompted by hand every time. An unprompted agent will usually produce a plausible resolution from the diff alone and stop there. The skill's value is the two steps it will not let the agent skip: reading why each side exists, and running the checks afterwards. That is a thin margin over a good [model](https://www.aihero.dev/ai-coding-dictionary/model), and it is meant to be: at least one reader has predicted this is a whole skill that becomes a no-op as models improve.
 
@@ -48,4 +48,4 @@ Aborting throws away the resolution work and returns you to the same conflict, u
 
 ## Where it fits
 
-A reach-for-it-anytime standalone with no dependencies on any other skill: it starts when git stalls and ends when the tree is clean and committed. Its only real neighbour is [diagnosing-bugs](https://aihero.dev/skills-diagnosing-bugs), which takes over at the point where a merge resolved cleanly but the merged code misbehaves: a diagnosis problem, not a conflict one. It sits off the main idea-to-ship flow entirely, so [ask-matt](https://aihero.dev/skills-ask-matt) is the map for what runs before and after it.
+A reach-for-it-anytime standalone with no dependencies on any other skill: it starts when git stalls and ends when the tree is clean and committed. Its only real neighbour is [diagnosing-bugs](https://fderuiter.github.io/agy-skills/skills-diagnosing-bugs), which takes over at the point where a merge resolved cleanly but the merged code misbehaves: a diagnosis problem, not a conflict one. It sits off the main idea-to-ship flow entirely, so [ask-fred](https://fderuiter.github.io/agy-skills/skills-ask-fred) is the map for what runs before and after it.

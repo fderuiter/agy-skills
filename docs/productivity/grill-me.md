@@ -13,8 +13,8 @@ Reach for it as soon as you have an idea worth taking seriously (a feature, a pr
 Which of the three grilling skills you want depends on what is in front of you:
 
 - **Anything, anywhere**: `grill-me`. It needs no repo and writes no files, and the subject doesn't have to be code.
-- **A codebase to align against**: [grill-with-docs](https://aihero.dev/skills-grill-with-docs). The same interview, but [stateful](https://www.aihero.dev/ai-coding-dictionary/stateful): it reads your code and keeps what it learns in `CONTEXT.md` and ADRs.
-- **Too big for one session**: [wayfinder](https://aihero.dev/skills-wayfinder). It charts the effort as a map and runs grilling sessions inside it.
+- **A codebase to align against**: [grill-with-docs](https://fderuiter.github.io/agy-skills/skills-grill-with-docs). The same interview, but [stateful](https://www.aihero.dev/ai-coding-dictionary/stateful): it reads your code and keeps what it learns in `CONTEXT.md` and ADRs.
+- **Too big for one session**: [wayfinder](https://fderuiter.github.io/agy-skills/skills-wayfinder). It charts the effort as a map and runs grilling sessions inside it.
 
 Leave [plan mode](https://www.aihero.dev/ai-coding-dictionary/agent-mode) off. Plan mode primes the agent to rush toward producing a plan, which is the opposite of staying in inquiry.
 
@@ -32,7 +32,7 @@ The opposite error is real but rarer: staying in the interview so long you never
 
 Some questions can be answered by talking. Others can't, and no amount of grilling will get you there.
 
-"One long form or three pages?" and "how should this interaction feel?" are **ungrillable**: they need something to react to. When you hit one, stop grilling. Build the throwaway version with [prototype](https://aihero.dev/skills-prototype), look at it, then come back and answer in one line.
+"One long form or three pages?" and "how should this interaction feel?" are **ungrillable**: they need something to react to. When you hit one, stop grilling. Build the throwaway version with [prototype](https://fderuiter.github.io/agy-skills/skills-prototype), look at it, then come back and answer in one line.
 
 Talking your way through an ungrillable question is where sessions balloon. The agent keeps rephrasing, you keep guessing, and the scope grows to fill the uncertainty.
 
@@ -62,7 +62,7 @@ When grilling, ask one question at a time.
 Say so. "I don't know" is a real answer, and a question you can't answer is usually a sign to prototype rather than to guess.
 
 **Do I start a fresh session before writing the spec?**
-No. The value of the session is the [context](https://www.aihero.dev/ai-coding-dictionary/context) you just built. Hand the same conversation straight to [to-spec](https://aihero.dev/skills-to-spec).
+No. The value of the session is the [context](https://www.aihero.dev/ai-coding-dictionary/context) you just built. Hand the same conversation straight to [to-spec](https://fderuiter.github.io/agy-skills/skills-to-spec).
 
 **Does the model matter?**
 More than for most skills. Grilling leans on the [model](https://www.aihero.dev/ai-coding-dictionary/model)'s own sense of how systems break, so give it your best one. Implementation mostly follows context and tolerates a cheaper model.
@@ -71,6 +71,6 @@ More than for most skills. Grilling leans on the [model](https://www.aihero.dev/
 
 `grill-me` is a **standalone you can run anywhere, on anything**. Being stateless is what makes it portable: no repo, no workspace, no setup, and no assumption that the idea is even about software. People point it at business decisions, at writing, at what to do next: anything that won't sit still in their head.
 
-That portability is the whole difference from [grill-with-docs](https://aihero.dev/skills-grill-with-docs), which runs the same interview but reads a codebase to align against and records what it learns as `CONTEXT.md` and ADRs. Both sit on the [grilling](https://aihero.dev/skills-grilling) primitive; `grill-me` is the user-invoked front door that carries nothing with it.
+That portability is the whole difference from [grill-with-docs](https://fderuiter.github.io/agy-skills/skills-grill-with-docs), which runs the same interview but reads a codebase to align against and records what it learns as `CONTEXT.md` and ADRs. Both sit on the [grilling](https://fderuiter.github.io/agy-skills/skills-grilling) primitive; `grill-me` is the user-invoked front door that carries nothing with it.
 
-If what you grilled does turn out to be software, you can hand the same conversation to [to-spec](https://aihero.dev/skills-to-spec) and carry on into the build flow (an option, not the point of the skill). When you're unsure which flow fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+If what you grilled does turn out to be software, you can hand the same conversation to [to-spec](https://fderuiter.github.io/agy-skills/skills-to-spec) and carry on into the build flow (an option, not the point of the skill). When you're unsure which flow fits, [ask-fred](https://fderuiter.github.io/agy-skills/skills-ask-fred) routes you.

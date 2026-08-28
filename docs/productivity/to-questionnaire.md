@@ -12,10 +12,10 @@ Reach for it when a decision is blocked on knowledge that lives in one other per
 
 | The answers are in… | Reach for |
 | --- | --- |
-| Your own head, unsharpened | [grill-me](https://aihero.dev/skills-grill-me) |
-| The codebase | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) |
+| Your own head, unsharpened | [grill-me](https://fderuiter.github.io/agy-skills/skills-grill-me) |
+| The codebase | [grill-with-docs](https://fderuiter.github.io/agy-skills/skills-grill-with-docs) |
 | Someone else's head | `to-questionnaire` |
-| Nobody's head yet, the question needs something to react to | [prototype](https://aihero.dev/skills-prototype) |
+| Nobody's head yet, the question needs something to react to | [prototype](https://fderuiter.github.io/agy-skills/skills-prototype) |
 
 The common case is a [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling) session that stalls: some of what surfaced isn't yours to answer. Run `/to-questionnaire` in that same conversation to take those questions offline, then bring the answers back and carry on.
 
@@ -75,4 +75,4 @@ Yes, and plenty of people did before it existed: `OPEN_QUESTIONS.md` files, spre
 
 `to-questionnaire` is a reach-for-it-anytime standalone. It sits at the boundary of your own knowledge, where the next move is another person rather than another skill, most often mid-flow, when planning has stalled on something that isn't yours to decide.
 
-Its neighbour is [grill-me](https://aihero.dev/skills-grill-me), and the two split on where the answers live: grilling mines you, a questionnaire mines someone else. What comes back is raw material: feed it into another grilling round, or into [grill-with-docs](https://aihero.dev/skills-grill-with-docs) or [to-spec](https://aihero.dev/skills-to-spec) if the work is heading for a build. When you're unsure which skill fits the moment, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+Its neighbour is [grill-me](https://fderuiter.github.io/agy-skills/skills-grill-me), and the two split on where the answers live: grilling mines you, a questionnaire mines someone else. What comes back is raw material: feed it into another grilling round, or into [grill-with-docs](https://fderuiter.github.io/agy-skills/skills-grill-with-docs) or [to-spec](https://fderuiter.github.io/agy-skills/skills-to-spec) if the work is heading for a build. When you're unsure which skill fits the moment, [ask-fred](https://fderuiter.github.io/agy-skills/skills-ask-fred) routes you.

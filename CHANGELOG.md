@@ -1,4 +1,6 @@
-# mattpocock-skills
+# agy-skills
+
+> **Note:** Entries below version 1.2.3 are from the upstream repository ([mattpocock/skills](https://github.com/mattpocock/skills)) before this fork was adapted for Google Antigravity by Fred de Ruiter.
 
 ## 1.2.3
 

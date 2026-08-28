@@ -12,10 +12,10 @@ Typing `/grilling` directly gets you the plain interview and nothing else. Where
 
 | What you have | Reach for |
 | --- | --- |
-| You aren't working in a working directory | [grill-me](https://aihero.dev/skills-grill-me): the same [session](https://www.aihero.dev/ai-coding-dictionary/session), under a name the agent will never fire by itself |
-| You are in a working directory | [grill-with-docs](https://aihero.dev/skills-grill-with-docs): the same session, and it writes `CONTEXT.md` and ADRs as it goes |
-| An effort too big to hold in one session | [wayfinder](https://aihero.dev/skills-wayfinder): it charts a map and runs grilling inside the decision tickets |
-| A question that talking cannot settle: how something should look or feel | [prototype](https://aihero.dev/skills-prototype): build the throwaway version, then come back |
+| You aren't working in a working directory | [grill-me](https://fderuiter.github.io/agy-skills/skills-grill-me): the same [session](https://www.aihero.dev/ai-coding-dictionary/session), under a name the agent will never fire by itself |
+| You are in a working directory | [grill-with-docs](https://fderuiter.github.io/agy-skills/skills-grill-with-docs): the same session, and it writes `CONTEXT.md` and ADRs as it goes |
+| An effort too big to hold in one session | [wayfinder](https://fderuiter.github.io/agy-skills/skills-wayfinder): it charts a map and runs grilling inside the decision tickets |
+| A question that talking cannot settle: how something should look or feel | [prototype](https://fderuiter.github.io/agy-skills/skills-prototype): build the throwaway version, then come back |
 | A skill of your own that needs an interview | Invoke `/grilling` from it, rather than writing another interview |
 
 ## The round, the frontier, and who decides
@@ -37,8 +37,8 @@ This page covers the mechanism. The things people most often want are documented
 | Question | Where it is answered |
 | --- | --- |
 | The tree, the frontier, rounds, the question format, facts vs decisions | Here |
-| How long a session should run, what to do with a question you can't answer by talking, how to avoid nodding along | [grill-me](https://aihero.dev/skills-grill-me) |
-| What gets written to `CONTEXT.md`, what becomes an ADR | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) |
+| How long a session should run, what to do with a question you can't answer by talking, how to avoid nodding along | [grill-me](https://fderuiter.github.io/agy-skills/skills-grill-me) |
+| What gets written to `CONTEXT.md`, what becomes an ADR | [grill-with-docs](https://fderuiter.github.io/agy-skills/skills-grill-with-docs) |
 
 ## Common questions
 
@@ -67,7 +67,7 @@ That is a bug in the run, not the intended behaviour, and it was the reason fact
 No, and a cap is deliberately out of scope. Some plans need three questions and some need fifty; a fixed ceiling either truncates the hard case or feels arbitrary on the easy one. Steering in plain language is the intended control: tell it to wrap up, or stop and accept the plan where it stands. If a session is running very long, the cause is usually that the scope was too big; break the work up and grill the pieces.
 
 **I installed `grill-me` on its own and nothing happens.**
-`grill-me` is a one-line skill whose whole body is "run a `/grilling` session", so it needs this skill installed too. The same is true of `grill-with-docs`, which additionally needs [domain-modeling](https://aihero.dev/skills-domain-modeling). Installing the whole set avoids the problem; installing selectively means installing the primitives as well.
+`grill-me` is a one-line skill whose whole body is "run a `/grilling` session", so it needs this skill installed too. The same is true of `grill-with-docs`, which additionally needs [domain-modeling](https://fderuiter.github.io/agy-skills/skills-domain-modeling). Installing the whole set avoids the problem; installing selectively means installing the primitives as well.
 
 **`grill-with-docs` ran, but it never loaded `grilling`.**
 A real and unfixed rough edge, reported across [harnesses](https://www.aihero.dev/ai-coding-dictionary/harness) and models: a skill that names another skill does not reliably cause that skill to load, and `grill-with-docs` names two. The tell is a session that asks everything at once with no recommendations attached: that is the model improvising an interview rather than running this one. Asking the agent directly whether it loaded `grilling` and `domain-modeling` usually recovers it.
@@ -84,4 +84,4 @@ A real and unfixed rough edge, reported across [harnesses](https://www.aihero.de
 
 ## Where it fits
 
-`grilling` is a **primitive**, not a step you schedule: the single source of truth for the interview technique, kept in one place so every skill that needs an interview reaches for it instead of inventing one. [grill-me](https://aihero.dev/skills-grill-me) and [grill-with-docs](https://aihero.dev/skills-grill-with-docs) are its two user-invoked front doors, and `grill-with-docs` is where the main build chain begins, ahead of [to-spec](https://aihero.dev/skills-to-spec). [wayfinder](https://aihero.dev/skills-wayfinder) runs it to resolve decision tickets, [triage](https://aihero.dev/skills-triage) to grill a vague report into a workable one, and [improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture) to walk the tree once you have picked a candidate to deepen. When you are unsure which entry point fits, [ask-matt](https://aihero.dev/skills-ask-matt) routes you.
+`grilling` is a **primitive**, not a step you schedule: the single source of truth for the interview technique, kept in one place so every skill that needs an interview reaches for it instead of inventing one. [grill-me](https://fderuiter.github.io/agy-skills/skills-grill-me) and [grill-with-docs](https://fderuiter.github.io/agy-skills/skills-grill-with-docs) are its two user-invoked front doors, and `grill-with-docs` is where the main build chain begins, ahead of [to-spec](https://fderuiter.github.io/agy-skills/skills-to-spec). [wayfinder](https://fderuiter.github.io/agy-skills/skills-wayfinder) runs it to resolve decision tickets, [triage](https://fderuiter.github.io/agy-skills/skills-triage) to grill a vague report into a workable one, and [improve-codebase-architecture](https://fderuiter.github.io/agy-skills/skills-improve-codebase-architecture) to walk the tree once you have picked a candidate to deepen. When you are unsure which entry point fits, [ask-fred](https://fderuiter.github.io/agy-skills/skills-ask-fred) routes you.

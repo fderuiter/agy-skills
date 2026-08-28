@@ -1,6 +1,6 @@
-# Matt Pocock Skills
+# agy-skills
 
-A collection of agent skills (slash commands and behaviors) loaded by Claude Code. Skills are organized into buckets and consumed by per-repo configuration emitted by `/setup-matt-pocock-skills`.
+A collection of agent skills (slash commands and behaviors) loaded by Google Antigravity (AGY), maintained by Fred de Ruiter. Forked from Matt Pocock's `mattpocock/skills`. Skills are organized into buckets and consumed by per-repo configuration emitted by `/setup-agy-skills`.
 
 ## Language
 

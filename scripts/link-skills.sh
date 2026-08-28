@@ -6,14 +6,14 @@ set -euo pipefail
 # modifications, will not be approved.
 #
 # Links all skills in the repository into the local skill directories used by
-# each agent harness:
-#   - ~/.claude/skills: Claude Code
-#   - ~/.agents/skills: Codex and other Agent Skills-compatible harnesses
+# Antigravity and Agent Skills-compatible harnesses:
+#   - ~/.agents/skills: Antigravity workspace/local skills root
+#   - ~/.gemini/config/skills: Antigravity global skills directory
 # Each entry is a symlink into this repo, so a `git pull` is all that's needed
 # to keep installed skills up to date.
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-DESTS=("$HOME/.claude/skills" "$HOME/.agents/skills")
+DESTS=("$HOME/.agents/skills" "$HOME/.gemini/config/skills")
 
 # Collect the repo's skills once, link into every destination.
 names=()
