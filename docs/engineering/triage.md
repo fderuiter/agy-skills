@@ -86,7 +86,7 @@ This is the most-filed gap on the skill, in three shapes. An issue that is fully
 **How is this different from `/diagnosing-bugs`?**
 The verification step here is deliberately shallow (enough to answer "is this real, and roughly where does it live"), not to find a root cause. When a bug won't reproduce from the reporter's steps in a few minutes, the honest move is `needs-info`, or [diagnosing-bugs](https://fderuiter.github.io/agy-skills/skills-diagnosing-bugs) if you want to chase it now. Neither skill's text currently mentions the other; a user found that seam, and it is still open.
 
-**Can I point it at my whole backlog and let it run?**
+**Can I point it at all my open issues and let it run?**
 You can ask, but watch what it reads. The "show what needs attention" pass is a cheap listing meant for *selection*, where you pick one, and then it gathers full [context](https://fderuiter.github.io/agy-skills/dictionary/context) on the one you picked. Run it across twenty issues at once and an agent can quietly fall back to that cheap listing as its evidence base, which returns issue bodies but not comments. A user hit exactly this: three issues already carried a comment saying "already fixed, recommend closing", and all three got fresh agent briefs instead. If you want a bulk pass, say explicitly that comments must be read per issue.
 
 **Does it work with Linear, or anything other than GitHub Issues?**

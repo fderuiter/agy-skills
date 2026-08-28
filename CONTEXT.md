@@ -63,6 +63,21 @@ A visual metadata chip displayed on documentation pages, search items, and READM
 **Pre-commit Integrity Gate**:
 A local git lifecycle check running automated test scripts before commit creation to prevent rule regressions, invalid front matter, or em-dash violations from entering version control.
 
+**On-Page Table of Contents**:
+A dynamic, client-side outline extracted from document heading hierarchies (h2, h3) that provides one-click smooth scrolling, active section tracking, and responsive collapsible navigation.
+
+**Scroll Reading Progress Bar**:
+A slim top-anchored indicator visualizing document reading progression across viewport scroll states with Material Design 3 primary container styling.
+
+**Heading Anchor Link**:
+An interactive hover target alongside article section headings generating shareable fragment URLs with one-click clipboard copying.
+
+**Link and Anchor Integrity Gate**:
+An automated validation script (`check-links.mjs`) ensuring that all relative markdown links, asset paths, and heading fragment hashes resolve to valid destinations across repository files.
+
+**Terminology Enforcement Linter**:
+An automated validation script (`check-terminology.mjs`) scanning markdown documentation and skill prose to prevent the reintroduction of forbidden or ambiguous domain terms.
+
 ## Relationships
 
 - An **Issue tracker** holds many **Issues**
@@ -79,6 +94,10 @@ A local git lifecycle check running automated test scripts before commit creatio
 - An **Interactive Mermaid Renderer** visualizes workflow and architectural diagrams with dynamic theme integration
 - A **Skill Classification Badge** categorizes skill invocability across documentation and search interfaces
 - A **Pre-commit Integrity Gate** enforces test and formatting invariants at commit time
+- An **On-Page Table of Contents** indexes article headings and synchronizes with **Heading Anchor Links**
+- A **Scroll Reading Progress Bar** tracks reading position across **Adaptive Navigation Shell** viewports
+- A **Link and Anchor Integrity Gate** validates markdown references within the **Pre-commit Integrity Gate**
+- A **Terminology Enforcement Linter** ensures repo-wide adherence to **Language** standards
 
 ## Flagged ambiguities
 

@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Test Suite (SEO & Skill Parity Audits)
+      - name: Run Test Suite (SEO, Skill Parity, Link Integrity & Terminology Audits)
         run: npm test
 
       - name: Check Plugin Version Synchronization

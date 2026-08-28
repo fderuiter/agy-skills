@@ -466,6 +466,173 @@
       div.textContent = text;
       return div.innerHTML;
     }
+
+    // 7. M3 Snackbar Toast Controller
+    let snackbarTimeout = null;
+    function showSnackbar(message, icon = 'check') {
+      const snackbar = document.getElementById('m3-snackbar');
+      if (!snackbar) return;
+
+      snackbar.innerHTML = `
+        <span class="material-symbols-outlined" style="font-size: 18px;">${escapeHtml(icon)}</span>
+        <span>${escapeHtml(message)}</span>
+      `;
+      snackbar.classList.add('show');
+
+      if (snackbarTimeout) {
+        clearTimeout(snackbarTimeout);
+      }
+
+      snackbarTimeout = setTimeout(() => {
+        snackbar.classList.remove('show');
+      }, 2600);
+    }
+
+    // 8. Scroll Reading Progress Bar
+    const progressBar = document.getElementById('m3-reading-progress');
+    if (progressBar) {
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = scrollHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100)) : 0;
+        progressBar.style.width = `${progress}%`;
+      }, { passive: true });
+    }
+
+    // 9. Interactive Heading Anchor Links
+    function slugify(text) {
+      return text
+        .toLowerCase()
+        .trim()
+        .replace(/<[^>]+>/g, '')
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-');
+    }
+
+    const contentArticle = document.querySelector('.m3-markdown-body');
+    if (contentArticle) {
+      const headings = contentArticle.querySelectorAll('h2, h3');
+      headings.forEach((heading) => {
+        if (!heading.id) {
+          heading.id = slugify(heading.textContent);
+        }
+
+        const anchor = document.createElement('button');
+        anchor.className = 'm3-heading-anchor-btn';
+        anchor.setAttribute('type', 'button');
+        anchor.setAttribute('title', 'Copy section link');
+        anchor.setAttribute('aria-label', `Copy link to ${heading.textContent.trim()}`);
+        anchor.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px;">tag</span>';
+
+        anchor.addEventListener('click', (e) => {
+          e.preventDefault();
+          const url = `${window.location.origin}${window.location.pathname}#${heading.id}`;
+          navigator.clipboard.writeText(url).then(() => {
+            history.pushState(null, null, `#${heading.id}`);
+            heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            showSnackbar('Section link copied to clipboard', 'link');
+          }).catch(() => {
+            window.location.hash = heading.id;
+          });
+        });
+
+        heading.appendChild(anchor);
+      });
+
+      // 10. Dynamic On-Page Table of Contents (Desktop Sidebar & Mobile Expandable Card)
+      const tocSidebar = document.getElementById('m3-toc-sidebar');
+      const tocMobileSlot = document.getElementById('m3-toc-mobile-slot');
+
+      if (headings.length >= 2) {
+        // Build items
+        let listItemsHtml = '';
+        headings.forEach((heading) => {
+          const isH3 = heading.tagName.toLowerCase() === 'h3';
+          const clone = heading.cloneNode(true);
+          const anchorBtn = clone.querySelector('.m3-heading-anchor-btn');
+          if (anchorBtn) anchorBtn.remove();
+          const text = clone.textContent.trim();
+          listItemsHtml += `
+            <li class="m3-toc-item ${isH3 ? 'm3-toc-item-h3' : 'm3-toc-item-h2'}">
+              <a href="#${heading.id}" class="m3-toc-link" data-target-id="${heading.id}">
+                ${escapeHtml(text)}
+              </a>
+            </li>
+          `;
+        });
+
+        if (tocSidebar) {
+          tocSidebar.innerHTML = `
+            <div class="m3-toc-card">
+              <div class="m3-toc-header">
+                <span class="material-symbols-outlined" style="font-size: 18px;">toc</span>
+                <span>On this page</span>
+              </div>
+              <ul class="m3-toc-list">
+                ${listItemsHtml}
+              </ul>
+            </div>
+          `;
+          tocSidebar.style.display = 'block';
+        }
+
+        if (tocMobileSlot) {
+          tocMobileSlot.innerHTML = `
+            <details class="m3-toc-mobile-card">
+              <summary class="m3-toc-mobile-summary">
+                <span class="material-symbols-outlined" style="font-size: 18px;">toc</span>
+                <span>Table of Contents</span>
+                <span class="material-symbols-outlined m3-toc-expand-icon">expand_more</span>
+              </summary>
+              <ul class="m3-toc-list">
+                ${listItemsHtml}
+              </ul>
+            </details>
+          `;
+        }
+
+        // Setup smooth scroll for ToC links
+        document.querySelectorAll('.m3-toc-link').forEach((link) => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('data-target-id');
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+              history.pushState(null, null, `#${targetId}`);
+              targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+        });
+
+        // IntersectionObserver for active heading highlight
+        const tocLinks = document.querySelectorAll('.m3-toc-link');
+        const observerOptions = {
+          root: null,
+          rootMargin: '-80px 0px -70% 0px',
+          threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const activeId = entry.target.id;
+              tocLinks.forEach((link) => {
+                if (link.getAttribute('data-target-id') === activeId) {
+                  link.classList.add('active');
+                } else {
+                  link.classList.remove('active');
+                }
+              });
+            }
+          });
+        }, observerOptions);
+
+        headings.forEach((heading) => observer.observe(heading));
+      } else {
+        if (tocSidebar) tocSidebar.style.display = 'none';
+        if (tocMobileSlot) tocMobileSlot.innerHTML = '';
+      }
+    }
   });
 })();
 

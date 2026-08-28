@@ -13,6 +13,8 @@
     {% include nav-drawer.html %}
 
     <main class="m3-main-content">
+      <div id="m3-reading-progress" class="m3-reading-progress" aria-hidden="true"></div>
+
       <div class="m3-content-wrapper">
         <nav class="m3-breadcrumbs" aria-label="Breadcrumb navigation">
           <div class="m3-breadcrumbs-links">
@@ -35,9 +37,15 @@
           <div id="m3-page-badge-slot" class="m3-page-badge-slot"></div>
         </nav>
 
-        <article class="m3-markdown-body">
-          {{ content }}
-        </article>
+        <div id="m3-toc-mobile-slot" class="m3-toc-mobile-slot"></div>
+
+        <div class="m3-article-layout">
+          <article class="m3-markdown-body">
+            {{ content }}
+          </article>
+
+          <aside id="m3-toc-sidebar" class="m3-toc-sidebar" aria-label="Table of contents"></aside>
+        </div>
       </div>
 
       <footer class="m3-footer">
@@ -52,6 +60,8 @@
       </footer>
     </main>
   </div>
+
+  <div id="m3-snackbar" class="m3-snackbar" role="status" aria-live="polite"></div>
 
   {% include search-dialog.html %}
 
