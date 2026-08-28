@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Antigravity Compatible](https://img.shields.io/badge/Agent-Google%20Antigravity-orange)](https://github.com/fderuiter/agy-skills)
 
-Curated, low-cognitive-load agent skills and workflows tailored for **Google Antigravity (AGY)** and Claude Code, maintained by Fred de Ruiter.
+Curated, low-cognitive-load agent skills and workflows tailored for **Google Antigravity (AGY)**, maintained by Fred de Ruiter.
 
 Forked from [mattpocock/skills](https://github.com/mattpocock/skills) by Matt Pocock.
 

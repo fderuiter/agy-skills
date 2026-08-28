@@ -1,7 +1,7 @@
 ---
 title: "agy-skills Documentation | Agent Skills for Google Antigravity"
-description: "Comprehensive documentation and guides for agy-skills: production-grade agent skills, workflows, and prompts for Google Antigravity and Claude Code."
-keywords: ["antigravity skills", "agent skills", "google antigravity", "ai coding workflows", "claude code plugins"]
+description: "Comprehensive documentation and guides for agy-skills: production-grade agent skills, workflows, and prompts for Google Antigravity."
+keywords: ["antigravity skills", "agent skills", "google antigravity", "ai coding workflows", "antigravity workflows"]
 permalink: /
 ---
 
@@ -36,6 +36,7 @@ Explore the comprehensive [**AI Coding Dictionary**](https://fderuiter.github.io
 - [improve-codebase-architecture](./engineering/improve-codebase-architecture.md): Scan codebase for deepening opportunities.
 - [setup-agy-skills](./engineering/setup-agy-skills.md): Configure a repo for the engineering skills.
 - [setup-mcp](./engineering/setup-mcp.md): Configure Model Context Protocol (MCP) servers in Google Antigravity.
+- [setup-ts-deep-modules](./engineering/setup-ts-deep-modules.md): Enforce deep module boundaries with dependency-cruiser.
 - [to-spec](./engineering/to-spec.md): Turn conversation into a spec and publish to issue tracker.
 - [to-tickets](./engineering/to-tickets.md): Break specs/plans into tracer-bullet tickets with blocking edges.
 - [implement](./engineering/implement.md): Build work described by spec/tickets test-first and review before committing.

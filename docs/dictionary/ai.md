@@ -14,7 +14,7 @@ A moving label, not a technology. "AI" doesn't name a fixed thing the way [model
 | Era       | What "AI" meant                                                                                       |
 | --------- | ----------------------------------------------------------------------------------------------------- |
 | 1950s     | Symbolic reasoning, theorem provers, checkers programs.                                              |
-| 1960s–70s | Rule-based symbolic programs, ELIZA, SHRDLU.                                                         |
+| 1960s-70s | Rule-based symbolic programs, ELIZA, SHRDLU.                                                         |
 | 1980s     | Expert systems, thousands of hand-written if-then rules encoding human expertise.                    |
 | 1990s     | Game-tree search, Deep Blue beating Kasparov (1997). Researchers avoided the word "AI" entirely      |
 | 2000s     | Statistical machine learning, spam filters, recommenders. Still sold as "machine learning", not "AI" |

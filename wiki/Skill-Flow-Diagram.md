@@ -96,14 +96,14 @@ flowchart TD
     CodebaseDesign --> MainFlow["Feed into /grill-with-docs"]
 
     TriggerRetro(["Session Complete / Milestone"]) --> Retro["/retro\n(Analyze conversation transcripts)"]
-    Retro --> AuditResults["Audit Transcripts across 5 Vectors"]
+    Retro --> AuditResults["Audit Transcripts across 7 Categories"]
     AuditResults --> EnvUpdates["Update AGENTS.md, Rules,\nAutomated Checks, & Navigation"]
 ```
 
 ### Upkeep Summaries
 
 - **`/improve-codebase-architecture`**: Scans the codebase to detect shallow modules, leaky abstractions, or missing seams, generating high-leverage refactoring opportunities.
-- **`/retro`**: Analyzes agent session transcripts to extract systemic environment improvements, refining project rules, automated checks, and AGENTS.md instructions.
+- **`/retro`**: Analyzes agent session transcripts to extract systemic environment improvements across 7 categories, refining project rules, automated checks, and AGENTS.md instructions.
 
 ---
 
@@ -140,11 +140,13 @@ flowchart TD
         Wizard["/wizard\n(Interactive script for human-only operational steps)"]
         WaitWhat["/wait-what\n(Mid-session re-explanation and vocabulary alignment)"]
         Teach["/teach\n(Multi-session learning workspace)"]
+        WritingForAgents["/writing-for-agents\n(Reference for authoring agent documents)"]
     end
 
     subgraph EnvironmentSetup ["Environment & Preconditions"]
         SetupAgy["/setup-agy-skills\n(Configure issue tracker and labels)"]
         SetupMcp["/setup-mcp\n(Configure and verify MCP servers)"]
+        SetupDeep["/setup-ts-deep-modules\n(Enforce deep module boundaries)"]
     end
 ```
 
@@ -158,5 +160,8 @@ flowchart TD
 | **`/wizard`** | User | Generates interactive scripts to guide humans through manual setup and credential provisioning. |
 | **`/wait-what`** | User | Corrects misunderstandings mid-conversation by re-pitching ideas using established domain terms. |
 | **`/teach`** | User | Stateful multi-session learning workspace for mastering technical concepts. |
+| **`/writing-for-agents`** | Model | Reference for authoring predictable documents agents consume (skills, AGENTS.md, docs). |
 | **`/setup-agy-skills`** | User | Pre-configures tracker settings and triage labels before starting engineering workflows. |
 | **`/setup-mcp`** | User | Configures and validates Model Context Protocol servers in local or global configs. |
+| **`/setup-ts-deep-modules`** | User | Wires dependency-cruiser into a TypeScript repo to enforce deep module boundaries. |
+
