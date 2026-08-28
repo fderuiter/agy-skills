@@ -1,17 +1,19 @@
 ---
 name: handoff-context
-description: Hand the current conversation off to a fresh background agent that picks up the work immediately.
-argument-hint: "What will the next session be used for?"
+description: Hand the current conversation off to a background subagent in Antigravity that picks up the work immediately.
+argument-hint: \ What will the next session be used for?\
 ---
 
-Write a handoff summary of the current conversation so a fresh agent can continue the work. Instead of saving it, launch a background agent seeded with the summary as its prompt: `claude --bg --name "<descriptive name>" "<handoff summary>"`. It starts in the current working directory and returns immediately; the user manages it with `claude agents`.
+# Handoff Context
 
-Always pass `-n`/`--name` with a descriptive name (e.g. `--name "Fix login bug"`); it sets the display name shown in the job list, session picker, and terminal title.
+Write a handoff summary of the current conversation so a fresh subagent can continue the work.
 
-Include a "suggested skills" section in the summary, naming which skills the next agent should call the Skill tool for.
+Launch a background subagent (via invoke_subagent or CLI task) seeded with the summary as its prompt.
 
-Do not duplicate content already captured in other artifacts (specs, plans, ADRs, issues, commits, diffs). Reference them by path or URL instead.
+## Guidelines
 
-Redact any sensitive information, such as API keys, passwords, or personally identifiable information, since the summary becomes the agent's prompt.
-
-If the user passed arguments, treat them as a description of what the next session will focus on and tailor the summary accordingly.
+1. **Role and Name**: Provide a descriptive role/name (e.g., \BugFix Subagent\ or \Refactor Executor\).
+2. **Suggested Skills**: Include a section naming which skills the subagent should activate.
+3. **Artifacts & References**: Reference existing files, specs, plans, and ADRs by path rather than duplicating text.
+4. **Redaction**: Redact any secrets or credentials from the handoff prompt.
+5. **Goal-directed**: If the user provided arguments, tailor the handoff prompt specifically to those goals.

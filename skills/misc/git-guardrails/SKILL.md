@@ -1,95 +1,63 @@
 ---
 name: git-guardrails
-description: Set up Antigravity hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git safety hooks, or block git push/reset in Antigravity.
+description: Set up Antigravity lifecycle hooks in .agents/hooks.json to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before run_command executes.
 ---
 
 # Setup Git Guardrails
 
-Sets up a PreToolUse hook that intercepts and blocks dangerous git commands before Claude executes them.
+Sets up a PreToolUse hook in .agents/hooks.json that intercepts and blocks dangerous git commands before Antigravity executes them.
 
 ## What Gets Blocked
 
-- `git push` (all variants including `--force`)
-- `git reset --hard`
-- `git clean -f` / `git clean -fd`
-- `git branch -D`
-- `git checkout .` / `git restore .`
+- git push (all variants including --force)
+- git reset --hard
+- git clean -f / git clean -fd
+- git branch -D
+- git checkout . / git restore .
 
-When blocked, Claude sees a message telling it that it does not have authority to access these commands.
+When blocked, the hook outputs {\ decision\: \deny\} with an explanation, preventing execution.
 
 ## Steps
 
-### 1. Ask scope
+### 1. Copy the hook script
 
-Ask the user: install for **this project only** (`.claude/settings.json`) or **all projects** (`~/.claude/settings.json`)?
+Copy [scripts/block-dangerous-git.js](./scripts/block-dangerous-git.js) into your workspace:
 
-### 2. Copy the hook script
+- Target: .agents/hooks/block-dangerous-git.js
 
-The bundled script is at: [scripts/block-dangerous-git.sh](scripts/block-dangerous-git.sh)
+### 2. Configure .agents/hooks.json
 
-Copy it to the target location based on scope:
+Add or merge into .agents/hooks.json:
 
-- **Project**: `.claude/hooks/block-dangerous-git.sh`
-- **Global**: `~/.claude/hooks/block-dangerous-git.sh`
-
-Make it executable with `chmod +x`.
-
-### 3. Add hook to settings
-
-Add to the appropriate settings file:
-
-**Project** (`.claude/settings.json`):
-
-```json
+`json
 {
-  "hooks": {
-    "PreToolUse": [
+  \git-safety\: {
+    \PreToolUse\: [
       {
-        "matcher": "Bash",
-        "hooks": [
+        \matcher\: \run_command\,
+        \hooks\: [
           {
-            "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/block-dangerous-git.sh"
+            \type\: \command\,
+            \command\: \node .agents/hooks/block-dangerous-git.js\
           }
         ]
       }
     ]
   }
 }
-```
+`
 
-**Global** (`~/.claude/settings.json`):
+### 3. Verify
 
-```json
-{
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.claude/hooks/block-dangerous-git.sh"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
+Test the hook payload:
 
-If the settings file already exists, merge the hook into the existing `hooks.PreToolUse` array. Don't overwrite other settings.
+`ash
+node .agents/hooks/block-dangerous-git.js << 'EOF'
+{\toolCall\:{\name\:\run_command\,\args\:{\CommandLine\:\git push origin main\}}}
+EOF
+`
 
-### 4. Ask about customization
-
-Ask if user wants to add or remove any patterns from the blocked list. Edit the copied script accordingly.
-
-### 5. Verify
-
-Run a quick test:
-
-```bash
-echo '{"tool_input":{"command":"git push origin main"}}' | <path-to-script>
-```
-
-Should exit with code 2 and print a BLOCKED message to stderr.
+Should output:
+`json
+{\decision\:\deny\,\reason\:\BLOCKED: Command \\\git push origin main\\\ matched safety guardrail. Destructive git command prevented.\}
+`
