@@ -106,6 +106,7 @@ Daily code workflows.
 - **[to-spec](./skills/engineering/to-spec/SKILL.md)**: Turn conversation into a spec and publish to issue tracker.
 - **[to-tickets](./skills/engineering/to-tickets/SKILL.md)**: Break specs/plans into tracer-bullet tickets with blocking edges.
 - **[implement](./skills/engineering/implement/SKILL.md)**: Build work described by spec/tickets test-first and review before committing.
+- **[implement-spec](./skills/engineering/implement-spec/SKILL.md)**: Orchestrate concurrent subagents to implement a full specification across its ticket task graph.
 - **[wayfinder](./skills/engineering/wayfinder/SKILL.md)**: Chart and resolve large efforts as decision tickets.
 
 **Model-invoked**

@@ -47,15 +47,11 @@ for (const dest of destDirs) {
     const skillName = path.basename(src);
     const target = path.join(dest, skillName);
 
-    if (fs.existsSync(target)) {
-      try {
-        const stat = fs.lstatSync(target);
-        if (stat.isSymbolicLink() || (isWindows && stat.isDirectory())) {
-          fs.rmSync(target, { recursive: true, force: true });
-        }
-      } catch (err) {
-        fs.rmSync(target, { recursive: true, force: true });
-      }
+    try {
+      fs.lstatSync(target);
+      fs.rmSync(target, { recursive: true, force: true });
+    } catch {
+      // target does not exist, continue
     }
 
     try {
