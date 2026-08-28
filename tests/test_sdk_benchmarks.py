@@ -134,6 +134,24 @@ class TestSdkBenchmarks(unittest.TestCase):
         result = json.loads(proc.stdout)
         self.assertIsInstance(result, dict)
 
+    def test_wizard_templates_cross_platform(self):
+        """Verify that wizard templates (sh, ps1, mjs) exist, contain no em-dashes, and parse cleanly."""
+        wizard_dir = os.path.join(REPO_ROOT, "skills", "engineering", "wizard")
+        templates = ["template.sh", "template.ps1", "template.mjs"]
+
+        for tmpl in templates:
+            tmpl_path = os.path.join(wizard_dir, tmpl)
+            self.assertTrue(os.path.exists(tmpl_path), f"Wizard template missing: {tmpl_path}")
+            with open(tmpl_path, "r", encoding="utf-8") as f:
+                content = f.read()
+            self.assertNotIn("—", content, f"{tmpl} contains em-dashes.")
+            self.assertNotIn("\\u2014", content, f"{tmpl} contains unicode em-dashes.")
+
+        # Test Node.js template syntax
+        mjs_path = os.path.join(wizard_dir, "template.mjs")
+        proc = subprocess.run(["node", "--check", mjs_path], capture_output=True, text=True)
+        self.assertEqual(proc.returncode, 0, f"template.mjs syntax error: {proc.stderr}")
+
 
 if __name__ == "__main__":
     unittest.main()

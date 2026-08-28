@@ -19,7 +19,6 @@ else
   BOLD=""; DIM=""; RESET=""; BLUE=""; GREEN=""; YELLOW=""; RED=""
 fi
 
-# Author sets this at the top of the stages section.
 TOTAL_STAGES=0
 
 _STAGE_INDEX=0
@@ -28,14 +27,11 @@ WRITTEN_ENV=()    # KEYs written to ENV_FILE this run
 WRITTEN_SECRET=() # secret NAMEs set this run
 SKIPPED=()        # things we couldn't do (e.g. gh missing)
 
-# _clear wipes the terminal so only the current step is on screen. No-op when
-# output isn't a terminal, so piped logs stay readable.
 _clear() {
   [[ -t 1 ]] || return 0
   if command -v tput >/dev/null 2>&1; then tput clear; else printf '\033[2J\033[3J\033[H'; fi
 }
 
-# banner "Title" shows the opening frame: what this wizard does.
 banner() {
   _clear
   printf '\n%s%s  %s%s\n' "$BOLD" "$BLUE" "$1" "$RESET"
@@ -46,7 +42,6 @@ banner() {
   pause "Ready to start?"
 }
 
-# stage "Name" clears the screen, then announces a stage and shows progress.
 stage() {
   _clear
   _STAGE_INDEX=$((_STAGE_INDEX + 1))
@@ -54,33 +49,27 @@ stage() {
     "$BOLD" "$BLUE" "$_STAGE_INDEX" "$TOTAL_STAGES" "$1" "$RESET"
 }
 
-# say "..." prints a plain instruction line.
 say()  { printf '  %s\n' "$1"; }
-# step "..." is a numbered-feeling action the human takes in the browser.
 step() { printf '  %s•%s %s\n' "$BLUE" "$RESET" "$1"; }
 note() { printf '  %s%s%s\n' "$DIM" "$1" "$RESET"; }
 warn() { printf '  %s⚠ %s%s\n' "$YELLOW" "$1" "$RESET"; }
 
-# open_url URL opens it in the human's browser, cross-platform incl. macOS, Linux, WSL.
 open_url() {
   local url="$1"
   printf '  %s↗ opening%s %s\n' "$GREEN" "$RESET" "$url"
-  { if   [[ "${OSTYPE:-}" == "darwin"* ]] && command -v open >/dev/null 2>&1; then open "$url"
-    elif command -v wslview     >/dev/null 2>&1; then wslview "$url"
+  { if   command -v wslview     >/dev/null 2>&1; then wslview "$url"
     elif command -v explorer.exe >/dev/null 2>&1; then explorer.exe "$url"
     elif command -v xdg-open    >/dev/null 2>&1; then xdg-open "$url"
     elif command -v open        >/dev/null 2>&1; then open "$url"
-    else warn "couldn't open a browser; visit it manually: $url"; fi
-  } >/dev/null 2>&1 || warn "couldn't open a browser, so visit it manually: $url"
+    else warn "could not open a browser; visit it manually: $url"; fi
+  } >/dev/null 2>&1 || warn "could not open a browser, so visit it manually: $url"
 }
 
-# pause "msg" waits for the human to confirm they've done the manual part.
 pause() {
   printf '  %s%s%s ' "$DIM" "${1:-Press Enter to continue}" "$RESET"
   read -r _ || true
 }
 
-# confirm "question" is a y/N gate; returns success on yes.
 confirm() {
   local reply=""
   printf '  %s? %s [y/N] ' "$YELLOW" "$1"
@@ -88,22 +77,12 @@ confirm() {
   [[ "$reply" =~ ^[Yy] ]]
 }
 
-# _existing KEY: current value of KEY in ENV_FILE, if any.
 _existing() {
   [[ -f "$ENV_FILE" ]] || return 1
   local line; line=$(grep -E "^${1}=" "$ENV_FILE" | tail -n1) || return 1
-  local val="${line#*=}"
-  # Strip surrounding quotes if present
-  if [[ "$val" =~ ^\"(.*)\"$ ]]; then
-    val="${BASH_REMATCH[1]}"
-  elif [[ "$val" =~ ^\'(.*)\'$ ]]; then
-    val="${BASH_REMATCH[1]}"
-  fi
-  printf '%s' "$val"
+  printf '%s' "${line#*=}"
 }
 
-# ask KEY "Prompt" reads a value into $KEY. Offers the existing .env value as
-# a default on re-runs (Enter keeps it). Visible input with Readline support.
 ask() {
   local key="$1" prompt="$2" current input
   current=$(_existing "$key" || true)
@@ -112,16 +91,11 @@ ask() {
   else
     printf '  %s%s%s ' "$BOLD" "$prompt" "$RESET"
   fi
-  if [[ -t 0 ]]; then
-    read -e -r input || true
-  else
-    read -r input || true
-  fi
+  read -r input || true
   [[ -z "$input" && -n "$current" ]] && input="$current"
   printf -v "$key" '%s' "$input"
 }
 
-# ask_secret KEY "Prompt" is like ask, but input is hidden.
 ask_secret() {
   local key="$1" prompt="$2" current input
   current=$(_existing "$key" || true)
@@ -136,26 +110,17 @@ ask_secret() {
   printf -v "$key" '%s' "$input"
 }
 
-# write_env KEY VALUE upserts KEY=VALUE into ENV_FILE (creates it; replaces
-# any existing line). Quotes values containing spaces. Idempotent.
 write_env() {
-  local key="$1" value="$2" tmp formatted_val
+  local key="$1" value="$2" tmp
   touch "$ENV_FILE"
   tmp=$(mktemp)
-  if [[ "$value" =~ [[:space:]] || "$value" =~ [#] ]]; then
-    formatted_val="\"$value\""
-  else
-    formatted_val="$value"
-  fi
   grep -vE "^${key}=" "$ENV_FILE" > "$tmp" || true
-  printf '%s=%s\n' "$key" "$formatted_val" >> "$tmp"
+  printf '%s=%s\n' "$key" "$value" >> "$tmp"
   mv "$tmp" "$ENV_FILE"
   WRITTEN_ENV+=("$key")
   printf '  %s✓ wrote%s %s → %s\n' "$GREEN" "$RESET" "$key" "$ENV_FILE"
 }
 
-# set_secret NAME VALUE sets a GitHub Actions repo secret via gh. Falls back
-# to a warning (and records it) if gh is unavailable or unauthenticated.
 set_secret() {
   local name="$1" value="$2"
   if command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
@@ -169,7 +134,6 @@ set_secret() {
   warn "skipped GitHub secret $name: gh not ready; set it later"
 }
 
-# set_var NAME VALUE sets a GitHub Actions repo variable (non-secret).
 set_var() {
   local name="$1" value="$2"
   if command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
@@ -182,7 +146,6 @@ set_var() {
   warn "skipped GitHub variable $name, gh not ready; set it later"
 }
 
-# finish clears, then shows a closing summary of everything configured.
 finish() {
   _clear
   printf '\n%s%s  ✓ Setup complete%s\n' "$BOLD" "$GREEN" "$RESET"
@@ -197,24 +160,89 @@ finish() {
 
 # ──────────────────────────────────────────────────────────────────────────
 # STAGES: author this section. One stage() per step the human takes.
-# Replace the example below. Set TOTAL_STAGES to match the stages you write.
 # ──────────────────────────────────────────────────────────────────────────
 
-TOTAL_STAGES=1
+TOTAL_STAGES=5
 
-banner "Stripe setup"
+banner "Antigravity & Model Context Protocol (MCP) Setup Wizard"
 
-# ── Example stage: replace with your real steps ───────────────────────────
-stage "Stripe: API keys"
-say "We'll grab your Stripe test keys and store them for local dev + CI."
-open_url "https://dashboard.stripe.com/test/apikeys"
-step "On the API keys page, copy the Publishable key (starts pk_test_)."
-ask STRIPE_PUBLISHABLE_KEY "Paste the publishable key:"
-step "Click 'Reveal test key' on the Secret key row, then copy it."
-ask_secret STRIPE_SECRET_KEY "Paste the secret key:"
-write_env STRIPE_PUBLISHABLE_KEY "$STRIPE_PUBLISHABLE_KEY"
-write_env STRIPE_SECRET_KEY "$STRIPE_SECRET_KEY"
-set_secret STRIPE_SECRET_KEY "$STRIPE_SECRET_KEY"   # CI needs this one
-# ──────────────────────────────────────────────────────────────────────────
+# ── Stage 1: Skill Junction Linking ─────────────────────────────────────────
+stage "Antigravity Skill Linking"
+say "We will link all 38 skills into your local Antigravity directories (~/.agents/skills and ~/.gemini/config/skills)."
+step "Running link-skills script to create symlinks..."
+if node scripts/link-skills.mjs; then
+  printf '  %s✓ Skills successfully linked!%s\n' "$GREEN" "$RESET"
+else
+  warn "Skill linking encountered an issue. Please check permissions."
+fi
+pause "Press Enter to proceed to API credentials."
+
+# ── Stage 2: Gemini API Key ──────────────────────────────────────────────────
+stage "Gemini API Credentials"
+say "We will capture your Google AI Studio / Gemini API key for external tool integration and custom models."
+open_url "https://aistudio.google.com/app/apikey"
+step "Click 'Create API key' or select an existing project."
+step "Copy the generated API key."
+ask_secret GEMINI_API_KEY "Paste your Gemini API Key:"
+if [[ -n "${GEMINI_API_KEY:-}" ]]; then
+  write_env GEMINI_API_KEY "$GEMINI_API_KEY"
+fi
+
+# ── Stage 3: Brave Search API Key ────────────────────────────────────────────
+stage "Brave Search API Credentials (MCP Search)"
+say "Brave Search provides live web indexing and search tools for the Antigravity research subagent."
+open_url "https://brave.com/search/api/"
+step "Sign in or create a free Brave Search API account."
+step "Navigate to API Keys and copy your Data for Search subscription key."
+ask_secret BRAVE_API_KEY "Paste your Brave Search API Key (press Enter to skip):"
+if [[ -n "${BRAVE_API_KEY:-}" ]]; then
+  write_env BRAVE_API_KEY "$BRAVE_API_KEY"
+fi
+
+# ── Stage 4: GitHub Personal Access Token ────────────────────────────────────
+stage "GitHub Personal Access Token"
+say "A GitHub Personal Access Token allows Antigravity to query issues, PRs, and repositories via MCP."
+open_url "https://github.com/settings/tokens/new?description=antigravity-mcp&scopes=repo,read:org"
+step "Configure token expiration and confirm the 'repo' and 'read:org' scopes are selected."
+step "Click 'Generate token' at the bottom of the page, then copy the token."
+ask_secret GITHUB_PERSONAL_ACCESS_TOKEN "Paste your GitHub Token:"
+if [[ -n "${GITHUB_PERSONAL_ACCESS_TOKEN:-}" ]]; then
+  write_env GITHUB_PERSONAL_ACCESS_TOKEN "$GITHUB_PERSONAL_ACCESS_TOKEN"
+fi
+
+# ── Stage 5: Configure MCP Server Manifests ──────────────────────────────────
+stage "MCP Server Manifest Generation"
+say "We will generate .agents/mcp_config.json for workspace-level MCP integration."
+
+node -e '
+import fs from "node:fs";
+const braveKey = process.env.BRAVE_API_KEY || "";
+const ghToken = process.env.GITHUB_PERSONAL_ACCESS_TOKEN || "";
+const mcpConfigPath = ".agents/mcp_config.json";
+
+const config = { mcpServers: {} };
+if (braveKey) {
+  config.mcpServers["brave-search"] = {
+    command: "npx",
+    args: ["-y", "@modelcontextprotocol/server-brave-search"],
+    env: { BRAVE_API_KEY: braveKey }
+  };
+}
+if (ghToken) {
+  config.mcpServers["github"] = {
+    command: "npx",
+    args: ["-y", "@modelcontextprotocol/server-github"],
+    env: { GITHUB_PERSONAL_ACCESS_TOKEN: ghToken }
+  };
+}
+
+if (Object.keys(config.mcpServers).length > 0) {
+  fs.writeFileSync(mcpConfigPath, JSON.stringify(config, null, 2) + "\n");
+  console.log("  \x1b[32m✓\x1b[0m wrote MCP servers to " + mcpConfigPath);
+} else {
+  console.log("  No MCP server credentials configured; skipping mcp_config.json generation.");
+}
+'
 
 finish
+
