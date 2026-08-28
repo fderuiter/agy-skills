@@ -128,3 +128,4 @@ if (errors.length > 0) {
   console.log(`All pages passed SEO front matter, snippet length, permalink, and prose checks successfully!\n`);
   process.exit(0);
 }
+

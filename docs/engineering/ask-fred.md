@@ -38,7 +38,7 @@ The word the skill gives you to think with is **flow**: a path *through* the ski
 - **Codebase health & retrospectives**, for periodic upkeep ([improve-codebase-architecture](https://fderuiter.github.io/agy-skills/skills-improve-codebase-architecture)) and session improvement ([retro](https://fderuiter.github.io/agy-skills/skills-retro)).
 - **Writing tools**, for capturing fragments ([writing-fragments](https://fderuiter.github.io/agy-skills/skills-writing-fragments)), structuring articles ([writing-shape](https://fderuiter.github.io/agy-skills/skills-writing-shape)), and mapping journeys ([writing-beats](https://fderuiter.github.io/agy-skills/skills-writing-beats)).
 - **Standalones**, off every flow, reached for on their own terms: the prototype, the questionnaire, the merge conflict you are already sitting in.
-- **Setup & Preconditions**, repo setup ([setup-agy-skills](https://fderuiter.github.io/agy-skills/skills-setup-agy-skills)) and MCP integration ([setup-mcp](https://fderuiter.github.io/agy-skills/skills-setup-mcp)).
+- **Setup & Preconditions**, repo setup ([setup-agy-skills](https://fderuiter.github.io/agy-skills/skills-setup-agy-skills)), MCP integration ([setup-mcp](https://fderuiter.github.io/agy-skills/skills-setup-mcp)), and TypeScript architectural boundaries ([setup-ts-deep-modules](https://fderuiter.github.io/agy-skills/skills-setup-ts-deep-modules)).
 - **A vocabulary layer underneath**, the two references the other skills pull in when the words rather than the process are the problem.
 
 ## The phase boundary

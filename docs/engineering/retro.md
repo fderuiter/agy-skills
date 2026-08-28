@@ -1,3 +1,10 @@
+---
+title: "retro: Session Transcript Retrospective & Tuning | agy-skills"
+description: "Audits Antigravity session transcripts to find friction points and extract systemic environment, tooling, and context improvements."
+keywords: ["retro skill", "session retrospective", "transcript analysis", "developer environment", "antigravity retro"]
+permalink: /skills-retro/
+---
+
 ## What it does
 
 `retro` conducts a retrospective on an Antigravity coding [session](https://www.aihero.dev/ai-coding-dictionary/session) by analyzing its chronological transcript logs. It evaluates where the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) hesitated, made avoidable mistakes, ran expensive tool queries, or struggled to find files.

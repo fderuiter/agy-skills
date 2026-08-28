@@ -21,11 +21,13 @@ Forked from [mattpocock/skills](https://github.com/mattpocock/skills).
 - [triage](./engineering/triage.md): Move issues through a state machine of triage roles.
 - [improve-codebase-architecture](./engineering/improve-codebase-architecture.md): Scan codebase for deepening opportunities.
 - [setup-agy-skills](./engineering/setup-agy-skills.md): Configure a repo for the engineering skills.
+- [setup-mcp](./engineering/setup-mcp.md): Configure Model Context Protocol (MCP) servers in Google Antigravity.
 - [to-spec](./engineering/to-spec.md): Turn conversation into a spec and publish to issue tracker.
 - [to-tickets](./engineering/to-tickets.md): Break specs/plans into tracer-bullet tickets with blocking edges.
 - [implement](./engineering/implement.md): Build work described by spec/tickets test-first and review before committing.
 - [implement-spec](./engineering/implement-spec.md): Orchestrate concurrent subagents to implement a full specification across its ticket task graph.
 - [wayfinder](./engineering/wayfinder.md): Chart and resolve large efforts as decision tickets.
+- [retro](./engineering/retro.md): Session retrospective and transcript audit for environment tuning.
 
 ### Model-invoked
 - [prototype](./engineering/prototype.md): Build throwaway prototypes to answer design questions.
@@ -48,6 +50,9 @@ Forked from [mattpocock/skills](https://github.com/mattpocock/skills).
 - [teach](./productivity/teach.md): Stateful multi-session learning workspace.
 - [to-questionnaire](./productivity/to-questionnaire.md): Turn decisions into questionnaires for external stakeholders.
 - [wait-what](./productivity/wait-what.md): Clarify and re-pitch misunderstood agent responses.
+- [writing-beats](./productivity/writing-beats.md): Assemble raw writing fragments into a narrative journey of beats.
+- [writing-fragments](./productivity/writing-fragments.md): Mine raw heterogeneous writing fragments into a quarry document.
+- [writing-shape](./productivity/writing-shape.md): Shape raw writing fragments into a structured article paragraph by paragraph.
 
 ### Model-invoked
 - [grilling](./productivity/grilling.md): Reusable interview primitive.

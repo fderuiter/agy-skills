@@ -1,14 +1,17 @@
-# [fderuiter/agy-skills: mattpocock skills, with an google twist.](https://github.com/fderuiter/agy-skills)
+# agy-skills: Production-Grade Agent Skills for Google Antigravity
 
+[![Deploy Documentation](https://github.com/fderuiter/agy-skills/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/fderuiter/agy-skills/actions/workflows/deploy-docs.yml)
 [![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://fderuiter.github.io/agy-skills/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Antigravity Compatible](https://img.shields.io/badge/Agent-Google%20Antigravity-orange)](https://github.com/fderuiter/agy-skills)
 
-Agent skills tailored for **Google Antigravity (AGY)**, maintained by Fred de Ruiter.
+Curated, low-cognitive-load agent skills and workflows tailored for **Google Antigravity (AGY)** and Claude Code, maintained by Fred de Ruiter.
 
 Forked from [mattpocock/skills](https://github.com/mattpocock/skills) by Matt Pocock.
 
-Developing real applications is hard. Approaches like GSD, BMAD, and Spec-Kit try to help by owning the process. But while doing so, they take away your control and make bugs in the process hard to resolve.
+Developing real applications with AI coding agents is challenging. Approaches like GSD, BMAD, and Spec-Kit try to help by rigidly owning the process, but in doing so they reduce your control and make debugging difficult.
 
-These skills are designed to be small, easy to adapt, and composable. They work seamlessly with Antigravity. They are based on decades of engineering experience.
+These skills are small, composable, and easy to adapt. They integrate cleanly with Antigravity and are grounded in decades of software engineering discipline.
 
 ---
 
@@ -104,6 +107,7 @@ Daily code workflows.
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)**: Scan codebase for deepening opportunities.
 - **[setup-agy-skills](./skills/engineering/setup-agy-skills/SKILL.md)**: Configure a repo for the engineering skills.
 - **[setup-mcp](./skills/engineering/setup-mcp/SKILL.md)**: Configure Model Context Protocol (MCP) servers with schema validation.
+- **[setup-ts-deep-modules](./skills/engineering/setup-ts-deep-modules/SKILL.md)**: Enforce deep module boundaries with dependency-cruiser.
 - **[to-spec](./skills/engineering/to-spec/SKILL.md)**: Turn conversation into a spec and publish to issue tracker.
 - **[to-tickets](./skills/engineering/to-tickets/SKILL.md)**: Break specs/plans into tracer-bullet tickets with blocking edges.
 - **[implement](./skills/engineering/implement/SKILL.md)**: Build work described by spec/tickets test-first and review before committing.
@@ -142,6 +146,7 @@ General workflow and alignment tools.
 
 ---
 
-## Documentation
+## Documentation & Wiki
 
-Full documentation is published at [https://fderuiter.github.io/agy-skills/](https://fderuiter.github.io/agy-skills/).
+- **Documentation Site**: [https://fderuiter.github.io/agy-skills/](https://fderuiter.github.io/agy-skills/)
+- **GitHub Wiki**: [https://github.com/fderuiter/agy-skills/wiki](https://github.com/fderuiter/agy-skills/wiki)

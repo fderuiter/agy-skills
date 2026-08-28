@@ -6,7 +6,7 @@
 // the files at the package root. Implementation lives in SUBFOLDERS and is
 // private (by convention `lib/` for implementation and `tests/` for tests,
 // though any subfolder is private). A package may expose several small entry
-// points (index.ts, client.ts, server.ts, …); prefer that over one giant
+// points (index.ts, client.ts, server.ts, ...); prefer that over one giant
 // barrel index.
 //
 // The only thing you should ever need to edit here is PACKAGES_ROOT.
@@ -14,7 +14,7 @@
 /** Where packages live. One immediate child dir per package (flat, no nesting). */
 const PACKAGES_ROOT = "src/packages";
 
-// --- derived patterns (no need to edit) -------------------------------------
+// Derived patterns (no need to edit)
 const R = PACKAGES_ROOT;
 /**
  * A package's private internals: anything nested inside a package subfolder.
@@ -43,7 +43,7 @@ module.exports = {
       from: { path: `^${R}/([^/]+)/`, pathNot: `^${R}/[^/]+/tests/` },
       to: {
         path: PACKAGE_INTERNALS,
-        pathNot: `^${R}/$1/`, // same package → intra-package freedom
+        pathNot: `^${R}/$1/`, // same package: intra-package freedom
       },
     },
     {
@@ -54,7 +54,7 @@ module.exports = {
       from: { path: `^${R}/([^/]+)/tests/` }, // a test file, in package $1
       to: {
         path: PACKAGE_INTERNALS,
-        pathNot: `^${R}/$1/tests/`, // own tests/ fixtures → allowed
+        pathNot: `^${R}/$1/tests/`, // own tests/ fixtures: allowed
       },
     },
     {
@@ -67,13 +67,14 @@ module.exports = {
     },
     {
       name: "no-circular",
-      comment: "No dependency cycles. Scope to `^${R}/` if you want to allow cycles outside packages.",
+      comment:
+        "No dependency cycles. Scope to `^${R}/` if you want to allow cycles outside packages.",
       severity: "error",
       from: {},
       to: { circular: true },
     },
 
-    // --- Layering (optional, off by default) ----------------------------------
+    // Layering (optional, off by default)
     // Interface-hiding controls HOW you import (through the entry points).
     // Layering controls WHICH packages may depend on which. Add your own rules
     // here, e.g.:
@@ -89,7 +90,9 @@ module.exports = {
     doNotFollow: { path: "node_modules" },
     tsConfig: { fileName: "tsconfig.json" },
     enhancedResolveOptions: {
-      extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+      exportsFields: ["exports"],
+      conditionNames: ["import", "require", "node", "default", "types"],
+      extensions: [".ts", ".tsx", ".d.ts", ".js", ".jsx", ".mjs", ".cjs", ".json"],
     },
   },
 };

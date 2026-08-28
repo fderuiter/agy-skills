@@ -15,7 +15,8 @@
     "test": "node scripts/check-seo.mjs",
     "changeset": "changeset",
     "version": "changeset version",
-    "check-plugin-version": "echo 'ok'"
+    "check-plugin-version": "echo 'ok'",
+    "sync-wiki": "node scripts/sync-wiki.mjs"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.7.0",
