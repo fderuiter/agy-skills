@@ -13,7 +13,7 @@ It writes only one beat at a time, calculating which concepts are grounded so fa
 
 ## When to reach for it
 
-You invoke this by typing `/writing-beats`, and the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) won't reach for it on its own.
+You invoke this by typing `/writing-beats`, and the [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) won't reach for it on its own.
 
 Reach for it when you have a pile of raw material and want to craft a narrative, essay, or case study that unfolds as a sequence of storytelling beats.
 

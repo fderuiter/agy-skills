@@ -7,9 +7,9 @@ permalink: /skills-retro/
 
 ## What it does
 
-`retro` conducts a retrospective on an Antigravity coding [session](https://www.aihero.dev/ai-coding-dictionary/session) by analyzing its chronological transcript logs. It evaluates where the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) hesitated, made avoidable mistakes, ran expensive tool queries, or struggled to find files.
+`retro` conducts a retrospective on an Antigravity coding [session](https://fderuiter.github.io/agy-skills/dictionary/session) by analyzing its chronological transcript logs. It evaluates where the [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) hesitated, made avoidable mistakes, ran expensive tool queries, or struggled to find files.
 
-Its defining constraint is that it analyzes past session transcripts to extract systemic environment improvements, not just code fixes. When an agent fails, developers often patch the immediate file or append an emotional reminder to `AGENTS.md`. `retro` treats every friction point as a defect in the developer environment: a missing linter, an absent [context pointer](https://www.aihero.dev/ai-coding-dictionary/context-pointer), bloated steering rules, poor tool output formatting, or lack of log visibility.
+Its defining constraint is that it analyzes past session transcripts to extract systemic environment improvements, not just code fixes. When an agent fails, developers often patch the immediate file or append an emotional reminder to `AGENTS.md`. `retro` treats every friction point as a defect in the developer environment: a missing linter, an absent [context pointer](https://fderuiter.github.io/agy-skills/dictionary/context-pointer), bloated steering rules, poor tool output formatting, or lack of log visibility.
 
 ## When to reach for it
 
@@ -29,14 +29,14 @@ You invoke this by typing `/retro`, and the agent won't reach for it on its own.
 
 ## The seven evaluation categories
 
-`retro` audits the transcript as a [primary source](https://www.aihero.dev/ai-coding-dictionary/primary-source) and categorizes every observed friction into one of seven systemic levers:
+`retro` audits the transcript as a [primary source](https://fderuiter.github.io/agy-skills/dictionary/primary-source) and categorizes every observed friction into one of seven systemic levers:
 
 | Category | Transcript Signal | Systemic Fix |
 | --- | --- | --- |
 | **Navigation pointers** | Agent wanders through directories across multiple search tool calls | Add a concise pointer in `AGENTS.md` directing the agent to the domain entry point |
 | **Automated checks** | Agent makes type, syntax, import, or contract errors caught late | Introduce a linter rule, type check, or architecture test that fails fast |
 | **Coding standards** | Agent writes code violating project idioms or architecture boundaries | Add a clear rule to `CODING_STANDARDS.md` enforced during code review |
-| **AGENTS.md economy** | Steering files are long and spend [tokens](https://www.aihero.dev/ai-coding-dictionary/token) on every [turn](https://www.aihero.dev/ai-coding-dictionary/turn) | Slim `AGENTS.md` by moving reference behind pointers and offloading rules to linters |
+| **AGENTS.md economy** | Steering files are long and spend [tokens](https://fderuiter.github.io/agy-skills/dictionary/token) on every [turn](https://fderuiter.github.io/agy-skills/dictionary/turn) | Slim `AGENTS.md` by moving reference behind pointers and offloading rules to linters |
 | **Tool economy** | Tool calls dump massive unpaginated stdout or repeat expensive searches | Add CLI summary flags, pagination, or compact MCP response schemas |
 | **No-op elimination** | Steering files contain rules the pretrained model already does by default | Delete redundant or vague instructions using the no-op test |
 | **Information access** | Agent guesses at runtime state because dev logs or errors are hidden | Tee background server logs to disk or expose diagnostic inspection tools |
@@ -45,7 +45,7 @@ You invoke this by typing `/retro`, and the agent won't reach for it on its own.
 
 A core design principle of `retro` is recognizing the context pressure asymmetry between agent roles:
 
-- **Implementation Agent (High Context Pressure)**: The agent writing code operates with a full [context window](https://www.aihero.dev/ai-coding-dictionary/context-window) containing file contents, directory trees, terminal commands, and error traces. Loading hundreds of lines of style rules into its always-on prompt degrades reasoning. Keep `AGENTS.md` minimal: only navigation pointers, tool aliases, and hard boundaries.
+- **Implementation Agent (High Context Pressure)**: The agent writing code operates with a full [context window](https://fderuiter.github.io/agy-skills/dictionary/context-window) containing file contents, directory trees, terminal commands, and error traces. Loading hundreds of lines of style rules into its always-on prompt degrades reasoning. Keep `AGENTS.md` minimal: only navigation pointers, tool aliases, and hard boundaries.
 - **Review Agent (Low Context Pressure)**: The agent reviewing code starts fresh with only the diff, commit messages, and spec. It does not explore or write code. It has ample capacity to enforce detailed rules from `CODING_STANDARDS.md`.
 
 Whenever `retro` encounters a convention violation, it asks whether the rule belongs in an automated linter or in `CODING_STANDARDS.md` for the review agent, rather than dumping more text into `AGENTS.md`.
@@ -58,7 +58,7 @@ No. `retro` improves the environment for future sessions rather than fixing indi
 
 **Can I run it on a past session or a subagent?**
 
-Yes. Pass the target conversation ID or transcript path. When analyzing complex tasks, `retro` also scans for `invoke_subagent` calls in the parent transcript and evaluates child [subagent](https://www.aihero.dev/ai-coding-dictionary/subagent) transcripts.
+Yes. Pass the target conversation ID or transcript path. When analyzing complex tasks, `retro` also scans for `invoke_subagent` calls in the parent transcript and evaluates child [subagent](https://fderuiter.github.io/agy-skills/dictionary/subagent) transcripts.
 
 **Why not put all coding guidelines directly in `AGENTS.md`?**
 

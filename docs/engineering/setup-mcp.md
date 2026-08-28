@@ -7,7 +7,7 @@ permalink: /skills-setup-mcp/
 
 ## What it does
 
-`setup-mcp` configures [Model Context Protocol](https://www.aihero.dev/ai-coding-dictionary/mcp) (MCP) servers for Antigravity, connecting the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) to external databases, APIs, git repositories, filesystem scopes, and custom developer tools. It records server definitions in `.agents/mcp_config.json` for project-specific tools or `~/.gemini/config/mcp_config.json` for global machine-wide tools.
+`setup-mcp` configures [Model Context Protocol](https://fderuiter.github.io/agy-skills/dictionary/mcp) (MCP) servers for Antigravity, connecting the [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) to external databases, APIs, git repositories, filesystem scopes, and custom developer tools. It records server definitions in `.agents/mcp_config.json` for project-specific tools or `~/.gemini/config/mcp_config.json` for global machine-wide tools.
 
 It tests server connectivity, environment variables, and resource access before committing the configuration to disk. That verification prevents broken binaries, missing credentials, or unreachable endpoints from silently degrading the agent during normal workflows.
 
@@ -80,7 +80,7 @@ Yes. Select the stdio transport and point `command` to `node`, `python`, `uv`, o
 
 - `.agents/mcp_config.json` or `~/.gemini/config/mcp_config.json` contains a valid `mcpServers` object with your newly configured server.
 - The command and arguments pass verification without throwing executable-not-found or permission errors.
-- Discovered tools from the configured MCP server become available to the agent for [tool calls](https://www.aihero.dev/ai-coding-dictionary/tool-call).
+- Discovered tools from the configured MCP server become available to the agent for [tool calls](https://fderuiter.github.io/agy-skills/dictionary/tool-call).
 - Existing server definitions in the configuration file remain intact.
 
 ## Where it fits

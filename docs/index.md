@@ -9,7 +9,21 @@ permalink: /
 
 Welcome to the documentation for **agy-skills**, agent skills for Google Antigravity (AGY) maintained by Fred de Ruiter.
 
-Forked from [mattpocock/skills](https://github.com/mattpocock/skills).
+[**Skills Index**](#engineering-skills) | [**AI Coding Dictionary**](https://fderuiter.github.io/agy-skills/dictionary/)
+
+---
+
+## AI Coding Dictionary
+
+Explore the comprehensive [**AI Coding Dictionary**](https://fderuiter.github.io/agy-skills/dictionary/), the shared vocabulary for agentic software development, context management, prompt engineering, and tool execution.
+
+- [**The Model**](https://fderuiter.github.io/agy-skills/dictionary/): Parameters, inference, effort, tokens, next-token prediction, harnesses.
+- [**Sessions, Context Windows & Turns**](https://fderuiter.github.io/agy-skills/dictionary/): Context, window limits, stateful vs stateless execution, system prompts.
+- [**Tools & Environment**](https://fderuiter.github.io/agy-skills/dictionary/): Tool calls, MCP servers, permissions, sandboxing.
+- [**Failure Modes**](https://fderuiter.github.io/agy-skills/dictionary/): Sycophancy, hallucination, parametric knowledge, attention degradation, smart zone limits.
+- [**Handoffs**](https://fderuiter.github.io/agy-skills/dictionary/): Clearing, handoffs, compaction, specs, tickets, primary vs secondary sources.
+- [**Memory & Steering**](https://fderuiter.github.io/agy-skills/dictionary/): AGENTS.md, progressive disclosure, context pointers, skills, subagents.
+- [**Patterns of Work**](https://fderuiter.github.io/agy-skills/dictionary/): Human-in-the-loop (HITL), AFK execution, automated checks, grilling, prototyping, vibe coding.
 
 ---
 

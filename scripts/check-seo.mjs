@@ -46,7 +46,7 @@ function checkEmDashes(filePath, content) {
   }
 }
 
-function validateFile(filePath, isIndex = false) {
+function validateFile(filePath, isIndex = false, type = 'skill') {
   checkedCount++;
   const relPath = path.relative(process.cwd(), filePath);
   const content = fs.readFileSync(filePath, 'utf8');
@@ -81,9 +81,13 @@ function validateFile(filePath, isIndex = false) {
 
   if (!isIndex) {
     const baseName = path.basename(filePath, '.md');
-    const expectedPermalink = `/skills-${baseName}/`;
-    if (frontmatter.permalink !== expectedPermalink && frontmatter.permalink !== `/skills-${baseName}`) {
+    const expectedPermalink = type === 'dictionary' ? `/dictionary/${baseName}/` : `/skills-${baseName}/`;
+    if (frontmatter.permalink !== expectedPermalink && frontmatter.permalink !== expectedPermalink.slice(0, -1)) {
       errors.push(`${relPath}: 'permalink' should be '${expectedPermalink}', found '${frontmatter.permalink || ''}'.`);
+    }
+  } else if (type === 'dictionary') {
+    if (frontmatter.permalink !== '/dictionary/' && frontmatter.permalink !== '/dictionary') {
+      errors.push(`${relPath}: 'permalink' should be '/dictionary/', found '${frontmatter.permalink || ''}'.`);
     }
   }
 }
@@ -91,7 +95,7 @@ function validateFile(filePath, isIndex = false) {
 // Validate index.md
 const indexPath = path.join(DOCS_DIR, 'index.md');
 if (fs.existsSync(indexPath)) {
-  validateFile(indexPath, true);
+  validateFile(indexPath, true, 'root');
 } else {
   errors.push(`docs/index.md does not exist.`);
 }
@@ -103,7 +107,17 @@ for (const bucket of PROMOTED_BUCKETS) {
 
   const files = fs.readdirSync(bucketDir).filter((f) => f.endsWith('.md'));
   for (const file of files) {
-    validateFile(path.join(bucketDir, file));
+    validateFile(path.join(bucketDir, file), false, 'skill');
+  }
+}
+
+// Validate dictionary pages
+const dictDir = path.join(DOCS_DIR, 'dictionary');
+if (fs.existsSync(dictDir)) {
+  const files = fs.readdirSync(dictDir).filter((f) => f.endsWith('.md'));
+  for (const file of files) {
+    const isIndex = file === 'index.md';
+    validateFile(path.join(dictDir, file), isIndex, 'dictionary');
   }
 }
 

@@ -13,7 +13,7 @@ A deep module hides significant implementation behind a small public interface. 
 
 ## When to reach for it
 
-You invoke this by typing `/setup-ts-deep-modules`, and the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) won't reach for it on its own.
+You invoke this by typing `/setup-ts-deep-modules`, and the [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) won't reach for it on its own.
 
 Reach for it when initializing a TypeScript project or adding structural guardrails to an existing codebase where imports tend to leak into internal helper files.
 

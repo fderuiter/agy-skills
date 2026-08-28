@@ -13,11 +13,11 @@ Throwaway is a constraint on how the code is *written*, not a promise to destroy
 
 ## When to reach for it
 
-Type `/prototype`, or the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) reaches for it automatically when a task fits.
+Type `/prototype`, or the [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) reaches for it automatically when a task fits.
 
-Reach for it the moment you hit a question you can't settle by talking: a state machine whose edge cases you can't hold in your head, a screen you can't picture until you see three versions side by side. [Grilling](https://www.aihero.dev/ai-coding-dictionary/grilling) sessions balloon on exactly these questions: the agent rephrases, you guess, and the scope grows to fill the uncertainty. Stop grilling, build the throwaway version, look at it, then answer in one line. If instead something already built is misbehaving and you want to know why, use [diagnosing-bugs](https://fderuiter.github.io/agy-skills/skills-diagnosing-bugs); prototyping explores what to build, not why the built thing is broken.
+Reach for it the moment you hit a question you can't settle by talking: a state machine whose edge cases you can't hold in your head, a screen you can't picture until you see three versions side by side. [Grilling](https://fderuiter.github.io/agy-skills/dictionary/grilling) sessions balloon on exactly these questions: the agent rephrases, you guess, and the scope grows to fill the uncertainty. Stop grilling, build the throwaway version, look at it, then answer in one line. If instead something already built is misbehaving and you want to know why, use [diagnosing-bugs](https://fderuiter.github.io/agy-skills/skills-diagnosing-bugs); prototyping explores what to build, not why the built thing is broken.
 
-You will also arrive here without choosing to. [wayfinder](https://fderuiter.github.io/agy-skills/skills-wayfinder) files `prototype` decision [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket) on its map, and working one is this skill.
+You will also arrive here without choosing to. [wayfinder](https://fderuiter.github.io/agy-skills/skills-wayfinder) files `prototype` decision [tickets](https://fderuiter.github.io/agy-skills/dictionary/ticket) on its map, and working one is this skill.
 
 ## Two branches
 
@@ -34,12 +34,12 @@ A finished prototype leaves two things, and they go to different places.
 
 The **answer** (the verdict plus the question it settled) is captured durably: a commit message, an ADR, the implementation issue. That is what the main branch keeps, folded into the real code.
 
-The **prototype** is the runnable evidence the answer came from, and it is not deleted. It doesn't belong in main either: there is nothing there to maintain and it rots fast. So it is committed to a throwaway `prototype/<name>` branch out of main, never merged, with a [context pointer](https://www.aihero.dev/ai-coding-dictionary/context-pointer) to that branch left on the implementation issue. Main stays clean; the exploration stays findable and re-runnable by whoever picks the work up next.
+The **prototype** is the runnable evidence the answer came from, and it is not deleted. It doesn't belong in main either: there is nothing there to maintain and it rots fast. So it is committed to a throwaway `prototype/<name>` branch out of main, never merged, with a [context pointer](https://fderuiter.github.io/agy-skills/dictionary/context-pointer) to that branch left on the implementation issue. Main stays clean; the exploration stays findable and re-runnable by whoever picks the work up next.
 
 ## Common questions
 
 **Wait, isn't the prototype supposed to be deleted?**
-Not any more. It used to be: build it, keep the answer, bin the code. The sharpest objection to that was never about speed: it was *who picks up the work next [session](https://www.aihero.dev/ai-coding-dictionary/session), and what do they have to work from?* A prose summary of a prototype loses the thing that made it convincing. So the prototype is now treated as a [primary source](https://www.aihero.dev/ai-coding-dictionary/primary-source): it lands on a `prototype/<name>` branch out of main and the implementation issue points at it. What changed is where the code lives, not the discipline; it still never merges into main.
+Not any more. It used to be: build it, keep the answer, bin the code. The sharpest objection to that was never about speed: it was *who picks up the work next [session](https://fderuiter.github.io/agy-skills/dictionary/session), and what do they have to work from?* A prose summary of a prototype loses the thing that made it convincing. So the prototype is now treated as a [primary source](https://fderuiter.github.io/agy-skills/dictionary/primary-source): it lands on a `prototype/<name>` branch out of main and the implementation issue points at it. What changed is where the code lives, not the discipline; it still never merges into main.
 
 **It used to build a terminal app. Where did that go?**
 The logic branch now emits a single shareable HTML file instead. A terminal app can only be driven by someone with the repo cloned and a runtime installed, which rules out exactly the people whose opinion the prototype needs: the designer, the PM, the domain expert who knows what the state model is supposed to mean. One self-contained file that opens by double-click and survives being emailed can be driven by anyone. The pure logic module underneath is unchanged, and is still the part that lifts into the real code.
@@ -51,10 +51,10 @@ Known, and it is a naming problem. `prototype` is a generic, appealing word that
 That is a different artifact wearing this skill's name. A prototype here is scoped to one question, and "what is the whole app?" isn't one. A full-app prototype has no natural stopping point, so it becomes the production app by momentum: the cleanup pass never happens, and code written under prototype rules (no tests, no error handling) ends up in front of users. If you need a sales demo, build it deliberately as a demo and be explicit that none of it is production. If you need to settle a design question, cut it down to that question.
 
 **How do I run it in its own session?**
-A prototype lives in its own directory and generates a lot of [context](https://www.aihero.dev/ai-coding-dictionary/context) you don't want in the thread that asked the question, so run it somewhere else and bring back only the answer. [handoff](https://fderuiter.github.io/agy-skills/skills-handoff) is the bridge in both directions.
+A prototype lives in its own directory and generates a lot of [context](https://fderuiter.github.io/agy-skills/dictionary/context) you don't want in the thread that asked the question, so run it somewhere else and bring back only the answer. [handoff](https://fderuiter.github.io/agy-skills/skills-handoff) is the bridge in both directions.
 
 **Isn't this the fastest possible way to burn tokens?**
-It can be, if you prototype questions you could have answered by talking, or let one prototype sprawl across a whole feature. The comparison that matters isn't tokens against zero; it's [tokens](https://www.aihero.dev/ai-coding-dictionary/token) against building the wrong state model and finding out after it has production callers. Keep the question narrow and the run short, and the spend stays proportionate.
+It can be, if you prototype questions you could have answered by talking, or let one prototype sprawl across a whole feature. The comparison that matters isn't tokens against zero; it's [tokens](https://fderuiter.github.io/agy-skills/dictionary/token) against building the wrong state model and finding out after it has production callers. Keep the question narrow and the run short, and the spend stays proportionate.
 
 ## It's working if
 

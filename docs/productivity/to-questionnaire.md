@@ -13,7 +13,7 @@ It grills you about the **send**, never the subject. Interviewing you about the 
 
 ## When to reach for it
 
-You invoke this by typing `/to-questionnaire`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) won't reach for it on its own.
+You invoke this by typing `/to-questionnaire`; the [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) won't reach for it on its own.
 
 Reach for it when a decision is blocked on knowledge that lives in one other person's head: a client, a domain expert, an exec who owns the business rules, a colleague on a team you don't sit with. Which skill you want depends on where the answers actually are:
 
@@ -24,7 +24,7 @@ Reach for it when a decision is blocked on knowledge that lives in one other per
 | Someone else's head | `to-questionnaire` |
 | Nobody's head yet, the question needs something to react to | [prototype](https://fderuiter.github.io/agy-skills/skills-prototype) |
 
-The common case is a [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling) session that stalls: some of what surfaced isn't yours to answer. Run `/to-questionnaire` in that same conversation to take those questions offline, then bring the answers back and carry on.
+The common case is a [grilling](https://fderuiter.github.io/agy-skills/dictionary/grilling) session that stalls: some of what surfaced isn't yours to answer. Run `/to-questionnaire` in that same conversation to take those questions offline, then bring the answers back and carry on.
 
 ## The send, not the subject
 
@@ -50,19 +50,19 @@ Two things it deliberately isn't. It isn't **branching**: the questions are a fl
 ## Common questions
 
 **Does it read my grilling session and extract the questions from it?**
-Not as a step of its own. The skill has no ingest phase: it asks about the send, then drafts. What makes it work after a grilling session is that you run it in the **same conversation**, so the [session](https://www.aihero.dev/ai-coding-dictionary/session) is already in [context](https://www.aihero.dev/ai-coding-dictionary/context) and the drafting can draw on it. Start it in a fresh session and it knows nothing about the grilling; you'll be re-supplying the topic yourself when you answer "what do you need back?".
+Not as a step of its own. The skill has no ingest phase: it asks about the send, then drafts. What makes it work after a grilling session is that you run it in the **same conversation**, so the [session](https://fderuiter.github.io/agy-skills/dictionary/session) is already in [context](https://fderuiter.github.io/agy-skills/dictionary/context) and the drafting can draw on it. Start it in a fresh session and it knows nothing about the grilling; you'll be re-supplying the topic yourself when you answer "what do you need back?".
 
 **The missing answers don't all live with the same person. Can it split them by recipient?**
 No. Step one asks for *the* recipient, singular, and the tone and context of the whole document are pitched at them. If three people hold three parts of the answer, run it three times, once per person. Routing questions by discipline or role inside a single document is a request people have made; it isn't what shipped.
 
 **Are the questions dependent: does it skip sections based on earlier answers?**
-No. The dependent-question design was explored and did not ship. The output is a static document: themed groups, most-important-first, every question live. The objection against it is a fair one: a [model](https://www.aihero.dev/ai-coding-dictionary/model) planning more than two or three questions ahead of a real answer plans badly, and a branching document has to plan all of them ahead of every answer.
+No. The dependent-question design was explored and did not ship. The output is a static document: themed groups, most-important-first, every question live. The objection against it is a fair one: a [model](https://fderuiter.github.io/agy-skills/dictionary/model) planning more than two or three questions ahead of a real answer plans badly, and a branching document has to plan all of them ahead of every answer.
 
 **What if the recipient doesn't know either?**
 The document tells them to say so. "I don't know" and partial answers are asked for explicitly, and a flagged uncertainty is worth more than a guess, because a vague answer and a confidently wrong one look identical once they're back in your context.
 
 **Does it send it anywhere (Slack, an issue tracker, email)?**
-No. It writes a Markdown file in the current directory and tells you the path. Delivery is yours: paste it into a [ticket](https://www.aihero.dev/ai-coding-dictionary/ticket), drop it in a Slack thread, attach it to an email, or open it on a shared screen and work through it live. People have wired up all four by hand.
+No. It writes a Markdown file in the current directory and tells you the path. Delivery is yours: paste it into a [ticket](https://fderuiter.github.io/agy-skills/dictionary/ticket), drop it in a Slack thread, attach it to an email, or open it on a shared screen and work through it live. People have wired up all four by hand.
 
 **Isn't this just `/grill-me` in batch mode?**
 No, and the distinction is worth holding. `grill-me` already asks in **rounds**: the whole frontier at once, then recomputed from your answers, so the "give me all the questions at once" need is met there. `to-questionnaire` is about a different axis: not how the questions are delivered, but whose head the answers are in. Answering them yourself faster is `grill-me`; getting them out of someone else is this.

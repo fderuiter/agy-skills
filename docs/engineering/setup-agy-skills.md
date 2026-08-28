@@ -15,7 +15,7 @@ It is a prompt-driven skill, not a deterministic script. It reads your `git remo
 
 ## When to reach for it
 
-You invoke this by typing `/setup-agy-skills`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) won't reach for it on its own. It is deliberately marked non-invokable, so no other skill can fire it for you.
+You invoke this by typing `/setup-agy-skills`; the [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) won't reach for it on its own. It is deliberately marked non-invokable, so no other skill can fire it for you.
 
 Reach for it once per repo, before the first use of any other engineering skill. If [triage](https://fderuiter.github.io/agy-skills/skills-triage), [to-spec](https://fderuiter.github.io/agy-skills/skills-to-spec), [to-tickets](https://fderuiter.github.io/agy-skills/skills-to-tickets) or [wayfinder](https://fderuiter.github.io/agy-skills/skills-wayfinder) start guessing where your issues go, or apply labels your tracker doesn't have, they have not been set up here yet. A repo already halfway through a project is a fine place to run it; the skill reads what is already there and no earlier work is wasted.
 
@@ -53,7 +53,7 @@ The tracker options:
 
 The first three ship as templates in the skill and work out of the box. Local markdown is a first-class option, not a fallback: a solo project with no remote is fully supported. One caveat is worth repeating: don't use local markdown if you're using GitHub. They are alternatives, not layers.
 
-"Other" is not a stub either. It is the reason Jira, Linear, Azure DevOps and Beads all work: you describe the workflow, the skill records your prose in `docs/agents/issue-tracker.md`, and the downstream skills follow the prose. The community has already done this: a Jira-over-[MCP](https://www.aihero.dev/ai-coding-dictionary/mcp) variant, a Gitea CLI shaped like `gh`, a hand-built local dashboard.
+"Other" is not a stub either. It is the reason Jira, Linear, Azure DevOps and Beads all work: you describe the workflow, the skill records your prose in `docs/agents/issue-tracker.md`, and the downstream skills follow the prose. The community has already done this: a Jira-over-[MCP](https://fderuiter.github.io/agy-skills/dictionary/mcp) variant, a Gitea CLI shaped like `gh`, a hand-built local dashboard.
 
 ## Common questions
 
@@ -67,7 +67,7 @@ Asked directly after v1.1, Matt said yes. The skill's own closing message is sof
 
 **It wrote to `CLAUDE.md`, but I'm on Antigravity.**
 
-Known gap, still open. The file-selection rule is "edit `CLAUDE.md` if it exists, else `AGENTS.md`": it checks which file exists, not which [harness](https://www.aihero.dev/ai-coding-dictionary/harness) is running. A repo with a `CLAUDE.md` left over from Antigravity will get its `## Agent skills` block somewhere Antigravity never reads. Two workarounds are in circulation: move the block to `AGENTS.md` by hand, or keep `AGENTS.md` canonical and make `CLAUDE.md` a one-line pointer at it. If neither file exists, the skill asks you which to create rather than picking, which has confused people who expected it to just decide.
+Known gap, still open. The file-selection rule is "edit `CLAUDE.md` if it exists, else `AGENTS.md`": it checks which file exists, not which [harness](https://fderuiter.github.io/agy-skills/dictionary/harness) is running. A repo with a `CLAUDE.md` left over from Antigravity will get its `## Agent skills` block somewhere Antigravity never reads. Two workarounds are in circulation: move the block to `AGENTS.md` by hand, or keep `AGENTS.md` canonical and make `CLAUDE.md` a one-line pointer at it. If neither file exists, the skill asks you which to create rather than picking, which has confused people who expected it to just decide.
 
 **It didn't create my triage labels.**
 
@@ -76,7 +76,7 @@ It doesn't. `docs/agents/triage-labels.md` is a *mapping*: it tells `/triage` wh
 - If your tracker already uses the canonical names, the mapping is an identity table and there is nothing to configure. That is the intended common case, not a missing step.
 - [wayfinder](https://fderuiter.github.io/agy-skills/skills-wayfinder)'s `wayfinder:map` and `wayfinder:<type>` labels are not created here either, and `gh issue create --label <missing>` fails outright rather than creating the label. Create them by hand before the first wayfinder run on a GitHub repo.
 
-**Can I configure the other skills' behaviour here ([grilling](https://www.aihero.dev/ai-coding-dictionary/grilling) cadence, question format, tone)?**
+**Can I configure the other skills' behaviour here ([grilling](https://fderuiter.github.io/agy-skills/dictionary/grilling) cadence, question format, tone)?**
 
 No. It configures three things: tracker, labels, doc layout. There have been direct requests to make it the home for per-user preferences, and the standing answer is that skills stay opinionated: *"Config is death."* Preferences belong in your `CLAUDE.md` as plain instructions, which every skill already reads.
 
@@ -98,4 +98,4 @@ One long-standing complaint says yes, in these words: *"having a skill to set up
 
 ## Where it fits
 
-`setup-agy-skills` is the **run-once setup** for the engineering flow, the precondition everything else assumes rather than a step in the chain. Its neighbours are its readers: [triage](https://fderuiter.github.io/agy-skills/skills-triage), which applies the label vocabulary written here; [to-spec](https://fderuiter.github.io/agy-skills/skills-to-spec) and [to-tickets](https://fderuiter.github.io/agy-skills/skills-to-tickets), which publish into the tracker named here; and [wayfinder](https://fderuiter.github.io/agy-skills/skills-wayfinder), which reads the "Wayfinding operations" section of the same tracker file to know how maps and child [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket) are stored. The domain-doc layout it records is the one [domain-modeling](https://fderuiter.github.io/agy-skills/skills-domain-modeling) fills in later: it creates `CONTEXT.md` and ADRs lazily, when a term or decision actually gets resolved, so an empty repo after setup is the expected state. For which skill to reach for next, [ask-fred](https://fderuiter.github.io/agy-skills/skills-ask-fred) routes the whole set.
+`setup-agy-skills` is the **run-once setup** for the engineering flow, the precondition everything else assumes rather than a step in the chain. Its neighbours are its readers: [triage](https://fderuiter.github.io/agy-skills/skills-triage), which applies the label vocabulary written here; [to-spec](https://fderuiter.github.io/agy-skills/skills-to-spec) and [to-tickets](https://fderuiter.github.io/agy-skills/skills-to-tickets), which publish into the tracker named here; and [wayfinder](https://fderuiter.github.io/agy-skills/skills-wayfinder), which reads the "Wayfinding operations" section of the same tracker file to know how maps and child [tickets](https://fderuiter.github.io/agy-skills/dictionary/ticket) are stored. The domain-doc layout it records is the one [domain-modeling](https://fderuiter.github.io/agy-skills/skills-domain-modeling) fills in later: it creates `CONTEXT.md` and ADRs lazily, when a term or decision actually gets resolved, so an empty repo after setup is the expected state. For which skill to reach for next, [ask-fred](https://fderuiter.github.io/agy-skills/skills-ask-fred) routes the whole set.

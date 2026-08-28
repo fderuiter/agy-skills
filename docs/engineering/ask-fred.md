@@ -7,9 +7,9 @@ permalink: /skills-ask-fred/
 
 ## What it does
 
-`ask-fred` is the router over the skills in this repo. You describe the situation you are in (an idea you cannot start, a pile of incoming bug reports, a [session](https://www.aihero.dev/ai-coding-dictionary/session) that has run long), and it names the skill or the sequence of skills that fits, plus where the human decisions in that sequence sit.
+`ask-fred` is the router over the skills in this repo. You describe the situation you are in (an idea you cannot start, a pile of incoming bug reports, a [session](https://fderuiter.github.io/agy-skills/dictionary/session) that has run long), and it names the skill or the sequence of skills that fits, plus where the human decisions in that sequence sit.
 
-It recommends and stops. It does not grill, write a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), open a file or fire the skill it just named; what you get back is the next thing to type, and you type it. It is also a hand-written map of the skills in this repo rather than a scan of what you have installed, so it will not route you over your own skills or another author's.
+It recommends and stops. It does not grill, write a [spec](https://fderuiter.github.io/agy-skills/dictionary/spec), open a file or fire the skill it just named; what you get back is the next thing to type, and you type it. It is also a hand-written map of the skills in this repo rather than a scan of what you have installed, so it will not route you over your own skills or another author's.
 
 ## When to reach for it
 
@@ -18,9 +18,9 @@ You invoke this by typing `/ask-fred`; the agent won't reach for it on its own.
 | Your situation | What the router gives back |
 | --- | --- |
 | An idea, and no idea where to start | The head of the main flow, and whether the build is small enough to skip the spec |
-| Bugs and requests arriving from other people | The [triage](https://fderuiter.github.io/agy-skills/skills-triage) on-ramp, and why [tickets](https://www.aihero.dev/ai-coding-dictionary/ticket) you generated yourself don't belong on it |
+| Bugs and requests arriving from other people | The [triage](https://fderuiter.github.io/agy-skills/skills-triage) on-ramp, and why [tickets](https://fderuiter.github.io/agy-skills/dictionary/ticket) you generated yourself don't belong on it |
 | Two skills that look interchangeable | The line between them, and it is usually one concrete test rather than a matter of taste. [grill-me](https://fderuiter.github.io/agy-skills/skills-grill-me) or [grill-with-docs](https://fderuiter.github.io/agy-skills/skills-grill-with-docs) turns on whether you are in a working directory; [grill-with-docs](https://fderuiter.github.io/agy-skills/skills-grill-with-docs) or [wayfinder](https://fderuiter.github.io/agy-skills/skills-wayfinder) turns on whether the effort fits one session |
-| A long session and a decision about the [context](https://www.aihero.dev/ai-coding-dictionary/context) | The ordered tree over the five options at a phase boundary |
+| A long session and a decision about the [context](https://fderuiter.github.io/agy-skills/dictionary/context) | The ordered tree over the five options at a phase boundary |
 | A skill you have already picked | Nothing useful. Invoke that skill directly. |
 
 ## Prerequisites
@@ -43,14 +43,14 @@ The word the skill gives you to think with is **flow**: a path *through* the ski
 
 ## The phase boundary
 
-The other idea it hands you is the **phase boundary**. A phase is a chunk of work inside a session (the [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling), the implementation, the QA), and the boundary between two of them is the only place the question "what do I do with this context?" belongs. Mid-phase there is nothing to decide: continue, or split what is left into [subagents](https://www.aihero.dev/ai-coding-dictionary/subagent).
+The other idea it hands you is the **phase boundary**. A phase is a chunk of work inside a session (the [grilling](https://fderuiter.github.io/agy-skills/dictionary/grilling), the implementation, the QA), and the boundary between two of them is the only place the question "what do I do with this context?" belongs. Mid-phase there is nothing to decide: continue, or split what is left into [subagents](https://fderuiter.github.io/agy-skills/dictionary/subagent).
 
 | Option | Take it when |
 | --- | --- |
-| **Continue** | The next phase wants this one verbatim, or you have [smart zone](https://www.aihero.dev/ai-coding-dictionary/smart-zone) left. It is the only move that keeps the session as a [primary source](https://www.aihero.dev/ai-coding-dictionary/primary-source), so rule it out first |
+| **Continue** | The next phase wants this one verbatim, or you have [smart zone](https://fderuiter.github.io/agy-skills/dictionary/smart-zone) left. It is the only move that keeps the session as a [primary source](https://fderuiter.github.io/agy-skills/dictionary/primary-source), so rule it out first |
 | **`/clear`** | Everything behind you is disposable. Cheapest move on the board, and one-way if you were wrong |
-| **[handoff](https://fderuiter.github.io/agy-skills/skills-handoff)** | Something has to travel: a new [harness](https://www.aihero.dev/ai-coding-dictionary/harness), a new directory, a colleague, a side task forked mid-phase |
-| **Subagent** | The task is scoped tightly enough to run with you [away from the keyboard](https://www.aihero.dev/ai-coding-dictionary/afk) |
+| **[handoff](https://fderuiter.github.io/agy-skills/skills-handoff)** | Something has to travel: a new [harness](https://fderuiter.github.io/agy-skills/dictionary/harness), a new directory, a colleague, a side task forked mid-phase |
+| **Subagent** | The task is scoped tightly enough to run with you [away from the keyboard](https://fderuiter.github.io/agy-skills/dictionary/afk) |
 | **`/compact`** | None of the above. The default, and it lands here often |
 
 Two of those are routinely got wrong, which is why the router carries the order rather than the list. `/handoff` reads like the general bridge between windows and is not: portability is the whole of what it buys. `/compact` is the bottom of the tree rather than the first reach, because the four questions above it are each cheaper or more precise.
@@ -67,7 +67,7 @@ A known bug, unfixed. Most of the skills the router routes you through set `disa
 
 **It described a skill's behaviour, and the skill doesn't do that.**
 
-Also real, also unfixed. The router answers from its own one-line summary of each skill rather than from the skill. One detailed report tracked three instances in a single session, including a recommendation to skip [to-spec](https://fderuiter.github.io/agy-skills/skills-to-spec) on the strength of the gloss "turn the thread into a spec": `to-spec/SKILL.md` was never opened. In every case it verified only after the user pushed back, and never on its own initiative. Skipping `to-spec` there cost a real seam check, and the tickets that came out undercounted the work. When the router asserts something load-bearing about another skill, ask it to open that `SKILL.md` first. The same applies to questions the map does not cover at all, such as whether to use [plan mode](https://www.aihero.dev/ai-coding-dictionary/agent-mode): that answer is the [model](https://www.aihero.dev/ai-coding-dictionary/model)'s inference, not something written down here.
+Also real, also unfixed. The router answers from its own one-line summary of each skill rather than from the skill. One detailed report tracked three instances in a single session, including a recommendation to skip [to-spec](https://fderuiter.github.io/agy-skills/skills-to-spec) on the strength of the gloss "turn the thread into a spec": `to-spec/SKILL.md` was never opened. In every case it verified only after the user pushed back, and never on its own initiative. Skipping `to-spec` there cost a real seam check, and the tickets that came out undercounted the work. When the router asserts something load-bearing about another skill, ask it to open that `SKILL.md` first. The same applies to questions the map does not cover at all, such as whether to use [plan mode](https://fderuiter.github.io/agy-skills/dictionary/agent-mode): that answer is the [model](https://fderuiter.github.io/agy-skills/dictionary/model)'s inference, not something written down here.
 
 **Why is it prose instead of a numbered checklist?**
 
@@ -97,4 +97,4 @@ Check the changelog for a rename before assuming it is gone. `writing-great-skil
 
 `ask-fred` is a **standalone router** that sits over the whole set. It is never a step in a chain; it points into every chain, and it is the node the other docs pages link back to so none of them has to redraw the graph. From here you most often land on [grill-with-docs](https://fderuiter.github.io/agy-skills/skills-grill-with-docs), the head of the main flow, or [triage](https://fderuiter.github.io/agy-skills/skills-triage), the on-ramp for work that arrived rather than work you started.
 
-It is a [secondary source](https://www.aihero.dev/ai-coding-dictionary/secondary-source) over the skills it describes. Where the router and a `SKILL.md` disagree, the `SKILL.md` is right.
+It is a [secondary source](https://fderuiter.github.io/agy-skills/dictionary/secondary-source) over the skills it describes. Where the router and a `SKILL.md` disagree, the `SKILL.md` is right.

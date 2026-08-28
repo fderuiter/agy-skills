@@ -7,23 +7,23 @@ permalink: /skills-grill-me/
 
 ## What it does
 
-`grill-me` takes a **loose idea** and interviews you until you can commit to it. You do not need a worked-out plan to start: producing one is what the [session](https://www.aihero.dev/ai-coding-dictionary/session) is for. It asks in **rounds**: each round is the whole **frontier** (every question whose prerequisites you have already settled), so you are never asked something that hinges on an answer it hasn't heard yet.
+`grill-me` takes a **loose idea** and interviews you until you can commit to it. You do not need a worked-out plan to start: producing one is what the [session](https://fderuiter.github.io/agy-skills/dictionary/session) is for. It asks in **rounds**: each round is the whole **frontier** (every question whose prerequisites you have already settled), so you are never asked something that hinges on an answer it hasn't heard yet.
 
-It is **[stateless](https://www.aihero.dev/ai-coding-dictionary/stateless)**. It writes no files and leaves no workspace behind. The only thing it leaves is a sharper version of the idea, in your own head.
+It is **[stateless](https://fderuiter.github.io/agy-skills/dictionary/stateless)**. It writes no files and leaves no workspace behind. The only thing it leaves is a sharper version of the idea, in your own head.
 
 ## When to reach for it
 
-You invoke this by typing `/grill-me`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) won't reach for it on its own. Start it in a **fresh conversation**, not on top of a plan you already had an agent write.
+You invoke this by typing `/grill-me`; the [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) won't reach for it on its own. Start it in a **fresh conversation**, not on top of a plan you already had an agent write.
 
 Reach for it as soon as you have an idea worth taking seriously (a feature, a product direction, a business call, a piece of writing), and long before you have worked out what it involves. Vagueness is not a reason to wait; it is the thing the session eats. If you can already specify the thing precisely, you don't need to grill it.
 
 Which of the three grilling skills you want depends on what is in front of you:
 
 - **Anything, anywhere**: `grill-me`. It needs no repo and writes no files, and the subject doesn't have to be code.
-- **A codebase to align against**: [grill-with-docs](https://fderuiter.github.io/agy-skills/skills-grill-with-docs). The same interview, but [stateful](https://www.aihero.dev/ai-coding-dictionary/stateful): it reads your code and keeps what it learns in `CONTEXT.md` and ADRs.
+- **A codebase to align against**: [grill-with-docs](https://fderuiter.github.io/agy-skills/skills-grill-with-docs). The same interview, but [stateful](https://fderuiter.github.io/agy-skills/dictionary/stateful): it reads your code and keeps what it learns in `CONTEXT.md` and ADRs.
 - **Too big for one session**: [wayfinder](https://fderuiter.github.io/agy-skills/skills-wayfinder). It charts the effort as a map and runs grilling sessions inside it.
 
-Leave [plan mode](https://www.aihero.dev/ai-coding-dictionary/agent-mode) off. Plan mode primes the agent to rush toward producing a plan, which is the opposite of staying in inquiry.
+Leave [plan mode](https://fderuiter.github.io/agy-skills/dictionary/agent-mode) off. Plan mode primes the agent to rush toward producing a plan, which is the opposite of staying in inquiry.
 
 ## It's a conversation, not an interview
 
@@ -56,7 +56,7 @@ Talking your way through an ungrillable question is where sessions balloon. The 
 Count rounds, not questions. Forty-six questions across four rounds is an ordinary session. It ends when the frontier is empty: every branch visited, nothing left silently assumed.
 
 **It asked me two hundred questions. What went wrong?**
-Usually the scope was too large. Ask the agent to break the work into smaller pieces first, then grill each one. Very long sessions also drift into the **[dumb zone](https://www.aihero.dev/ai-coding-dictionary/smart-zone)**, where the [context window](https://www.aihero.dev/ai-coding-dictionary/context-window) is full enough that the questions get worse.
+Usually the scope was too large. Ask the agent to break the work into smaller pieces first, then grill each one. Very long sessions also drift into the **[dumb zone](https://fderuiter.github.io/agy-skills/dictionary/smart-zone)**, where the [context window](https://fderuiter.github.io/agy-skills/dictionary/context-window) is full enough that the questions get worse.
 
 **Can I go back to one question at a time?**
 Yes. Add this to your global `CLAUDE.md`:
@@ -69,10 +69,10 @@ When grilling, ask one question at a time.
 Say so. "I don't know" is a real answer, and a question you can't answer is usually a sign to prototype rather than to guess.
 
 **Do I start a fresh session before writing the spec?**
-No. The value of the session is the [context](https://www.aihero.dev/ai-coding-dictionary/context) you just built. Hand the same conversation straight to [to-spec](https://fderuiter.github.io/agy-skills/skills-to-spec).
+No. The value of the session is the [context](https://fderuiter.github.io/agy-skills/dictionary/context) you just built. Hand the same conversation straight to [to-spec](https://fderuiter.github.io/agy-skills/skills-to-spec).
 
 **Does the model matter?**
-More than for most skills. Grilling leans on the [model](https://www.aihero.dev/ai-coding-dictionary/model)'s own sense of how systems break, so give it your best one. Implementation mostly follows context and tolerates a cheaper model.
+More than for most skills. Grilling leans on the [model](https://fderuiter.github.io/agy-skills/dictionary/model)'s own sense of how systems break, so give it your best one. Implementation mostly follows context and tolerates a cheaper model.
 
 ## Where it fits
 

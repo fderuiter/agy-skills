@@ -13,7 +13,7 @@ It treats the input pile as a read-only quarry, refusing to write ahead or batch
 
 ## When to reach for it
 
-You invoke this by typing `/writing-shape`, and the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) won't reach for it on its own.
+You invoke this by typing `/writing-shape`, and the [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) won't reach for it on its own.
 
 Reach for it when you have a quarry of raw notes, fragments, or transcripts and want to produce an article, essay, or argumentative post paragraph by paragraph.
 

@@ -13,7 +13,7 @@ It is pure explore: it refuses to organize, outline, or format the piece, treati
 
 ## When to reach for it
 
-You invoke this by typing `/writing-fragments`, and the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) won't reach for it on its own.
+You invoke this by typing `/writing-fragments`, and the [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) won't reach for it on its own.
 
 Reach for it when you want to write an article, essay, or post, but your thoughts are scattered across half-formed observations, punchlines, code snippets, and analogies.
 

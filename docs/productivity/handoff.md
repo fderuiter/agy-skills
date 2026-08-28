@@ -7,9 +7,9 @@ permalink: /skills-handoff/
 
 ## What it does
 
-`handoff` compacts the conversation you are in into a **handoff document**: one markdown file, written to your OS's temporary directory rather than into the workspace, that a fresh [agent](https://www.aihero.dev/ai-coding-dictionary/agent) can read to pick the work up.
+`handoff` compacts the conversation you are in into a **handoff document**: one markdown file, written to your OS's temporary directory rather than into the workspace, that a fresh [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) can read to pick the work up.
 
-What it buys is **portability**, not compression. That makes the skill narrower than it sounds. You need a file only when the work has to *travel*: to a new [harness](https://www.aihero.dev/ai-coding-dictionary/harness), a new directory, a colleague, or a side task you want to fork off. If nothing is travelling, you do not need a handoff: staying in the [session](https://www.aihero.dev/ai-coding-dictionary/session), `/clear`, a [subagent](https://www.aihero.dev/ai-coding-dictionary/subagent) and `/compact` cover the ordinary end-of-phase case, and `/compact` covers it more often than this skill does.
+What it buys is **portability**, not compression. That makes the skill narrower than it sounds. You need a file only when the work has to *travel*: to a new [harness](https://fderuiter.github.io/agy-skills/dictionary/harness), a new directory, a colleague, or a side task you want to fork off. If nothing is travelling, you do not need a handoff: staying in the [session](https://fderuiter.github.io/agy-skills/dictionary/session), `/clear`, a [subagent](https://fderuiter.github.io/agy-skills/dictionary/subagent) and `/compact` cover the ordinary end-of-phase case, and `/compact` covers it more often than this skill does.
 
 ## When to reach for it
 
@@ -19,12 +19,12 @@ Four situations are the whole trigger:
 
 | Situation | Why a file |
 | --- | --- |
-| Swapping harness (Antigravity → Antigravity) | The new harness cannot see the old [context](https://www.aihero.dev/ai-coding-dictionary/context) |
+| Swapping harness (Antigravity → Antigravity) | The new harness cannot see the old [context](https://fderuiter.github.io/agy-skills/dictionary/context) |
 | Moving to a different directory or repo | A prototype directory is the common case |
 | Sending the work to a colleague | They need something they can read |
 | Forking a side task found mid-phase | You keep working; a second agent takes the fork |
 
-For anything else (same harness, same directory, you are done [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling) and moving to implementation), `/compact` is the move. [ask-fred](https://fderuiter.github.io/agy-skills/skills-ask-fred) carries the ordered tree over all five options at a phase boundary.
+For anything else (same harness, same directory, you are done [grilling](https://fderuiter.github.io/agy-skills/dictionary/grilling) and moving to implementation), `/compact` is the move. [ask-fred](https://fderuiter.github.io/agy-skills/skills-ask-fred) carries the ordered tree over all five options at a phase boundary.
 
 ## Branching is the use people skip
 
@@ -46,7 +46,7 @@ What it deliberately does not carry is anything already written down. Specs, pla
 `/compact` unless something is travelling. Staying on the same task is a compact, not a handoff: same harness, same directory, and you need to stay in the loop is where the phase-boundary tree lands most days. `/handoff`'s advantage is not that it summarises better; it's that the result is a file you can carry somewhere `/compact` can't reach.
 
 **So what's the actual difference between compact, clear and handoff?**
-Three different things being preserved. `/compact` compresses this context and keeps you going in a fresh window: intent survives. `/clear` empties the window and starts from nothing: correct when everything behind you is disposable, and one-way if it isn't. `/handoff` writes a portable file: the work survives the move to somewhere else. Note that all three turn a **[primary source](https://www.aihero.dev/ai-coding-dictionary/primary-source)** (the conversation as it happened) into a **[secondary source](https://www.aihero.dev/ai-coding-dictionary/secondary-source)** (a summary of it). Continuing is the only move that doesn't, which is why it's the first one to rule out.
+Three different things being preserved. `/compact` compresses this context and keeps you going in a fresh window: intent survives. `/clear` empties the window and starts from nothing: correct when everything behind you is disposable, and one-way if it isn't. `/handoff` writes a portable file: the work survives the move to somewhere else. Note that all three turn a **[primary source](https://fderuiter.github.io/agy-skills/dictionary/primary-source)** (the conversation as it happened) into a **[secondary source](https://fderuiter.github.io/agy-skills/dictionary/secondary-source)** (a summary of it). Continuing is the only move that doesn't, which is why it's the first one to rule out.
 
 **Where did my handoff file go?**
 The temp directory, which is the most-reported friction with the skill: the paths are long, they differ per OS, and on Windows agents sometimes take several attempts to find the right one. Ask for the path back and keep it before you move on. Temp is deliberate: a handoff is a transit document, not an artifact you maintain. It is not a durable one either; see the next question.

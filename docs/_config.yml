@@ -38,5 +38,9 @@ defaults:
       path: "productivity"
     values:
       category: "productivity"
+  - scope:
+      path: "dictionary"
+    values:
+      category: "dictionary"
 
 google_site_verification: ""

@@ -7,13 +7,13 @@ permalink: /skills-teach/
 
 ## What it does
 
-`teach` turns the directory you run it in into a standing teaching workspace and teaches you one topic across many [sessions](https://www.aihero.dev/ai-coding-dictionary/session), in short self-contained HTML lessons.
+`teach` turns the directory you run it in into a standing teaching workspace and teaches you one topic across many [sessions](https://fderuiter.github.io/agy-skills/dictionary/session), in short self-contained HTML lessons.
 
-It does not teach from what the [model](https://www.aihero.dev/ai-coding-dictionary/model) already knows. [Parametric knowledge](https://www.aihero.dev/ai-coding-dictionary/parametric-knowledge) is treated as untrusted: before it teaches, it goes and finds high-trust resources, records them in `RESOURCES.md`, and cites them inside every lesson. The other structural fact is that it is [stateful](https://www.aihero.dev/ai-coding-dictionary/stateful): the mission, the resources, the lessons and the record of what you have learned all live in the directory as files, so the next session picks up from those files rather than from whatever is left of the last conversation.
+It does not teach from what the [model](https://fderuiter.github.io/agy-skills/dictionary/model) already knows. [Parametric knowledge](https://fderuiter.github.io/agy-skills/dictionary/parametric-knowledge) is treated as untrusted: before it teaches, it goes and finds high-trust resources, records them in `RESOURCES.md`, and cites them inside every lesson. The other structural fact is that it is [stateful](https://fderuiter.github.io/agy-skills/dictionary/stateful): the mission, the resources, the lessons and the record of what you have learned all live in the directory as files, so the next session picks up from those files rather than from whatever is left of the last conversation.
 
 ## When to reach for it
 
-You invoke this by typing `/teach`; the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) won't reach for it on its own.
+You invoke this by typing `/teach`; the [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) won't reach for it on its own.
 
 Reach for it when the learning is the project: a language, a framework, a codebase you have just joined, yoga, shaders, a certification. It is not the tool for one explanation in passing.
 
@@ -23,8 +23,8 @@ Reach for it when the learning is the project: a language, a framework, a codeba
 | One idea explained inside the session you are already in | Just ask, in that session |
 | The agent's last message re-pitched because it didn't land | [wait-what](https://fderuiter.github.io/agy-skills/skills-wait-what) |
 | To sharpen thinking you already have, rather than acquire new material | [grill-me](https://fderuiter.github.io/agy-skills/skills-grill-me) |
-| A background agent to read [primary sources](https://www.aihero.dev/ai-coding-dictionary/primary-source) and leave you a cited document | [research](https://fderuiter.github.io/agy-skills/skills-research) |
-| To learn something that came up mid-grilling, without derailing the [grilling](https://www.aihero.dev/ai-coding-dictionary/grilling) | [handoff](https://fderuiter.github.io/agy-skills/skills-handoff) out to a teaching workspace, then `teach` there |
+| A background agent to read [primary sources](https://fderuiter.github.io/agy-skills/dictionary/primary-source) and leave you a cited document | [research](https://fderuiter.github.io/agy-skills/skills-research) |
+| To learn something that came up mid-grilling, without derailing the [grilling](https://fderuiter.github.io/agy-skills/dictionary/grilling) | [handoff](https://fderuiter.github.io/agy-skills/skills-handoff) out to a teaching workspace, then `teach` there |
 
 ## Prerequisites
 
@@ -84,7 +84,7 @@ No to the first, and not reliably to the second. Spacing and interleaving are pr
 No, and the non-coding use is the larger part of the record: Korean, Japanese formal register, piano, guitar, board game design, OpenSCAD, film plots, Azure and CCNA certifications, university exams, and children of eight and ten getting printable books on escape rooms and fire salamanders. Nothing in the skill is programming-specific: mission, resources, zone of proximal development and drill work the same way in any domain. Within code, the strongest reported use is not learning a language from scratch but getting oriented in an unfamiliar codebase or a new team's stack.
 
 **Which model should I run it with?**
-There is no canonical answer, and the reported differences are large. Higher [reasoning effort](https://www.aihero.dev/ai-coding-dictionary/effort) has been reported to produce noticeably better lessons than the medium setting. One user ran the same skill through Copilot CLI with Antigravity and got a single 30-line HTML card where Antigravity produced a full lesson. It runs unmodified in Antigravity Cowork, subject to whether your organisation allows skills to be added there. If the lessons come out thin, change model, [harness](https://www.aihero.dev/ai-coding-dictionary/harness) or effort before rewriting your prompt.
+There is no canonical answer, and the reported differences are large. Higher [reasoning effort](https://fderuiter.github.io/agy-skills/dictionary/effort) has been reported to produce noticeably better lessons than the medium setting. One user ran the same skill through Copilot CLI with Antigravity and got a single 30-line HTML card where Antigravity produced a full lesson. It runs unmodified in Antigravity Cowork, subject to whether your organisation allows skills to be added there. If the lessons come out thin, change model, [harness](https://fderuiter.github.io/agy-skills/dictionary/harness) or effort before rewriting your prompt.
 
 ## It's working if
 
