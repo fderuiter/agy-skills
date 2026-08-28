@@ -1,3 +1,10 @@
+---
+title: "wizard: Interactive Human Operational Setup Scripts | agy-skills"
+description: "Generates interactive setup wizard scripts (PowerShell/Bash) to guide humans through manual external ops, credentials, and cutovers."
+keywords: ["wizard skill", "interactive setup wizard", "powershell wizard", "bash wizard", "antigravity devops"]
+permalink: /skills-wizard/
+---
+
 ## What it does
 
 `wizard` generates an interactive script (PowerShell on Windows, Bash on macOS/Linux) that walks a human, step by step, through a manual procedure: wiring up third-party services, running a one-off migration, moving a project from state A to state B. It opens each URL, says what to click and copy, captures what comes back, and writes it into `.env` files and GitHub Actions secrets.

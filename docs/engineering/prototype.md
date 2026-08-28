@@ -1,3 +1,10 @@
+---
+title: "prototype: Throwaway Code Design Validation | agy-skills"
+description: "Builds throwaway interactive prototypes to answer critical design, logic, and UI questions before implementing production code."
+keywords: ["prototype skill", "throwaway code", "ui prototype", "design validation", "antigravity agent"]
+permalink: /skills-prototype/
+---
+
 ## What it does
 
 `prototype` writes **throwaway code that answers a question**: does this state model feel right, or what should this screen look like. The question comes first and decides the shape of everything that follows; a prototype that answers the wrong question is pure waste, however good it looks.

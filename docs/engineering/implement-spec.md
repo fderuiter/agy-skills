@@ -1,3 +1,10 @@
+---
+title: "implement-spec: Concurrent Subagent Task Graph Orchestration | agy-skills"
+description: "Orchestrate concurrent implementer subagents across task graph frontiers and isolated worktrees to build full specifications."
+keywords: ["implement spec", "subagent orchestration", "task graph frontier", "git worktrees", "antigravity skill"]
+permalink: /skills-implement-spec/
+---
+
 ## What it does
 
 `implement-spec` turns a full specification and its dependency-linked tickets into a completed, code-reviewed pull request. It drives the entire build phase by orchestrating concurrent subagents across the task graph.

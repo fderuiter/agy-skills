@@ -1,14 +1,42 @@
-title: agy-skills
-description: Agent skills for Google Antigravity (AGY)
+title: "agy-skills | Agent Skills for Google Antigravity"
+description: "Production-grade, low-cognitive-load agent skills and workflows for Google Antigravity (AGY) and Claude Code."
+url: "https://fderuiter.github.io"
+baseurl: "/agy-skills"
+repository: "fderuiter/agy-skills"
+author:
+  name: "Fred de Ruiter"
+  github: "fderuiter"
+twitter:
+  username: "fderuiter"
+logo: "/assets/images/og-card.png"
 theme: jekyll-theme-cayman
+
 plugins:
   - jekyll-relative-links
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
 relative_links:
   enabled: true
   collections: true
+
+include:
+  - README.md
+  - robots.txt
+  - sitemap.xml
+
 defaults:
   - scope:
       path: ""
     values:
       layout: "default"
+  - scope:
+      path: "engineering"
+    values:
+      category: "engineering"
+  - scope:
+      path: "productivity"
+    values:
+      category: "productivity"
 
+google_site_verification: ""

@@ -1,3 +1,10 @@
+---
+title: "codebase-design: Deep Module & Clean Seam Discipline | agy-skills"
+description: "Design discipline and vocabulary reference for AI coding agents: deep modules, clean seams, small interfaces, and architectural leverage."
+keywords: ["codebase design", "deep modules", "clean seams", "software architecture", "agent skill"]
+permalink: /skills-codebase-design/
+---
+
 ## What it does
 
 `codebase-design` fixes the words you use to design a module: **module**, **interface**, **depth**, **seam**, **adapter**, **leverage**, **locality**. It defines each one precisely, bans the loose substitutes ("component", "service", "API", "boundary"), and states the handful of principles that follow from them.

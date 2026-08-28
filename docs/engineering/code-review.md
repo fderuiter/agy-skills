@@ -1,3 +1,10 @@
+---
+title: "code-review: Two-Axis Automated Code Review Skill | agy-skills"
+description: "Two-axis code review skill for Google Antigravity and Claude Code: evaluates diffs independently on repository Standards and Spec compliance."
+keywords: ["antigravity code review", "ai code review", "subagent review", "two axis review", "git diff review"]
+permalink: /skills-code-review/
+---
+
 ## What it does
 
 `code-review` reviews the diff between `HEAD` and a fixed point you name (a commit, a branch, a tag, `main`, `HEAD~5`) along two axes. **Standards** asks whether the code follows how this repo writes code. **Spec** asks whether the code does what the originating issue or [spec](https://www.aihero.dev/ai-coding-dictionary/spec) asked for. Each axis runs in its own [sub-agent](https://www.aihero.dev/ai-coding-dictionary/subagent) so neither sees the other's reasoning.

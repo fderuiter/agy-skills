@@ -1,3 +1,10 @@
+---
+title: "diagnosing-bugs: Feedback Loop Bug Diagnosis | agy-skills"
+description: "Disciplined bug diagnosis skill for AI coding agents: tight feedback loops, repro minimization, ranked hypotheses, and regression tests."
+keywords: ["diagnosing bugs", "ai debugging", "reproducible bug", "feedback loop debugging", "regression test"]
+permalink: /skills-diagnosing-bugs/
+---
+
 ## What it does
 
 `diagnosing-bugs` runs a six-phase diagnosis on a hard bug or a performance regression: build a repro, minimise it, rank hypotheses, instrument, fix with a regression test, clean up.

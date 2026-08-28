@@ -1,3 +1,10 @@
+---
+title: "grilling: Reusable Decision Tree Interview Primitive | agy-skills"
+description: "Reusable interview loop and decision tree primitive: stress-tests plans and ideas branch by branch across decision frontiers."
+keywords: ["grilling primitive", "decision tree interview", "design frontier", "model-invoked grilling", "antigravity"]
+permalink: /skills-grilling/
+---
+
 ## What it does
 
 `grilling` is the interview loop that stress-tests a plan, a decision, or an idea before anyone acts on it. It maps the subject as a **design tree**: every decision branches into the decisions that hang off it, and interviews you branch by branch until nothing is left silently assumed.

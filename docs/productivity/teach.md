@@ -1,3 +1,10 @@
+---
+title: "teach: Multi-Session Interactive Learning Workspace | agy-skills"
+description: "Multi-session interactive learning workspace: creates structured, cited HTML lessons grounded in primary technical sources."
+keywords: ["teach skill", "interactive learning", "html lessons", "cited learning workspace", "antigravity teach"]
+permalink: /skills-teach/
+---
+
 ## What it does
 
 `teach` turns the directory you run it in into a standing teaching workspace and teaches you one topic across many [sessions](https://www.aihero.dev/ai-coding-dictionary/session), in short self-contained HTML lessons.

@@ -1,3 +1,10 @@
+---
+title: "tdd: Test-Driven Development (Red-Green-Refactor) | agy-skills"
+description: "Test-driven development skill for Antigravity: enforces red-green-refactor loops at pre-agreed seams with minimal, clean test suites."
+keywords: ["tdd skill", "test driven development", "red green refactor", "antigravity tdd", "ai coding tests"]
+permalink: /skills-tdd/
+---
+
 ## What it does
 
 `tdd` builds a feature or fixes a bug test-first: one failing test, then just enough code to pass it, then the next behaviour. It carries the standards that make that loop produce tests worth keeping: what a good test is, where tests go, what mocks are for, and the three anti-patterns that quietly ruin a suite.

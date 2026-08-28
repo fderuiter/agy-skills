@@ -1,3 +1,10 @@
+---
+title: "setup-agy-skills: Repository Setup & Configuration | agy-skills"
+description: "One-time repository configuration skill for agy-skills: connects your issue tracker, triage labels, and domain doc layout."
+keywords: ["setup-agy-skills", "configure antigravity", "issue tracker setup", "domain docs", "agent repository setup"]
+permalink: /skills-setup-agy-skills/
+---
+
 ## What it does
 
 `setup-agy-skills` answers three questions about one repo: where issues live, what the triage labels are called, and where the domain docs sit. It records the answers as markdown files under `docs/agents/`.

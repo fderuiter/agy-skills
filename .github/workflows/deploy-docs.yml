@@ -32,6 +32,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate SEO and Front Matter
+        run: node scripts/check-seo.mjs
+
       - name: Link Checker
         uses: lycheeverse/lychee-action@v2
         with:

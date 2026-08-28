@@ -1,3 +1,10 @@
+---
+title: "agy-skills Documentation | Agent Skills for Google Antigravity"
+description: "Comprehensive documentation and guides for agy-skills: production-grade agent skills, workflows, and prompts for Google Antigravity and Claude Code."
+keywords: ["antigravity skills", "agent skills", "google antigravity", "ai coding workflows", "claude code plugins"]
+permalink: /
+---
+
 # agy-skills Documentation
 
 Welcome to the documentation for **agy-skills**, agent skills for Google Antigravity (AGY) maintained by Fred de Ruiter.
@@ -17,6 +24,7 @@ Forked from [mattpocock/skills](https://github.com/mattpocock/skills).
 - [to-spec](./engineering/to-spec.md): Turn conversation into a spec and publish to issue tracker.
 - [to-tickets](./engineering/to-tickets.md): Break specs/plans into tracer-bullet tickets with blocking edges.
 - [implement](./engineering/implement.md): Build work described by spec/tickets test-first and review before committing.
+- [implement-spec](./engineering/implement-spec.md): Orchestrate concurrent subagents to implement a full specification across its ticket task graph.
 - [wayfinder](./engineering/wayfinder.md): Chart and resolve large efforts as decision tickets.
 
 ### Model-invoked

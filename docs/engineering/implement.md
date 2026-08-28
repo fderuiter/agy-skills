@@ -1,3 +1,10 @@
+---
+title: "implement: Test-First Spec Implementation | agy-skills"
+description: "Specification execution skill for Antigravity: turns settled tickets and plans into tested, typechecked, code-reviewed commits."
+keywords: ["implement skill", "antigravity implement", "spec execution", "test driven agent", "commit workflow"]
+permalink: /skills-implement/
+---
+
 ## What it does
 
 `implement` builds work that has already been decided. You point it at a [ticket](https://www.aihero.dev/ai-coding-dictionary/ticket), a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), or the plan you just agreed in the conversation, and it writes the code, drives [tdd](https://fderuiter.github.io/agy-skills/skills-tdd) at the seams, typechecks as it goes, runs [code-review](https://fderuiter.github.io/agy-skills/skills-code-review) at the end, and commits to the current branch.

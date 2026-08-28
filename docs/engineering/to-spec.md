@@ -1,3 +1,10 @@
+---
+title: "to-spec: Technical Specification Synthesis | agy-skills"
+description: "Synthesizes design conversations into comprehensive technical specifications and publishes them to your issue tracker."
+keywords: ["to-spec", "technical specification", "antigravity spec", "spec generator", "issue tracker spec"]
+permalink: /skills-to-spec/
+---
+
 ## What it does
 
 `to-spec` turns the conversation you have just had into a **[spec](https://www.aihero.dev/ai-coding-dictionary/spec)**, and publishes it to your issue tracker as a single issue.

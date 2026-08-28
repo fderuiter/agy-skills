@@ -1,3 +1,10 @@
+---
+title: "grill-with-docs: Stateful Design & ADR Grilling | agy-skills"
+description: "Stateful grilling interview for Antigravity: resolves software design decisions and updates CONTEXT.md and ADR files in your codebase."
+keywords: ["grill-with-docs", "antigravity grilling", "adr docs", "context md", "design alignment"]
+permalink: /skills-grill-with-docs/
+---
+
 ## What it does
 
 `grill-with-docs` interviews you about a plan or design until you and the [agent](https://www.aihero.dev/ai-coding-dictionary/agent) share one understanding of it, and writes the vocabulary and the hard decisions into your repo while it does. It is the same interview [grill-me](https://fderuiter.github.io/agy-skills/skills-grill-me) runs (a round of questions, then wait, then the next round), pointed at a codebase.

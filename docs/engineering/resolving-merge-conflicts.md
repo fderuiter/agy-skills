@@ -1,3 +1,10 @@
+---
+title: "resolving-merge-conflicts: Intent-Traced Git Resolution | agy-skills"
+description: "Intent-traced Git merge and rebase conflict resolution: resolves hunk by hunk using primary sources to finish the merge cleanly."
+keywords: ["git merge conflicts", "git rebase conflicts", "resolving merge conflicts", "antigravity git skill", "intent traced merge"]
+permalink: /skills-resolving-merge-conflicts/
+---
+
 ## What it does
 
 `resolving-merge-conflicts` works through an in-progress git merge or rebase, hunk by hunk, then runs the project's own checks and finishes the operation with a commit.

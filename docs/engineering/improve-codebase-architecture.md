@@ -1,3 +1,10 @@
+---
+title: "improve-codebase-architecture: Module Deepening Audit | agy-skills"
+description: "Surveys your codebase for module deepening opportunities, generates an interactive HTML report, and grills through refactoring plans."
+keywords: ["improve codebase architecture", "codebase deepening", "deep modules", "software refactoring", "architecture report"]
+permalink: /skills-improve-codebase-architecture/
+---
+
 ## What it does
 
 `improve-codebase-architecture` surveys a codebase for **deepening opportunities**: places where a shallow module (an interface nearly as complex as the thing it hides) could become a deep one. It writes them up as a self-contained HTML report, and then [grills](https://www.aihero.dev/ai-coding-dictionary/grilling) you through whichever one you pick.

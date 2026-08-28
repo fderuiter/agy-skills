@@ -1,6 +1,6 @@
 ---
 name: writing-fragments
-description: "Writing, explore: mine raw fragments, no structure yet."
+description: "Mine raw writing fragments with no structure yet, capturing ideas into a single quarry file."
 ---
 
 <what-to-do>
@@ -25,7 +25,7 @@ A fragment is any piece of text that might survive into the final article. It mu
 
 Fragments are deliberately heterogeneous. Examples of what could be a fragment:
 
-- A sharp sentence you'd want to deploy somewhere but don't yet know where.
+- A sharp sentence you would want to deploy somewhere but do not yet know where.
 - A claim with a one-line justification.
 - A vignette: a thing that happened, a code snippet, a scenario, an analogy.
 - A half-thought: "something about how X feels like Y, work this out later."
@@ -69,7 +69,7 @@ Fragments are separated by a horizontal rule (`\n---\n`). No headings inside the
 
 ## Writing rhythm
 
-Append silently. Don't ask permission for each fragment. Mention what you added in passing ("adding that"), but don't interrupt the conversation with save dialogs.
+Append silently. Do not ask permission for each fragment. Mention what you added in passing ("adding that"), but do not interrupt the conversation with save dialogs.
 
 Before every write: re-read the file from disk. The user may have edited, reordered, or deleted fragments between turns, so preserve their changes. Never overwrite the file; only append (or, if the user asks, edit a specific fragment in place).
 

@@ -1,3 +1,10 @@
+---
+title: "domain-modeling: Ubiquitous Language & ADR Generation | agy-skills"
+description: "Domain modeling skill for Antigravity: actively refines ubiquitous language, challenges terms, and maintains CONTEXT.md and ADRs."
+keywords: ["domain modeling", "ubiquitous language", "context md", "adr generation", "antigravity skills"]
+permalink: /skills-domain-modeling/
+---
+
 ## What it does
 
 `domain-modeling` builds and sharpens a project's **ubiquitous language** while you are designing: challenging a term that conflicts with the glossary, forcing a precise word where you used a vague one, and stress-testing a relationship with a concrete scenario until the boundaries are exact.

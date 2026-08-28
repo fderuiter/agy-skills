@@ -1,3 +1,10 @@
+---
+title: "wayfinder: Large-Scale Decision Mapping | agy-skills"
+description: "Charts large, ambiguous initiatives into a map of decision tickets, resolving uncertainty one step at a time."
+keywords: ["wayfinder", "decision tickets", "large scale planning", "architecture map", "antigravity planning"]
+permalink: /skills-wayfinder/
+---
+
 ## What it does
 
 `wayfinder` takes an effort too big for one agent [session](https://www.aihero.dev/ai-coding-dictionary/session): an idea whose **destination** you can name but whose route you cannot yet see, and charts it as a shared **map** of **decision tickets** on your issue tracker, then resolves them one at a time until the way is clear.

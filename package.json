@@ -11,6 +11,8 @@
   "scripts": {
     "link": "node scripts/link-skills.mjs",
     "list": "node scripts/list-skills.mjs",
+    "check-seo": "node scripts/check-seo.mjs",
+    "test": "node scripts/check-seo.mjs",
     "changeset": "changeset",
     "version": "changeset version",
     "check-plugin-version": "echo 'ok'"

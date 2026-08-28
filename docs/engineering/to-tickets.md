@@ -1,3 +1,10 @@
+---
+title: "to-tickets: Tracer-Bullet Ticket Decomposition | agy-skills"
+description: "Breaks plans and specs into tracer-bullet tickets with explicit blocking edges, sized for single agent context windows."
+keywords: ["to-tickets", "tracer bullet tickets", "task decomposition", "blocking dependencies", "antigravity tickets"]
+permalink: /skills-to-tickets/
+---
+
 ## What it does
 
 `to-tickets` takes a plan, a [spec](https://www.aihero.dev/ai-coding-dictionary/spec), or the conversation you are in, and breaks it into a set of **[tickets](https://www.aihero.dev/ai-coding-dictionary/ticket)** on your issue tracker. Each ticket declares its **blocking edges**: the other tickets that have to finish before it can start.

@@ -103,11 +103,13 @@ Daily code workflows.
 - **[triage](./skills/engineering/triage/SKILL.md)**: Move issues through a state machine of triage roles.
 - **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)**: Scan codebase for deepening opportunities.
 - **[setup-agy-skills](./skills/engineering/setup-agy-skills/SKILL.md)**: Configure a repo for the engineering skills.
+- **[setup-mcp](./skills/engineering/setup-mcp/SKILL.md)**: Configure Model Context Protocol (MCP) servers with schema validation.
 - **[to-spec](./skills/engineering/to-spec/SKILL.md)**: Turn conversation into a spec and publish to issue tracker.
 - **[to-tickets](./skills/engineering/to-tickets/SKILL.md)**: Break specs/plans into tracer-bullet tickets with blocking edges.
 - **[implement](./skills/engineering/implement/SKILL.md)**: Build work described by spec/tickets test-first and review before committing.
 - **[implement-spec](./skills/engineering/implement-spec/SKILL.md)**: Orchestrate concurrent subagents to implement a full specification across its ticket task graph.
 - **[wayfinder](./skills/engineering/wayfinder/SKILL.md)**: Chart and resolve large efforts as decision tickets.
+- **[retro](./skills/engineering/retro/SKILL.md)**: Analyze session transcripts to extract systemic environment improvements.
 
 **Model-invoked**
 - **[prototype](./skills/engineering/prototype/SKILL.md)**: Build throwaway prototypes to answer design questions.
@@ -130,6 +132,9 @@ General workflow and alignment tools.
 - **[teach](./skills/productivity/teach/SKILL.md)**: Stateful multi-session learning workspace.
 - **[to-questionnaire](./skills/productivity/to-questionnaire/SKILL.md)**: Turn decisions into questionnaires for external stakeholders.
 - **[wait-what](./skills/productivity/wait-what/SKILL.md)**: Clarify and re-pitch misunderstood agent responses.
+- **[writing-beats](./skills/productivity/writing-beats/SKILL.md)**: Assemble raw material into a narrative journey of beats.
+- **[writing-fragments](./skills/productivity/writing-fragments/SKILL.md)**: Mine raw writing fragments into a single quarry file.
+- **[writing-shape](./skills/productivity/writing-shape/SKILL.md)**: Shape raw material into an article paragraph by paragraph.
 
 **Model-invoked**
 - **[grilling](./skills/productivity/grilling/SKILL.md)**: Reusable interview primitive.

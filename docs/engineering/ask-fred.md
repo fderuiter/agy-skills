@@ -1,3 +1,10 @@
+---
+title: "ask-fred: Antigravity Agent Skill Router | agy-skills"
+description: "Router skill for Google Antigravity (AGY) workflows: maps your coding situation to the right agent skill and context boundary."
+keywords: ["antigravity skills", "ask-fred", "agent workflow router", "google antigravity", "ai coding workflow"]
+permalink: /skills-ask-fred/
+---
+
 ## What it does
 
 `ask-fred` is the router over the skills in this repo. You describe the situation you are in (an idea you cannot start, a pile of incoming bug reports, a [session](https://www.aihero.dev/ai-coding-dictionary/session) that has run long), and it names the skill or the sequence of skills that fits, plus where the human decisions in that sequence sit.
@@ -28,7 +35,10 @@ The word the skill gives you to think with is **flow**: a path *through* the ski
 
 - **The main flow**, idea to ship. Grill, spec, tickets, implement (or [implement-spec](https://fderuiter.github.io/agy-skills/skills-implement-spec) for concurrent subagents), review, with two branches inside it: a prototype detour when a question needs runnable code to settle, and the spec-and-tickets split, which only earns its cost when the build spans more than one session.
 - **On-ramps**, for a situation that generates work and then merges onto the main flow: incoming bug reports, something broken, or an effort too foggy and too large to hold in one session.
+- **Codebase health & retrospectives**, for periodic upkeep ([improve-codebase-architecture](https://fderuiter.github.io/agy-skills/skills-improve-codebase-architecture)) and session improvement ([retro](https://fderuiter.github.io/agy-skills/skills-retro)).
+- **Writing tools**, for capturing fragments ([writing-fragments](https://fderuiter.github.io/agy-skills/skills-writing-fragments)), structuring articles ([writing-shape](https://fderuiter.github.io/agy-skills/skills-writing-shape)), and mapping journeys ([writing-beats](https://fderuiter.github.io/agy-skills/skills-writing-beats)).
 - **Standalones**, off every flow, reached for on their own terms: the prototype, the questionnaire, the merge conflict you are already sitting in.
+- **Setup & Preconditions**, repo setup ([setup-agy-skills](https://fderuiter.github.io/agy-skills/skills-setup-agy-skills)) and MCP integration ([setup-mcp](https://fderuiter.github.io/agy-skills/skills-setup-mcp)).
 - **A vocabulary layer underneath**, the two references the other skills pull in when the words rather than the process are the problem.
 
 ## The phase boundary

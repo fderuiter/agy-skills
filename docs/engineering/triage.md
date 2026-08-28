@@ -1,3 +1,10 @@
+---
+title: "triage: State Machine Bug & Issue Triage | agy-skills"
+description: "State machine bug and issue triage skill: moves incoming issues through structured roles into agent-ready briefs or clarified questions."
+keywords: ["triage skill", "issue triage", "bug triage state machine", "antigravity triage", "github issue triage"]
+permalink: /skills-triage/
+---
+
 ## What it does
 
 `triage` works through the issues on your project's tracker, moving each one through a small state machine of **triage roles** (a category role and a state role) and leaving behind either an agent-ready brief, a specific question for the reporter, or a closed issue with a recorded reason.

@@ -11,6 +11,9 @@ Reachable only when you type them (Antigravity: `disable-model-invocation: true`
 - **[teach](./teach/SKILL.md)**: Teach the user a new skill or concept over multiple sessions, using the current directory as a stateful teaching workspace.
 - **[to-questionnaire](./to-questionnaire/SKILL.md)**: Turn a decision you can't answer alone into a Markdown questionnaire for the one person who can (filled in async, or together over a meeting).
 - **[wait-what](./wait-what/SKILL.md)**: Fire this the moment a message doesn't land. The agent re-pitches it with the context you're missing, in plain English, using your `CONTEXT.md` vocabulary.
+- **[writing-beats](./writing-beats/SKILL.md)**: Assemble raw material into a narrative journey of beats, grounding concepts before leaning on them.
+- **[writing-fragments](./writing-fragments/SKILL.md)**: Mine raw writing fragments with no structure yet, capturing ideas into a single quarry file.
+- **[writing-shape](./writing-shape/SKILL.md)**: Shape raw material into an article paragraph by paragraph, arguing format choices along the way.
 
 ## Model-invoked
 
