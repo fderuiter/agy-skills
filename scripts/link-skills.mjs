@@ -9,15 +9,31 @@ const repoRoot = path.resolve(__dirname, '..');
 const isWindows = process.platform === 'win32';
 const homeDir = os.homedir();
 
+let config = {
+  projectName: 'agy-skills',
+  overlayDir: 'skills/custom'
+};
+
+const configPath = path.join(repoRoot, 'skills.config.json');
+if (fs.existsSync(configPath)) {
+  try {
+    config = { ...config, ...JSON.parse(fs.readFileSync(configPath, 'utf8')) };
+  } catch (err) {
+    console.warn(`Warning: Could not parse skills.config.json: ${err.message}`);
+  }
+}
+
 const destDirs = [
   path.join(homeDir, '.gemini', 'config', 'skills'),
   path.join(homeDir, '.agents', 'skills'),
   path.join(repoRoot, '.agents', 'skills'),
-  path.join(repoRoot, '.agents', 'plugins', 'agy-skills', 'skills')
+  path.join(repoRoot, '.agents', 'plugins', config.projectName, 'skills')
 ];
 
 function findSkillDirs(dir) {
   let skillDirs = [];
+  if (!fs.existsSync(dir)) return skillDirs;
+
   const entries = fs.readdirSync(dir, { withFileTypes: true });
 
   for (const entry of entries) {
@@ -37,8 +53,22 @@ function findSkillDirs(dir) {
 }
 
 const skillsDir = path.join(repoRoot, 'skills');
-const skillPaths = findSkillDirs(skillsDir);
-console.log(`Found ${skillPaths.length} skills in ${repoRoot}`);
+let skillPaths = findSkillDirs(skillsDir);
+
+// Discover overlay skills if present
+if (config.overlayDir) {
+  const overlayFullPath = path.resolve(repoRoot, config.overlayDir);
+  if (fs.existsSync(overlayFullPath) && overlayFullPath !== skillsDir) {
+    const overlaySkills = findSkillDirs(overlayFullPath);
+    for (const ovSkill of overlaySkills) {
+      if (!skillPaths.includes(ovSkill)) {
+        skillPaths.push(ovSkill);
+      }
+    }
+  }
+}
+
+console.log(`Found ${skillPaths.length} skills across tracked buckets and local overlay in ${repoRoot}`);
 
 for (const dest of destDirs) {
   if (!fs.existsSync(dest)) {
@@ -70,7 +100,7 @@ for (const dest of destDirs) {
 }
 
 // Link AGENTS.md into plugin rules
-const pluginRulesDir = path.join(repoRoot, '.agents', 'plugins', 'agy-skills', 'rules');
+const pluginRulesDir = path.join(repoRoot, '.agents', 'plugins', config.projectName, 'rules');
 if (!fs.existsSync(pluginRulesDir)) {
   fs.mkdirSync(pluginRulesDir, { recursive: true });
 }

@@ -19,6 +19,7 @@ Reachable primarily when triggered by the user as a slash command.
 - **[implement-spec](./implement-spec/SKILL.md)**: Orchestrate concurrent subagents to implement a full specification across its ticket task graph using isolated worktrees.
 - **[wayfinder](./wayfinder/SKILL.md)**: Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on the issue tracker, resolved one at a time until the way to the destination is clear.
 - **[retro](./retro/SKILL.md)**: Analyze session transcripts to extract systemic environment improvements (steering files, coding standards, automated checks, tool economy).
+- **[new-skill](./new-skill/SKILL.md)**: Scaffold a new skill, documentation page, test fixture, and router registration with interactive quality checks.
 
 ## Model-invoked
 

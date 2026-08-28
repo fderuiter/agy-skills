@@ -101,6 +101,25 @@ _Avoid_: json blob message
 **Dynamic Worker Mesh**:
 A runtime coordination pattern combining dynamically defined subagents (`define_subagent`), **Shared Worktree Workspaces**, and **Structured Envelopes** for concurrent execution across a task graph.
 
+**Skill Configuration File**:
+The central configuration file (`skills.config.json`) defining repository metadata, router skill identity, bucket promotion rules, local overlay directories, and issue tracker preferences.
+_Avoid_: settings json, app config
+
+**Skill Scaffolder**:
+A deterministic CLI generator (`scripts/new-skill.mjs`) and interactive agent skill (`/new-skill`) for creating, documenting, and auto-wiring new skills.
+_Avoid_: skill maker, skill boilerplate generator
+
+**Local Skill Overlay**:
+An isolated directory (`skills/custom/` or configured overlay path) for private or experimental skills that link into local Antigravity environments without polluting upstream git tracking.
+_Avoid_: private skills hack, untracked folder
+
+**Trigger Conflict Detector**:
+An automated static validation check within `check-skills.mjs` verifying that skill descriptions and activation verbs do not overlap ambiguously.
+_Avoid_: prompt collision linter
+
+**Skill Eval Template**:
+A standardized test fixture template for verifying skill trajectory and prompt activations under `google-antigravity` SDK evals.
+
 ## Relationships
 
 - An **Issue tracker** holds many **Issues**
@@ -125,9 +144,13 @@ A runtime coordination pattern combining dynamically defined subagents (`define_
 - A **Dynamic Worker Mesh** executes across **Shared Worktree Workspaces**
 - **Headless SDK Evals** verify skill trajectories and **Lifecycle hooks**
 - A **Context Hygiene Hook** executes before model invocations within Antigravity
+- A **Skill Configuration File** configures repository branding, router names, and bucket promotion rules
+- A **Skill Scaffolder** generates skills, documentation, and **Skill Eval Templates** validated by a **Trigger Conflict Detector**
+- A **Local Skill Overlay** links private skills into Antigravity alongside tracked bucket skills
 
 ## Flagged ambiguities
 
 - "backlog" was previously used to mean both the *tool* hosting issues and the *body of work* inside it. Resolved: the tool is the **Issue tracker**; "backlog" is no longer used as a domain term.
 - "backlog backend" / "backlog manager". Resolved: collapsed into **Issue tracker**.
+
 

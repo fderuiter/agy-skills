@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "projectName": "agy-skills",
+  "author": {
+    "name": "Fred de Ruiter",
+    "handle": "fderuiter",
+    "githubUrl": "https://github.com/fderuiter/agy-skills",
+    "docsUrl": "https://fderuiter.github.io/agy-skills"
+  },
+  "routerSkill": {
+    "name": "ask-fred",
+    "path": "skills/engineering/ask-fred/SKILL.md",
+    "description": "Ask which skill or flow fits your situation. A router over the skills in this repo."
+  },
+  "buckets": {
+    "engineering": {
+      "description": "daily code work",
+      "promoted": true,
+      "docsPath": "docs/engineering"
+    },
+    "productivity": {
+      "description": "daily non-code workflow tools",
+      "promoted": true,
+      "docsPath": "docs/productivity"
+    },
+    "misc": {
+      "description": "kept around but rarely used, not promoted",
+      "promoted": false
+    },
+    "in-progress": {
+      "description": "beta: public on purpose, feedback wanted, not shipped in the plugin",
+      "promoted": false
+    },
+    "deprecated": {
+      "description": "no longer used",
+      "promoted": false
+    }
+  },
+  "overlayDir": "skills/custom",
+  "tracker": {
+    "default": "github",
+    "supported": ["github", "linear", "scratch"]
+  }
+}
+

@@ -100,3 +100,8 @@ Off the main flow entirely.
 - **`/setup-agy-skills`**: run before your first engineering flow to configure the issue tracker, triage labels, and doc layout the other skills assume.
 - **`/setup-mcp`**: configure Model Context Protocol (MCP) servers in `.agents/mcp_config.json` or globally in `~/.gemini/config/mcp_config.json` with connectivity verification.
 - **`/setup-ts-deep-modules`**: wire dependency-cruiser into a TypeScript codebase to enforce deep module boundaries where internals are only reachable through public entrypoints.
+- **`/new-skill`**: scaffold a new skill, documentation page, test fixture, and router registration with interactive quality checks.
+
+<!-- USER_SKILLS_START -->
+<!-- USER_SKILLS_END -->
+

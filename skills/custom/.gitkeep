@@ -1,0 +1,4 @@
+# Local custom skills directory.
+# Any skill subdirectories placed here will be linked into your local Antigravity environment by `npm run link`,
+# but will remain gitignored to keep private or experimental skills uncommitted.
+

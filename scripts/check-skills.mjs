@@ -1,14 +1,46 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+const repoRoot = path.resolve('.');
+const configPath = path.join(repoRoot, 'skills.config.json');
+
+let config = {
+  projectName: 'agy-skills',
+  author: { name: 'Fred de Ruiter', handle: 'fderuiter' },
+  routerSkill: { name: 'ask-fred', path: 'skills/engineering/ask-fred/SKILL.md' },
+  buckets: {
+    engineering: { promoted: true, docsPath: 'docs/engineering' },
+    productivity: { promoted: true, docsPath: 'docs/productivity' },
+    misc: { promoted: false },
+    'in-progress': { promoted: false },
+    deprecated: { promoted: false }
+  },
+  overlayDir: 'skills/custom'
+};
+
+if (fs.existsSync(configPath)) {
+  try {
+    config = { ...config, ...JSON.parse(fs.readFileSync(configPath, 'utf8')) };
+  } catch (err) {
+    console.warn(`Warning: Could not parse skills.config.json: ${err.message}`);
+  }
+}
+
 const SKILLS_DIR = path.resolve('skills');
 const DOCS_DIR = path.resolve('docs');
 const ROOT_README = path.resolve('README.md');
-const PROMOTED_BUCKETS = ['engineering', 'productivity'];
-const NON_PROMOTED_BUCKETS = ['misc', 'in-progress', 'deprecated'];
+
+const PROMOTED_BUCKETS = Object.entries(config.buckets)
+  .filter(([, val]) => val.promoted)
+  .map(([key]) => key);
+
+const NON_PROMOTED_BUCKETS = Object.entries(config.buckets)
+  .filter(([, val]) => !val.promoted)
+  .map(([key]) => key);
 
 let errors = [];
 let checkedSkillsCount = 0;
+const skillDescriptions = new Map();
 
 function parseFrontMatter(content) {
   if (!content.startsWith('---')) {
@@ -43,11 +75,14 @@ function checkEmDashes(filePath, content) {
   }
 }
 
-// 1. Audit root README
+// 1. Audit root README & config
 const rootReadmeContent = fs.readFileSync(ROOT_README, 'utf8');
 checkEmDashes('README.md', rootReadmeContent);
+if (fs.existsSync(configPath)) {
+  checkEmDashes('skills.config.json', fs.readFileSync(configPath, 'utf8'));
+}
 
-// 2. Discover all skills
+// 2. Discover all skills in tracked buckets
 const buckets = fs.readdirSync(SKILLS_DIR, { withFileTypes: true })
   .filter((d) => d.isDirectory())
   .map((d) => d.name);
@@ -94,6 +129,14 @@ for (const bucket of buckets) {
 
     if (!frontmatter.description || frontmatter.description.trim() === '') {
       errors.push(`${relSkillPath}: Missing or empty 'description' in front matter.`);
+    } else {
+      // Trigger conflict detection
+      const normalizedDesc = frontmatter.description.toLowerCase().trim();
+      if (skillDescriptions.has(normalizedDesc)) {
+        errors.push(`Trigger Conflict: Skill '${skillName}' has identical description to '${skillDescriptions.get(normalizedDesc)}'`);
+      } else {
+        skillDescriptions.set(normalizedDesc, skillName);
+      }
     }
 
     // Docs parity check
@@ -125,6 +168,7 @@ for (const bucket of buckets) {
 
 console.log('\n--- agy-skills Skill Integrity & Parity Audit ---');
 console.log(`Validated ${checkedSkillsCount} skills across ${buckets.length} bucket folders.`);
+console.log(`Trigger Conflict Detector: Verified uniqueness across ${skillDescriptions.size} skill descriptions.`);
 
 if (errors.length > 0) {
   console.error(`\nFound ${errors.length} skill integrity error(s):`);

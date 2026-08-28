@@ -10,6 +10,7 @@
   "license": "MIT",
   "scripts": {
     "link": "node scripts/link-skills.mjs",
+    "new-skill": "node scripts/new-skill.mjs",
     "list": "node scripts/list-skills.mjs",
     "check-seo": "node scripts/check-seo.mjs",
     "check-skills": "node scripts/check-skills.mjs",

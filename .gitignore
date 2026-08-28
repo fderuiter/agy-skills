@@ -7,4 +7,6 @@ node_modules
 .claude
 .agents/.agents
 .agents/plugins/agy-skills/.agents
+skills/custom/*
+!skills/custom/.gitkeep
 

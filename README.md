@@ -122,6 +122,7 @@ Daily code workflows.
 - **[implement-spec](./skills/engineering/implement-spec/SKILL.md)**: Orchestrate concurrent subagents to implement a full specification across its ticket task graph.
 - **[wayfinder](./skills/engineering/wayfinder/SKILL.md)**: Chart and resolve large efforts as decision tickets.
 - **[retro](./skills/engineering/retro/SKILL.md)**: Analyze session transcripts to extract systemic environment improvements.
+- **[new-skill](./skills/engineering/new-skill/SKILL.md)**: Scaffold a new skill, documentation page, test fixture, and router registration.
 
 **Model-invoked**
 - **[prototype](./skills/engineering/prototype/SKILL.md)**: Build throwaway prototypes to answer design questions.

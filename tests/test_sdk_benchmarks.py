@@ -134,6 +134,35 @@ class TestSdkBenchmarks(unittest.TestCase):
         result = json.loads(proc.stdout)
         self.assertIsInstance(result, dict)
 
+    def test_skills_config_schema(self):
+        """Verify that skills.config.json is present and has required top-level keys."""
+        config_path = os.path.join(REPO_ROOT, "skills.config.json")
+        self.assertTrue(os.path.exists(config_path), "skills.config.json missing")
+        with open(config_path, "r", encoding="utf-8") as f:
+            config = json.load(f)
+
+        self.assertIn("projectName", config)
+        self.assertIn("author", config)
+        self.assertIn("routerSkill", config)
+        self.assertIn("buckets", config)
+        self.assertIn("engineering", config["buckets"])
+        self.assertIn("productivity", config["buckets"])
+
+    def test_new_skill_scaffolder_dry_run(self):
+        """Verify that new-skill.mjs executes cleanly in dry-run mode."""
+        scaffolder_script = os.path.join(REPO_ROOT, "scripts", "new-skill.mjs")
+        self.assertTrue(os.path.exists(scaffolder_script))
+
+        proc = subprocess.run(
+            ["node", scaffolder_script, "--name", "sample-dry-run-skill", "--bucket", "engineering", "--dry-run"],
+            capture_output=True,
+            text=True,
+            cwd=REPO_ROOT
+        )
+
+        self.assertEqual(proc.returncode, 0, f"Scaffolder dry run failed: {proc.stderr}")
+        self.assertIn("[DRY RUN] Would create:", proc.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()
