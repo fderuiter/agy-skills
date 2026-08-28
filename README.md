@@ -39,8 +39,9 @@ Link or copy the `skills/` folder into your global Antigravity configuration dir
 
 For developers maintaining this repository, run:
 ```bash
-./scripts/link-skills.sh
+npm run link
 ```
+(Or use `scripts/link-skills.ps1` on Windows / `scripts/link-skills.sh` on macOS/Linux).
 
 ### Method 3: Direct Workspace Copy
 

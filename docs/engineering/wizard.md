@@ -1,6 +1,6 @@
 ## What it does
 
-`wizard` generates an interactive bash script that walks a human, step by step, through a manual procedure: wiring up third-party services, running a one-off migration, moving a project from state A to state B. It opens each URL, says what to click and copy, captures what comes back, and writes it into `.env` files and GitHub Actions secrets.
+`wizard` generates an interactive script (PowerShell on Windows, Bash on macOS/Linux) that walks a human, step by step, through a manual procedure: wiring up third-party services, running a one-off migration, moving a project from state A to state B. It opens each URL, says what to click and copy, captures what comes back, and writes it into `.env` files and GitHub Actions secrets.
 
 The [agent](https://www.aihero.dev/ai-coding-dictionary/agent) writes the script; it never runs it. You do, on your own machine. So a wizard is not a list of instructions you follow; it is a program that drives the procedure and holds the state, and your part is to click, paste, and press Enter.
 
@@ -21,7 +21,7 @@ Don't reach for it to *decide* what to build; for that, [grill-with-docs](https:
 
 ## Prerequisites
 
-None to generate one. The wizard it writes runs on bash, and uses `gh` when a stage sets a GitHub secret or variable. If `gh` is missing or unauthenticated, that stage becomes a warning and the closing summary tells you what to set by hand, instead of failing the run.
+None to generate one. The wizard it writes runs on PowerShell (Windows) or Bash (macOS/Linux), and uses `gh` when a stage sets a GitHub secret or variable. If `gh` is missing or unauthenticated, that stage becomes a warning and the closing summary tells you what to set by hand, instead of failing the run.
 
 ## Stages
 

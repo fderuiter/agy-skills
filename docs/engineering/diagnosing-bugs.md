@@ -33,7 +33,7 @@ Phase 1 gets disproportionate effort because it is the only phase that is hard. 
 7. A property or fuzz loop, for "sometimes wrong output".
 8. A bisection harness you can hand to `git bisect run`.
 9. A differential loop: same input, old version against new.
-10. A [human-in-the-loop](https://www.aihero.dev/ai-coding-dictionary/human-in-the-loop) bash script, last resort. The skill ships `scripts/hitl-loop.template.sh` for this: the agent runs the script, you follow prompts in your terminal, and your answers come back as parseable output.
+10. A [human-in-the-loop](https://www.aihero.dev/ai-coding-dictionary/human-in-the-loop) script, last resort. The skill ships `scripts/hitl-loop.template.sh` (macOS/Linux) and `scripts/hitl-loop.template.ps1` (Windows) for this: the agent runs the script, you follow prompts in your terminal, and your answers come back as parseable output.
 
 *A* loop is not the goal. **Tight** is: fast (seconds), deterministic (same verdict every run), sharp (asserts your exact symptom, not "didn't crash"), and agent-runnable unattended. A 30-second flaky loop is barely better than none. For a bug that only shows up sometimes, the target is not a clean repro but a **higher reproduction rate**: loop the trigger, parallelise, add stress, inject sleeps, until the flake rate is high enough to debug against.
 

@@ -9,6 +9,8 @@
   },
   "license": "MIT",
   "scripts": {
+    "link": "node scripts/link-skills.mjs",
+    "list": "node scripts/list-skills.mjs",
     "changeset": "changeset",
     "version": "changeset version",
     "check-plugin-version": "echo 'ok'"
