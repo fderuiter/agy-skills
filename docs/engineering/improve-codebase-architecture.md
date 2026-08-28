@@ -40,6 +40,23 @@ It writes in two places. The visual report is rendered directly as a structured 
 
 ## Depth, and the report that hunts for it
 
+```mermaid
+flowchart TD
+    Trigger(["Periodic Upkeep / Pre-Feature Scan"]) --> ScanHotspots["Scan Recent Git Activity & Hotspots"]
+    
+    ScanHotspots --> SubagentExplore["Parallel Exploration Subagents\n(Search for shallow modules & missing seams)"]
+    
+    SubagentExplore --> DeletionTest["Apply Deletion Test Filter\n(Does removing/deepening concentrate complexity?)"]
+    
+    DeletionTest --> GenReport["Generate Visual Report Artifact\n(Ranked cards with strength badges: Strong, Worth exploring, Speculative)"]
+    
+    GenReport --> PresentChoices["Present Candidates via ask_question"]
+    
+    PresentChoices --> SelectCard["User Selects Candidate to Deepen"]
+    SelectCard --> GrillCandidate["Grill Chosen Candidate\n(Settle seams, interface shape, ADRs)"]
+    GrillCandidate --> HandOffMain["Hand off settled decision to /to-spec or /to-tickets"]
+```
+
 The skill turns on one idea: **depth**. A deep module puts a lot of behaviour behind a small, stable interface. A shallow one leaks its implementation through an interface nearly as wide as the code beneath it. The report hunts for shallowness in three forms: pure functions extracted only for testability while the real bugs live in how they are called (no **locality**), modules leaking across their **seams**, and a concept you cannot understand without opening five files. It closes with a proposal for the deepening that fixes it.
 
 Each candidate is a card: the files involved, the friction, a plain-English solution, the benefit stated in terms of **locality** and **leverage**, a before/after diagram, and a strength badge.

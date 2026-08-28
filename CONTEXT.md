@@ -120,6 +120,15 @@ _Avoid_: prompt collision linter
 **Skill Eval Template**:
 A standardized test fixture template for verifying skill trajectory and prompt activations under `google-antigravity` SDK evals.
 
+**Visual Mechanism Diagram**:
+A focused Mermaid diagram embedded within the substance section of a promoted skill documentation page illustrating its internal loop, state machine, or artifact transformation.
+
+**Surface Diagram Card**:
+A responsive container element in the documentation theme (`.m3-diagram-card`) wrapping rendered Mermaid SVGs with Material Design 3 surface container styling, scroll boundaries, and source controls.
+
+**Mermaid Flow Topology**:
+The structured system-level visualization of interconnected agent skills, on-ramps, and execution pipelines rendered via Mermaid syntax across documentation hubs.
+
 ## Relationships
 
 - An **Issue tracker** holds many **Issues**
@@ -134,6 +143,8 @@ A standardized test fixture template for verifying skill trajectory and prompt a
 - An **Adaptive Navigation Shell** arranges documentation pages and dictionary terms using **M3 Design Tokens**
 - A **Surface Tint Container** structures markdown sections and code blocks using dynamic **Tonal Palettes**
 - An **Interactive Mermaid Renderer** visualizes workflow and architectural diagrams with dynamic theme integration
+- A **Surface Diagram Card** wraps rendered **Visual Mechanism Diagrams** with responsive controls
+- A **Mermaid Flow Topology** maps the skill ecosystem on documentation hubs
 - A **Skill Classification Badge** categorizes skill invocability across documentation and search interfaces
 - A **Pre-commit Integrity Gate** enforces test and formatting invariants at commit time
 - An **On-Page Table of Contents** indexes article headings and synchronizes with **Heading Anchor Links**

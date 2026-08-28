@@ -35,6 +35,27 @@ It also needs two other skills present, because its own `SKILL.md` is one line t
 
 ## The paper trail
 
+```mermaid
+flowchart TD
+    Start(["Start Grilling Session"]) --> Explore["Evaluate Design Tree Frontier"]
+    Explore --> AskRound["Ask Round via ask_question\n(Recommended Option Highlighted)"]
+    AskRound --> UserReply["User Submits Answers"]
+    
+    UserReply --> TermCheck{"New Domain Term\nSettled?"}
+    TermCheck -- "Yes" --> UpdateContext["Update CONTEXT.md Inline\n(Pure Glossary Vocabulary)"]
+    TermCheck -- "No" --> ADRCheck
+    UpdateContext --> ADRCheck
+    
+    ADRCheck{"Decision qualifies for ADR?\n1. Hard to reverse\n2. Surprising without context\n3. Real trade-off"}
+    ADRCheck -- "All 3 Met" --> WriteADR["Write ADR to docs/adr/\n(Numbered Decision Record)"]
+    ADRCheck -- "Not all met" --> NextCheck
+    WriteADR --> NextCheck
+    
+    NextCheck{"Frontier Empty?\n(All branches settled)"}
+    NextCheck -- "No (More questions)" --> Explore
+    NextCheck -- "Yes (Shared understanding)" --> ToSpec["Hand off to /to-spec or /implement"]
+```
+
 Three things come out of a session, and they are not equal.
 
 | What resolved | Where it lands |

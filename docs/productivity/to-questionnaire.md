@@ -28,6 +28,20 @@ The common case is a [grilling](https://fderuiter.github.io/agy-skills/dictionar
 
 ## The send, not the subject
 
+```mermaid
+flowchart TD
+    Blocked(["Decision Blocked on External Knowledge\n(Client, domain expert, or remote team)"]) --> AskSend["Interview the Send (2 Quick Exchanges)\n1. Who is the recipient? (Role, relation, tone)\n2. What decisions/facts must be unblocked?"]
+    
+    AskSend --> DraftDoc["Draft Discovery Questionnaire\n- Concrete purpose & contextual framing\n- Themed groupings (Most-important-first)\n- Plain language, single-concept questions\n- Explicit 'I don't know' permission"]
+    
+    DraftDoc --> EmitMarkdown["Write to to-questionnaire-<slug>.md"]
+    
+    EmitMarkdown --> DeliverAsync["Deliver to Stakeholder\n(Async doc, Slack thread, email, or meeting walk-through)"]
+    
+    DeliverAsync --> AnswersBack["Answers Received"]
+    AnswersBack --> ResumeFlow(["Resume Grilling or Planning Flow\n(Feed settled answers into /grill-with-docs or /to-spec)"])
+```
+
 The interview is two exchanges, and then it stops.
 
 - **Who is it going to?** Their role, their expertise, their relationship to you. This fixes the tone and how much context the document has to carry: an outside client needs orienting, a teammate does not.

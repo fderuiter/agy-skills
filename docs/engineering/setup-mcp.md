@@ -37,6 +37,32 @@ Local stdio servers require their respective runtime on your system: Node.js (`n
 
 ## Supported transports and common recipes
 
+```mermaid
+flowchart TD
+    Invoke(["Run /setup-mcp"]) --> ScopeChoice{"Select Configuration Scope"}
+    
+    ScopeChoice -- "Project Workspace" --> LocalFile[".agents/mcp_config.json\n(Shared repository tools)"]
+    ScopeChoice -- "Machine Global" --> GlobalFile["~/.gemini/config/mcp_config.json\n(Personal API keys & tools)"]
+    
+    LocalFile --> TransportChoice{"Select Transport"}
+    GlobalFile --> TransportChoice
+    
+    TransportChoice -- "stdio (Local process)" --> RecipeStdio["Configure stdio runner\n(node, npx, python, uvx)"]
+    TransportChoice -- "sse (Remote HTTP)" --> RecipeSSE["Configure SSE endpoint URL & headers"]
+    TransportChoice -- "http (Remote Stream)" --> RecipeHTTP["Configure streaming HTTP endpoint"]
+    
+    RecipeStdio --> UpstreamVerify["Upstream Verification\n(Search package schemas & test connectivity)"]
+    RecipeSSE --> UpstreamVerify
+    RecipeHTTP --> UpstreamVerify
+    
+    UpstreamVerify --> TestPass{"Server responsive?"}
+    TestPass -- "No (Auth or executable error)" --> FixConfig["Adjust environment args or tokens"]
+    FixConfig --> UpstreamVerify
+    
+    TestPass -- "Yes (Clean)" --> MergeJSON["Merge server into mcpServers JSON"]
+    MergeJSON --> Ready(["MCP Tools Available in Antigravity"])
+```
+
 Antigravity supports three MCP transport mechanisms:
 
 | Transport | Type | Description |

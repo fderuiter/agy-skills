@@ -37,6 +37,24 @@ Nothing needs to exist before you start, and nothing is created speculatively.
 
 ## Two artifacts, two bars
 
+```mermaid
+flowchart TD
+    Conversation(["Conversation or Design Discussion"]) --> DetectEvent{"Discussion Event"}
+    
+    DetectEvent -- "Vague or Overloaded Term" --> Challenge["Challenge Term against Existing Glossary"]
+    Challenge --> ResolveTerm["Pick Canonical Term & Identify Forbidden Synonyms"]
+    ResolveTerm --> WriteContext["Update CONTEXT.md Inline\n(Term: Definition, _Avoid_: Synonyms)"]
+    
+    DetectEvent -- "Architectural Choice Made" --> ADRFilter{"Three ADR Criteria:\n1. Hard to reverse\n2. Surprising without context\n3. Result of real trade-off"}
+    
+    ADRFilter -- "All 3 Met" --> WriteADR["Offer & Write docs/adr/NNNN-slug.md\n(Context, Decision, Invariants)"]
+    ADRFilter -- "Any test fails" --> SkipADR["Skip ADR\n(Decision stays in conversation only)"]
+    
+    WriteContext --> EndCheck(["Sharpened Domain Model"])
+    WriteADR --> EndCheck
+    SkipADR --> EndCheck
+```
+
 The glossary and the ADR are held to different standards, and conflating them is where most of the trouble in this skill comes from.
 
 | | `CONTEXT.md` | `docs/adr/NNNN-slug.md` |

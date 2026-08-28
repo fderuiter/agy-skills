@@ -33,6 +33,23 @@ That last row is a real hole, not a stylistic preference. The skill decides *whe
 
 ## The loop, and the seam it runs at
 
+```mermaid
+flowchart TD
+    Start(["Start Feature or Bugfix Slice"]) --> AgreeSeam["Confirm Pre-Agreed Public Seam\n(Do not mock internal modules)"]
+    
+    AgreeSeam --> RedPhase["1. Red Phase\nWrite single failing test asserting observable output\n(Literal expected values)"]
+    
+    RedPhase --> VerifyRed["Verify Test Fails for Expected Reason"]
+    
+    VerifyRed --> GreenPhase["2. Green Phase\nWrite minimal implementation to pass test\n(No speculative code)"]
+    
+    GreenPhase --> VerifyGreen["Run Test -> Green Verification"]
+    
+    VerifyGreen --> NextSlice{"More Slice Behaviours\nRequired?"}
+    NextSlice -- "Yes" --> RedPhase
+    NextSlice -- "No (Seam satisfied)" --> ReviewPass["Pass to /code-review for Refactoring & Smells"]
+```
+
 Three words carry this skill.
 
 **Red-green.** Write the failing test, then only enough code to pass it. No anticipating the test after next. There is no refactor phase: it was dropped in June 2026 because agents essentially never performed it, and because review and implementation work better as separate sessions. Refactoring belongs to [code-review](https://fderuiter.github.io/agy-skills/skills-code-review).

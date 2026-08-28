@@ -23,6 +23,32 @@ A completed specification (from [to-spec](https://fderuiter.github.io/agy-skills
 
 ## The task graph frontier
 
+```mermaid
+flowchart TD
+    TaskDAG(["Ticket Task Graph DAG"]) --> FindFrontier["Discover Unblocked Frontier\n(Tickets with 0 pending blockers)"]
+    
+    FindFrontier --> SpawnWorkers["Define & Launch Specialized Subagents\n(Isolated Worktrees + Structured Envelopes)"]
+    
+    subgraph ParallelExecution ["Concurrent Subagent Swarm"]
+        Worker1["Subagent 1: Ticket #101\n(Workspace: share / branch)"]
+        Worker2["Subagent 2: Ticket #102\n(Workspace: share / branch)"]
+    end
+    
+    SpawnWorkers --> Worker1
+    SpawnWorkers --> Worker2
+    
+    Worker1 --> Merge1["Merge to Integration Branch\n(git merge --no-ff + test suite verification)"]
+    Worker2 --> Merge2["Merge to Integration Branch\n(git merge --no-ff + test suite verification)"]
+    
+    Merge1 --> UpdateGraph["Update Task Graph & Unlock Dependents"]
+    Merge2 --> UpdateGraph
+    
+    UpdateGraph --> CheckRemaining{"Any Tickets Remaining?"}
+    CheckRemaining -- "Yes (New frontier unblocked)" --> FindFrontier
+    CheckRemaining -- "No (All tickets complete)" --> FinalReview["Full PR Code Review via /code-review"]
+    FinalReview --> PRReady(["Pull Request Ready for Review"])
+```
+
 Tickets produced by [to-tickets](https://fderuiter.github.io/agy-skills/skills-to-tickets) do not form a flat to-do list; they form a directed acyclic graph. At the start of a run, only a subset of tickets have zero blocking dependencies. This subset is the **initial frontier**.
 
 As each implementer subagent completes its ticket and merges into the target branch, dependent tickets lose their blockers. The orchestrator tracks this graph in memory and promotes newly unblocked tickets to the active frontier immediately, maintaining the highest possible safe concurrency.

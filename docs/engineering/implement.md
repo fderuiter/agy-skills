@@ -37,6 +37,19 @@ If the tickets came from [to-tickets](https://fderuiter.github.io/agy-skills/ski
 
 ## What one run does
 
+```mermaid
+flowchart TD
+    Ticket(["Ingest Ticket / Spec / Thread Context"]) --> ReadSeams["Read Ticket & Confirm Pre-Agreed Seams"]
+    
+    ReadSeams --> TDDLoop["Drive /tdd at Agreed Seams\n(Red: failing test -> Green: passing code -> Refactor)"]
+    
+    TDDLoop --> Typecheck["Incremental Typecheck & Focused Unit Tests"]
+    Typecheck --> FullSuite["Run Full Project Test Suite"]
+    
+    FullSuite --> Review["Run /code-review\n(Audit Standards & Spec adherence)"]
+    Review --> Commit(["Commit Verified Vertical Slice to Current Branch"])
+```
+
 A run is five beats, in order:
 
 1. Read the ticket or spec and work out the seams.

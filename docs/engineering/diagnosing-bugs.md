@@ -48,6 +48,23 @@ When it genuinely cannot build one, it is instructed to stop and say so, list wh
 
 ## The gates between phases
 
+```mermaid
+flowchart TD
+    Report(["Bug Report or Performance Regression"]) --> Gate1["Gate 1: Build Tight Feedback Loop\n(Named deterministic command goes RED on defect)"]
+    
+    Gate1 --> Gate2["Gate 2: Repro Minimisation\n(Strip non-load-bearing elements)"]
+    
+    Gate2 --> Gate3["Gate 3: Form Ranked Hypotheses\n(3-5 falsifiable predictions presented via ask_question)"]
+    
+    Gate3 --> Gate4["Gate 4: Targeted Instrumentation\n(Tagged probes [DEBUG-a4f2], test one variable at a time)"]
+    
+    Gate4 --> Gate5["Gate 5: Regression Test & Fix\n(Write failing regression test at true seam, then fix)"]
+    
+    Gate5 --> DoneGate["Gate 6: Cleanup & Commit\n(Grep-clean tags, verify GREEN, cite hypothesis in commit)"]
+    
+    DoneGate --> Verified(["Verified Bug Resolution"])
+```
+
 The phases are gates, not a checklist. Each one refuses to open until something specific is true.
 
 | Gate | What has to be true |

@@ -17,6 +17,21 @@ Reach for it once per Python repo when structuring a multi-package architecture 
 
 ## The architectural contracts
 
+```mermaid
+flowchart TD
+    AppCode["External App Code & Sibling Packages"] -->|Allowed| RootEntry["Public Entry Points\n(packages/billing/__init__.py, client.py)"]
+    
+    AppCode -.->|FORBIDDEN by import-linter| PrivateLib["Internal Subfolder\n(packages/billing/_lib/engine.py)"]
+    
+    subgraph PythonPackage ["Python Deep Package (packages/billing/)"]
+        RootEntry --> PrivateLib
+        PrivateLib --> PrivateUtils["Private Utilities\n(packages/billing/_lib/utils.py)"]
+        
+        Tests["Package Tests\n(packages/billing/tests/test_billing.py)"] -->|Allowed| RootEntry
+        Tests -.->|FORBIDDEN: bypass entrypoint| PrivateLib
+    end
+```
+
 The setup establishes five strict import contracts:
 
 | Contract | Rule Enforced |

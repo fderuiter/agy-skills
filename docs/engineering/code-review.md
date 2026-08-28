@@ -41,6 +41,35 @@ Step 1 depends on `docs/agents/issue-tracker.md`, which [setup-agy-skills](https
 
 ## The two axes
 
+```mermaid
+flowchart TD
+    FixedPoint(["Fixed Point Diff Target\n(Commit, Branch, Tag, HEAD~N)"]) --> ValidateDiff["Validate Ref & Non-Empty Diff"]
+    
+    ValidateDiff --> SpawnParallel["Spawn Parallel Review Subagents\n(Workspace: share / Isolated Reasoning)"]
+    
+    subgraph ParallelReview ["Two-Axis Parallel Evaluation"]
+        subgraph AxisStandards ["Axis 1: Standards Review"]
+            StandardsAgent["Standards Subagent\n- CODING_STANDARDS.md\n- CONTRIBUTING.md\n- 12 Fowler Code Smells"]
+            StandardsFindings["Standards Findings\n(Cites rule or smell + code hunk)"]
+            StandardsAgent --> StandardsFindings
+        end
+        
+        subgraph AxisSpec ["Axis 2: Spec Adherence"]
+            SpecAgent["Spec Subagent\n- Originating Issue / Spec\n- Acceptance Criteria\n- Out-of-Scope Bounds"]
+            SpecFindings["Spec Findings\n(Cites spec line + deviations)"]
+            SpecAgent --> SpecFindings
+        end
+    end
+    
+    SpawnParallel --> StandardsAgent
+    SpawnParallel --> SpecAgent
+    
+    StandardsFindings --> Synthesis["Synthesize Two-Axis Report"]
+    SpecFindings --> Synthesis
+    
+    Synthesis --> Report(["Side-by-Side Finding Envelopes\n(Worst issue per axis: never merged or averaged)"])
+```
+
 | | Standards | Spec |
 | --- | --- | --- |
 | Question | Is it built right? | Is it the right thing? |

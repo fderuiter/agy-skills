@@ -26,6 +26,28 @@ Reach for it when you want to write an article, essay, or post, but your thought
 
 ## The quarry and the leading word
 
+```mermaid
+flowchart TD
+    ScatteredThoughts(["Scattered Observations & Half-Formed Ideas"]) --> Invoke["Run /writing-fragments"]
+    
+    Invoke --> GrillSession["Relentless Grilling Exploration\n(No premature structure, no outlines)"]
+    
+    GrillSession --> CaptureTypes["Capture Heterogeneous Fragments"]
+    
+    subgraph QuarryFile ["Quarry File: fragments-slug.md"]
+        F1["Sharp punchlines and sentences"]
+        F2["Concrete vignettes and analogies"]
+        F3["Claims with 1-line justifications"]
+        F4["Leading words and conceptual coinages"]
+    end
+    
+    CaptureTypes --> F1 & F2 & F3 & F4
+    
+    F1 & F2 & F3 & F4 --> ExploitTrilogy{"Feed into Exploit Phase"}
+    ExploitTrilogy -- "Argumentative essay" --> Shape["/writing-shape\n(Paragraph by paragraph)"]
+    ExploitTrilogy -- "Narrative journey" --> Beats["/writing-beats\n(Choose-your-own-adventure)"]
+```
+
 A fragment is any piece of writing that might survive into the final piece. It does not need to define its terms or satisfy a cold reader yet: the only bar is that you recognize what it means and that it holds a kernel of good writing.
 
 Fragments are deliberately heterogeneous:

@@ -31,6 +31,23 @@ Tickets that `to-tickets` produced are agent-ready by construction. Don't run [t
 
 ## Tracer bullets, not layers
 
+```mermaid
+flowchart TD
+    Spec(["Formal Spec Document / Conversation"]) --> Scan["Identify Prefactoring & Invariant Boundaries"]
+    Scan --> Slice["Decompose into Tracer Bullets\n(Vertical slices: Schema + Logic + UI + Test)"]
+    
+    Slice --> DAG["Construct Blocking Dependency Graph\n(Declare explicit 'Blocked By' relationships)"]
+    
+    DAG --> Quiz["Interactive Granularity Quiz\n(Verify merge/split recommendations)"]
+    
+    Quiz --> Approved{"Breakdown Approved?"}
+    Approved -- "Adjust Granularity" --> Slice
+    Approved -- "Approved" --> Publish["Publish to Tracker"]
+    
+    Publish --> OutLocal[".scratch/<feature>/issues/<NN>-<slug>.md\n(Dependency-ordered local markdown)"]
+    Publish --> OutTracker["GitHub / Linear Issues\n(Native blocking edges & sub-issues)"]
+```
+
 A **horizontal** slice ships one layer of the change. Nothing works until every layer has landed, and each ticket's acceptance criteria have to reach into work that another ticket owns. A **vertical** slice (the tracer bullet) ships one thin path through all the layers at once, so it is verifiable alone and owns everything it grades.
 
 This is the rule people break most often, and the consequences are well documented. One team ran a 26-ticket stack sliced by layer (corpus, producer, aggregator, selector) and got roughly twenty agent runs per closed ticket, about three quarters of them rework. Their own post-mortem traced every failure class back to the horizontal slicing rather than to the implementations.

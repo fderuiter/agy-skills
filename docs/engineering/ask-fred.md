@@ -31,6 +31,25 @@ The tracker-dependent routes (triage, `to-spec`, `to-tickets`, `implement`) assu
 
 ## Flows, not skills
 
+```mermaid
+flowchart TD
+    UserQuery(["User Situation or Query"]) --> Router{"What is the primary goal?"}
+    
+    Router -- "New Feature or Idea" --> MainPipeline["Main Flow\n/grill-with-docs -> /to-spec -> /to-tickets -> /implement -> /code-review"]
+    Router -- "Incoming Bugs or PRs" --> TriageFlow["On-Ramp: /triage\n(Classify & Brief)"]
+    Router -- "Hard Bug or Regression" --> DiagFlow["On-Ramp: /diagnosing-bugs\n(Tight Feedback Loop)"]
+    Router -- "Massive Foggy Initiative" --> WayfinderFlow["On-Ramp: /wayfinder\n(Decision Map)"]
+    Router -- "Periodic Upkeep" --> UpkeepFlow["Codebase Health\n/improve-codebase-architecture & /retro"]
+    Router -- "Prose & Writing" --> WritingFlow["Thought Shaping\n/writing-fragments -> /writing-shape -> /writing-beats"]
+    
+    MainPipeline --> Recommendation(["Recommends Specific Next Step & Stops"])
+    TriageFlow --> Recommendation
+    DiagFlow --> Recommendation
+    WayfinderFlow --> Recommendation
+    UpkeepFlow --> Recommendation
+    WritingFlow --> Recommendation
+```
+
 The word the skill gives you to think with is **flow**: a path *through* the skills, not a single one. Naming your situation places you on a flow at a step, which is a different answer from "here is the skill that matches your keywords". Four kinds of route exist, and the skill itself carries them in full:
 
 - **The main flow**, idea to ship. Grill, spec, tickets, implement (or [implement-spec](https://fderuiter.github.io/agy-skills/skills-implement-spec) for concurrent subagents), review, with two branches inside it: a prototype detour when a question needs runnable code to settle, and the spec-and-tickets split, which only earns its cost when the build spans more than one session.

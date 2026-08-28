@@ -30,6 +30,19 @@ Reach for it when the build is too big for one agent [session](https://fderuiter
 
 ## The spec is a decision record
 
+```mermaid
+flowchart TD
+    Inputs(["Settled Conversation + CONTEXT.md + ADRs"]) --> SeamCheck["Identify Minimal Architectural Seams"]
+    SeamCheck --> ConfirmSeam["Confirm Testing Seams with User"]
+    
+    ConfirmSeam --> Synthesize["Synthesize Technical Specification\n(No new interviews: pure decision synthesis)"]
+    
+    Synthesize --> SpecArtifact["Structured Spec Document\n- Architecture & Decisions\n- Seams & Invariants\n- Out-of-Scope Explicit Bounds"]
+    
+    SpecArtifact --> PublishTracker["Publish Spec to Issue Tracker\n(ready-for-agent label attached)"]
+    PublishTracker --> Downstream["Feed directly into /to-tickets"]
+```
+
 The spec exists because context windows end. Everything you settled while [grilling](https://fderuiter.github.io/agy-skills/dictionary/grilling) (the shape of the solution, the choices you argued through, what you deliberately refused) is in one conversation that is about to be cleared. The spec is what survives that.
 
 So it does not validate anything, and it does not decide anything. It captures what was decided, in your project's own vocabulary, so that a fresh session can pick the work up without you re-explaining it. Anything the spec asserts that you never actually said is a defect.

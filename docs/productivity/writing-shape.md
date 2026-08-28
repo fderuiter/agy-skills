@@ -35,6 +35,29 @@ Setting prerequisites tightly prevents early blocks from drowning in dictionary 
 
 ## Arguing format choices
 
+```mermaid
+flowchart TD
+    Quarry(["Read-Only Quarry Pile\n(from /writing-fragments)"]) --> Prereqs["1. Ground Audience Prerequisites\n(Define baseline assumptions)"]
+    
+    Prereqs --> BlockLoop["2. Select Next Concept from Quarry"]
+    
+    subgraph ShapingLoop ["Paragraph-by-Paragraph Shaping Loop"]
+        FormatDebate["Format and Tradeoff Debate\n- Prose vs List\n- Inline vs Callout Alert\n- Table vs Bold Leads\n- Code Block vs Quote"]
+        DraftParagraph["Draft Single Focused Block & Ground New Terms"]
+        ReviewGate{"Confirm Block with User?"}
+        
+        FormatDebate --> DraftParagraph --> ReviewGate
+    end
+    
+    BlockLoop --> FormatDebate
+    ReviewGate -- "Revise or Alternate Format" --> FormatDebate
+    ReviewGate -- "Approved" --> AppendArticle["Append to target-article.md"]
+    
+    AppendArticle --> MoreConcepts{"More Concepts in Quarry?"}
+    MoreConcepts -- "Yes" --> BlockLoop
+    MoreConcepts -- "No" --> FinalPiece(["Finished Structured Article"])
+```
+
 Rather than defaulting to continuous prose, `writing-shape` actively weighs presentation formats block by block, presenting candidate openings and format tradeoffs as interactive choices via `ask_question`:
 
 - **Prose versus list**: Prose builds momentum and carries arguments; lists present parallel, scannable items.

@@ -29,6 +29,25 @@ The line between `research` and `grill-with-docs` is the **shelf life of what co
 
 ## Delegated legwork
 
+```mermaid
+flowchart TD
+    UserQuery(["Technical Investigation Query\n(External API, Spec, Package behaviour)"]) --> Spawn["Spawn Background Research Subagent\n(Preserves parent session context)"]
+    
+    subgraph BackgroundWorker ["Subagent Primary-Source Investigation"]
+        Search["1. Targeted Search on Authoritative Domains"]
+        Fetch["2. Fetch Primary Sources\n(Official Docs, GitHub Source, RFC Specs)"]
+        Synthesize["3. Synthesize Direct Answers with URL Citations"]
+        
+        Search --> Fetch --> Synthesize
+    end
+    
+    Spawn --> Search
+    
+    Synthesize --> EmitDoc["Write Markdown Document\n(e.g. docs/research/topic.md or branch)"]
+    
+    EmitDoc --> ParentSession(["Parent Session Resumes\n(Feeds cited facts into Grilling, Specs, or Tickets)"])
+```
+
 The defining move is that the reading runs as a **background agent**. You keep working; it goes off, follows each claim to its primary source, writes one Markdown file, and reports back. Research is legwork you delegate, not thinking you outsource: you get a document to grill, plan, or design against, and you still make the call.
 
 The delegation is unguarded, and the background agent can spawn a further background agent of its own. This is the skill's best-documented rough edge.

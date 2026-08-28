@@ -35,6 +35,29 @@ All of it is committed markdown and JSON. There is no user-level or global mode:
 
 ## The decisions
 
+```mermaid
+flowchart TD
+    Invoke(["Run /setup-agy-skills"]) --> Inspect["Inspect Environment: git remote, AGENTS.md, CONTEXT.md"]
+    
+    Inspect --> Q1["1. Issue Tracker Choice\n(GitHub, GitLab, Local Markdown .scratch/, Other)"]
+    Q1 --> Q2["2. Triage Label Mapping\n(5 canonical states: needs-triage to wontfix)"]
+    Q2 --> Q3["3. Domain Doc Layout\n(Single CONTEXT.md vs CONTEXT-MAP.md monorepo)"]
+    Q3 --> Q4["4. Lifecycle Hooks\n(.agents/hooks.json guardrails)"]
+    
+    Q4 --> WriteConfig["Write Configuration Files to Repo"]
+    
+    subgraph RepoConfig ["Emitted Repo Configuration"]
+        F1["docs/agents/issue-tracker.md"]
+        F2["docs/agents/triage-labels.md"]
+        F3["docs/agents/domain.md"]
+        F4[".agents/hooks.json"]
+        F5["AGENTS.md (## Agent skills block)"]
+    end
+    
+    WriteConfig --> F1 & F2 & F3 & F4 & F5
+    F1 & F2 & F3 & F4 & F5 --> Downstream(["Unblocks /triage, /to-spec, /to-tickets, /wayfinder"])
+```
+
 It leads each section with interactive selectable choices using `ask_question` (marking recommendations with `(Recommended)`, with fallback to chat text), and skips whatever exploration already settled. Most runs are two confirmations and done.
 
 | Decision | What it proposes | When it actually asks |

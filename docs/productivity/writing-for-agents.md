@@ -30,6 +30,26 @@ Once you think in these two loads, most authoring decisions (split or don't, inl
 
 ## The levers
 
+```mermaid
+flowchart TD
+    Draft(["Draft Agent Doc\n(SKILL.md, AGENTS.md, Spec, System Prompt)"]) --> NoOpTest{"No-Op Test\n(Does deleting this line change agent behaviour?)"}
+    
+    NoOpTest -- "No (Redundant pretraining lore)" --> DeleteLine["Delete Sentence or Block\n(Eliminate bloat and token spend)"]
+    NoOpTest -- "Yes (Behavioral constraint)" --> EvalHierarchy{"Information Hierarchy Check"}
+    
+    DeleteLine --> EvalHierarchy
+    
+    EvalHierarchy -- "Needed every turn" --> AlwaysOn["In-file step or Always-On rule\n(Concise instruction in root file)"]
+    EvalHierarchy -- "Conditional branch or specialized" --> Disclose["Progressive Disclosure\n(Move behind context pointer or doc reference)"]
+    
+    AlwaysOn --> AnchorLeading["Anchor with Pretrained Leading Words\n(e.g. Red-Green, Tracer Bullet, Clean Boundary)"]
+    Disclose --> AnchorLeading
+    
+    AnchorLeading --> VerifyCriteria["Set Demanding Done Criteria\n(Concrete automated checks and primary-source proof)"]
+    
+    VerifyCriteria --> PolishedDoc(["High-Signal Agent Document\n(Minimal token cost, maximal behavioural fidelity)"])
+```
+
 - **[Context pointers](https://fderuiter.github.io/agy-skills/dictionary/context-pointer)**: the reference held in context that names out-of-context material and encodes when to reach it. A skill description and an `AGENTS.md` line naming a doc are the same object; the pointer's *wording*, not its target, decides how reliably the agent reaches through it.
 - **Information hierarchy**: the ladder from in-file step, to in-file reference, to disclosed reference behind a pointer. **[Progressive disclosure](https://fderuiter.github.io/agy-skills/dictionary/progressive-disclosure)** is the move down that ladder so the top stays legible.
 - **Completion criteria**: the clarity and demand of each step's done-condition, and the **legwork** that demand drives; the defence against **premature completion**.

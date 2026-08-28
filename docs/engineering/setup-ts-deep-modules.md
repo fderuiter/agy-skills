@@ -31,6 +31,22 @@ A TypeScript repository with a `package.json` and a `tsconfig.json`. The skill w
 
 ## Deep module boundaries
 
+```mermaid
+flowchart TD
+    AppCode["External App Code & Sibling Packages"] -->|Allowed| RootEntry["Public Package Entry Point\n(src/packages/auth/index.ts, client.ts)"]
+    
+    AppCode -.->|FORBIDDEN by dependency-cruiser| PrivateSub["Internal Subfolder\n(src/packages/auth/lib/hasher.ts)"]
+    
+    subgraph DeepPackage ["Deep Package Boundary (src/packages/auth/)"]
+        RootEntry --> PrivateSub
+        RootEntry --> PrivateState["Internal State & Reducers\n(src/packages/auth/lib/state.ts)"]
+        PrivateSub --> PrivateState
+        
+        Tests["Package Tests\n(src/packages/auth/tests/auth.test.ts)"] -->|Must import through entrypoint| RootEntry
+        Tests -.->|FORBIDDEN: bypass entrypoint| PrivateSub
+    end
+```
+
 The architecture enforced by this skill establishes a strict mapping between filesystem depth and interface visibility:
 
 ```

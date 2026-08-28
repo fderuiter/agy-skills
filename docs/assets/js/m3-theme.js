@@ -100,22 +100,56 @@
         block.setAttribute('data-mermaid-source', rawSource);
       }
 
-      let container = block.closest('.m3-mermaid-container');
-      if (!container) {
-        container = document.createElement('div');
-        container.className = 'm3-mermaid-container';
+      let card = block.closest('.m3-diagram-card');
+      let body = null;
+      if (!card) {
+        card = document.createElement('div');
+        card.className = 'm3-diagram-card';
+
+        const header = document.createElement('div');
+        header.className = 'm3-diagram-header';
+
+        const titleWrapper = document.createElement('div');
+        titleWrapper.className = 'm3-diagram-header-title';
+        titleWrapper.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px;">account_tree</span> <span>Visual Mechanism Diagram</span>';
+
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'm3-diagram-copy-btn';
+        copyBtn.setAttribute('type', 'button');
+        copyBtn.setAttribute('title', 'Copy diagram source');
+        copyBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size: 14px;">content_copy</span> Copy Source';
+        copyBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(rawSource).then(() => {
+            copyBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size: 14px;">check</span> Copied!';
+            setTimeout(() => {
+              copyBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size: 14px;">content_copy</span> Copy Source';
+            }, 2000);
+          });
+        });
+
+        header.appendChild(titleWrapper);
+        header.appendChild(copyBtn);
+
+        body = document.createElement('div');
+        body.className = 'm3-diagram-body';
+
+        card.appendChild(header);
+        card.appendChild(body);
+
         const preParent = block.closest('pre') || block;
-        preParent.parentNode.insertBefore(container, preParent);
+        preParent.parentNode.insertBefore(card, preParent);
         preParent.style.display = 'none';
+      } else {
+        body = card.querySelector('.m3-diagram-body');
       }
 
       const diagramId = `m3-mermaid-diag-${index}-${Date.now()}`;
       try {
         window.mermaid.render(diagramId, rawSource).then(({ svg }) => {
-          container.innerHTML = svg;
+          if (body) body.innerHTML = svg;
         }).catch((err) => {
           console.warn('Mermaid render error:', err);
-          container.innerHTML = `<pre style="color: var(--md-sys-color-error); font-size: 12px;">${escapeHtml(rawSource)}</pre>`;
+          if (body) body.innerHTML = `<pre style="color: var(--md-sys-color-error); font-size: 12px; padding: 16px;">${escapeHtml(rawSource)}</pre>`;
         });
       } catch (err) {
         console.warn('Mermaid synchronous error:', err);

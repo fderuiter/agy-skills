@@ -35,6 +35,25 @@ The tracker is not decoration. Blocking is what renders the frontier visually in
 
 ## The map, the fog, and the frontier
 
+```mermaid
+flowchart TD
+    Idea(["Massive Foggy Initiative\n(Multi-session scope)"]) --> ChartMap["1. Chart Map & Destination\n(wayfinder:map issue on tracker)"]
+    
+    ChartMap --> Classify["2. Identify Fog of War & Initial Frontier"]
+    
+    Classify --> Tickets["Generate Decision Tickets\n- grilling (HITL interview)\n- prototype (Throwaway validation)\n- research (AFK background worker)\n- task (Prerequisite manual step)"]
+    
+    Tickets --> Frontier["3. Pick Unblocked Frontier Ticket"]
+    
+    Frontier --> ResolveTicket["Resolve Ticket in Dedicated Session\n(Record decision, update CONTEXT.md/ADRs)"]
+    
+    ResolveTicket --> CloseTicket["Close Ticket & Update Decisions So Far"]
+    
+    CloseTicket --> CheckFog{"Is Fog Cleared & All Decisions Resolved?"}
+    CheckFog -- "No (Graduated new tickets)" --> Frontier
+    CheckFog -- "Yes (Clear strategic map)" --> MergeFlow["Hand off to /to-spec #map_issue"]
+```
+
 The **map** is a single issue labelled `wayfinder:map`; its tickets are its child issues. It is an **index, not a store**: a decision lives in exactly one place, its ticket, and the map only gists it and links. A session loads the map at low resolution and zooms into individual tickets on demand, which is what lets a map keep growing without every session paying for its whole history.
 
 Four things live on it:

@@ -33,6 +33,23 @@ The tracker config also decides whether external pull requests count as a reques
 
 ## The state machine
 
+```mermaid
+stateDiagram-v2
+    [*] --> NeedsTriage: Raw incoming issue or PR
+    
+    NeedsTriage --> NeedsInfo: Insufficient details or cannot reproduce
+    NeedsInfo --> NeedsTriage: Reporter provides requested info
+    
+    NeedsTriage --> WontFix: Out-of-scope or duplicate or rejected
+    
+    NeedsTriage --> ReadyForAgent: Verified & fully specified (Agent brief attached)
+    NeedsTriage --> ReadyForHuman: Requires human judgment or manual testing or auth
+    
+    ReadyForAgent --> [*]: Picked up by /implement or AFK runner
+    ReadyForHuman --> [*]: Resolved by human maintainer
+    WontFix --> [*]: Documented in .out-of-scope/ and closed
+```
+
 Every triaged item ends up carrying exactly one category role and one state role. Two categories: `bug` (something is broken) and `enhancement` (new feature or improvement). Five states:
 
 | State | Means |

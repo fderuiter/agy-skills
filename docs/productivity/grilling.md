@@ -27,6 +27,28 @@ Typing `/grilling` directly gets you the plain interview and nothing else. Where
 
 ## The round, the frontier, and who decides
 
+```mermaid
+flowchart TD
+    Start(["Input Subject or Idea"]) --> ModelTree["Map Subject as Design Tree\n(Decisions with branching sub-decisions)"]
+    
+    ModelTree --> ComputeFrontier["Compute Active Frontier\n(Only decisions whose prerequisites are settled)"]
+    
+    ComputeFrontier --> FactCheck{"Does frontier question require environmental facts?"}
+    FactCheck -- "Yes (Lookups, file reads, logs)" --> SubagentLookup["Dispatch Subagent or Run Tools Unattended"]
+    FactCheck -- "No (Pure user decision)" --> AskUser["Ask Frontier in Single Round via ask_question\n(Recommended options highlighted)"]
+    
+    SubagentLookup --> AskUser
+    
+    AskUser --> UserAnswers["User Submits Answers"]
+    UserAnswers --> SettleBranch["Settle Decisions & Reshape Design Tree"]
+    
+    SettleBranch --> EmptyCheck{"Is Frontier Empty?\n(All branches resolved)"}
+    EmptyCheck -- "No (New questions unblocked)" --> ComputeFrontier
+    EmptyCheck -- "Yes (No assumptions left)" --> Confirm["Request User Confirmation of Shared Understanding\n(Never implement unprompted)"]
+    
+    Confirm --> Done(["Shared Understanding Reached"])
+```
+
 Three ideas carry the whole skill.
 
 The **design tree** is the model of the subject: decisions with decisions hanging off them. The **frontier** is the set of decisions whose prerequisites are all settled: the only questions that can honestly be asked yet. A **round** is one frontier, asked in full and answered in full.

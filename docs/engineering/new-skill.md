@@ -15,6 +15,21 @@ You invoke this by typing `/new-skill`, and the agent won't reach for it on its 
 
 ## The auto-wiring pipeline
 
+```mermaid
+flowchart TD
+    Invoke(["Run /new-skill"]) --> PromptDetails["Prompt for Name, Bucket, Description, & Invocation Mode"]
+    
+    PromptDetails --> ScaffoldFiles["1. Generate Core Files\n- skills/<bucket>/<name>/SKILL.md\n- docs/<bucket>/<name>.md\n- tests/skills/test_<name>.py"]
+    
+    ScaffoldFiles --> AutoWire["2. Auto-Wire Registrations\n- Root README.md\n- Bucket skills/<bucket>/README.md\n- Router ask-fred SKILL.md"]
+    
+    AutoWire --> Relink["3. Run link-skills\n(Junction into ~/.gemini/config/skills)"]
+    
+    Relink --> Validate["4. Run Automated Validation\n(check-skills, check-links, check-terminology)"]
+    
+    Validate --> Ready(["New Skill Ready for Production"])
+```
+
 Creating a skill touches several interdependent locations across the repository:
 
 | Target File | Purpose |

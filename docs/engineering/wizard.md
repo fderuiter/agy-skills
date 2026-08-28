@@ -32,6 +32,28 @@ None to generate one. The wizard it writes runs on Bash (macOS/Linux/WSL), Power
 
 ## Stages
 
+```mermaid
+flowchart TD
+    Scan(["Inspect Repo Requirements\n(.env.example, workflows, docker-compose)"]) --> PlanStages["Plan Ordered Stages\n(TOTAL_STAGES, URLs to open, keys to capture)"]
+    
+    PlanStages --> GenerateScript["Generate Wizard Script\n(Bash template.sh, PS1 template.ps1, or Node template.mjs)"]
+    
+    GenerateScript --> HumanExec["Human Runs Script Locally\n(Agent never executes or sees keys)"]
+    
+    subgraph WizardLoop ["Interactive Execution Loop (Per Stage)"]
+        OpenBrowser["1. Open Target Dashboard URL"]
+        PromptUser["2. Display Exact Click Path & Prompt Input\n(Masked password input for secrets)"]
+        SaveValue["3. Write to Target Destination\n(.env, GitHub Secrets, or GitHub Variables)"]
+        
+        OpenBrowser --> PromptUser --> SaveValue
+    end
+    
+    HumanExec --> OpenBrowser
+    SaveValue --> NextStage{"More Stages?"}
+    NextStage -- "Yes" --> OpenBrowser
+    NextStage -- "No" --> Summary(["Print Final Summary & Next Steps"])
+```
+
 A **stage** is one focused task on one screen. The script clears the terminal between stages, so a stage that overflows the screen loses the part that scrolled away. You author stages in dependency order and set `TOTAL_STAGES`, which drives the progress display.
 
 Scoping happens before a line is written. The [skill](https://fderuiter.github.io/agy-skills/dictionary/skill) reads the repo instead of asking cold: `.env*`, `docker-compose*`, framework config, and every `secrets.*` / `vars.*` reference in `.github/workflows/`: each of those is a value the wizard has to produce. It then shows you the ordered stage list to confirm, and only after that maps each stage to the exact path a human follows ("Dashboard → Developers → API keys → Reveal test key → copy"). Where it does not know the current UI, it asks you or checks documentation rather than inventing clicks.

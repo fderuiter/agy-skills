@@ -29,6 +29,29 @@ You invoke this by typing `/retro`, or configure a recurring retrospective cron 
 
 ## The seven evaluation categories
 
+```mermaid
+flowchart TD
+    SessionLogs(["Session Logs: transcript.jsonl"]) --> Ingest["Ingest Chronological Trajectory\n(User inputs, Planner responses, Tool calls)"]
+    
+    Ingest --> Audit7["Audit across 7 Levers"]
+    
+    subgraph SevenLevers ["7 Systemic Levers"]
+        L1["Navigation Pointers\n(Eliminate wandering)"]
+        L2["Automated Checks\n(Linters & fast-failing tests)"]
+        L3["Coding Standards\n(CODING_STANDARDS.md)"]
+        L4["AGENTS.md Economy\n(Progressive disclosure & trim)"]
+        L5["Tool Economy\n(Compact output & pagination)"]
+        L6["No-Op Rule Elimination\n(Delete placebo instructions)"]
+        L7["Information Access\n(Tee dev server logs to disk)"]
+    end
+    
+    Audit7 --> L1 & L2 & L3 & L4 & L5 & L6 & L7
+    
+    L1 & L2 & L3 & L4 & L5 & L6 & L7 --> ActionPlan["Synthesize Systemic Upgrades\n(Cites exact transcript step indices)"]
+    
+    ActionPlan --> Upgrades["Upgrade Environment\n- Update AGENTS.md\n- Add Automated Linters\n- Refine CODING_STANDARDS.md"]
+```
+
 `retro` audits the transcript as a [primary source](https://fderuiter.github.io/agy-skills/dictionary/primary-source) and categorizes every observed friction into one of seven systemic levers:
 
 | Category | Transcript Signal | Systemic Fix |

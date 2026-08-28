@@ -46,6 +46,23 @@ Two honest notes on that list. A glossary suits most topics, but the skill ships
 
 ## Storage strength, not fluency
 
+```mermaid
+flowchart TD
+    Init(["Start Learning Workspace"]) --> EstablishMission["1. Establish MISSION.md & Curate RESOURCES.md\n(Primary sources: no untrusted parametric drift)"]
+    
+    EstablishMission --> EvalZPD["2. Evaluate Zone of Proximal Development\n(Inspect learning-records/ & current skill level)"]
+    
+    EvalZPD --> GenerateLesson["3. Generate Lesson HTML\n(Self-contained lesson in lessons/*.html using shared assets/)"]
+    
+    GenerateLesson --> PracticeDrill["4. Interactive Retrieval & Practice Drill\n(Desirable difficulty: quiz widgets, simulators)"]
+    
+    PracticeDrill --> RecordLearning["5. Record Learning Progress\n- learning-records/YYYY-MM-DD-slug.md\n- reference/ cheat-sheets & glossaries"]
+    
+    RecordLearning --> NextDecision{"Continue Course?"}
+    NextDecision -- "Next Lesson" --> EvalZPD
+    NextDecision -- "Topic Mastered" --> Done(["Mission Accomplished & Durable Storage Strength"])
+```
+
 The word to think with is **storage strength**: long-term retention, as opposed to **fluency**, the in-the-moment recall that feels like mastery while you are reading and is gone a week later. `teach` builds the former through desirable difficulty: retrieval practice, spacing, interleaving. Knowledge comes first, where difficulty is the enemy because it eats the working memory you need in order to understand; then the skill is drilled through a tight feedback loop, where difficulty is the tool.
 
 Two things steer what you get taught. The **mission** (the concrete real-world reason you want this) grounds every lesson; without it the lessons drift abstract and nothing decides what comes next. From the mission and the learning records, `teach` picks the next lesson inside your **zone of proximal development**: challenging enough to take effort, not so far ahead that it stops being learnable.

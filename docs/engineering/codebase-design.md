@@ -45,6 +45,34 @@ Depth is deliberately *not* defined as the ratio of implementation lines to inte
 
 ## The four principles
 
+```mermaid
+flowchart TD
+    subgraph CallerSurface ["Caller & Test Perspective"]
+        Caller["Caller or Test Suite"]
+    end
+    
+    subgraph DeepModuleBoundary ["Deep Module (High Leverage & Locality)"]
+        Interface["Public Interface & Narrow Seam\n(Type signatures, Invariants, Error modes, Ordering)"]
+        
+        subgraph HiddenImplementation ["Hidden Internal Implementation"]
+            CoreEngine["Core Domain Logic"]
+            Sub1["Internal Reducers & State"]
+            Sub2["Private Helper Routines"]
+            Adapter1["Adapter A: In-Memory Fake"]
+            Adapter2["Adapter B: Production Store"]
+            
+            CoreEngine --> Sub1
+            CoreEngine --> Sub2
+            CoreEngine --> Adapter1
+            CoreEngine --> Adapter2
+        end
+        
+        Interface --> CoreEngine
+    end
+    
+    Caller -- "Exercises vast capability through minimal interface" --> Interface
+```
+
 - **Depth is a property of the interface, not the implementation.** A deep module can be built internally from small swappable parts. They just don't surface to callers. A module can have internal seams its own tests use, and one external seam at its interface.
 - **The deletion test.** Imagine deleting the module. If complexity vanishes, it was a pass-through. If it reappears across N callers, it was earning its keep.
 - **The interface is the test surface.** Callers and tests cross the same seam. If you want to test *past* the interface, the module is the wrong shape.

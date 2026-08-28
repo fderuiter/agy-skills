@@ -27,6 +27,25 @@ Leave [plan mode](https://fderuiter.github.io/agy-skills/dictionary/agent-mode) 
 
 ## It's a conversation, not an interview
 
+```mermaid
+flowchart TD
+    Idea(["Fuzzy Idea or Strategic Question"]) --> ComputeFrontier["1. Compute Design Tree Frontier\n(All unblocked root questions)"]
+    
+    ComputeFrontier --> AskRound["2. Present Interactive Round via ask_question\n(Recommended options highlighted)"]
+    
+    AskRound --> UserSteer["3. User Answers & Steers Scope\n(Select, override, or identify ungrillable spikes)"]
+    
+    UserSteer --> ForkUngrillable{"Can question be settled by talking?"}
+    ForkUngrillable -- "No (Needs concrete reaction)" --> Spike["Stop & Prototype via /prototype"]
+    Spike --> UserSteer
+    
+    ForkUngrillable -- "Yes (Answered)" --> AdvanceFrontier["4. Settle Decision & Advance Frontier"]
+    
+    AdvanceFrontier --> FrontierCheck{"Frontier Empty?\n(All branches visited)"}
+    FrontierCheck -- "No (New questions unblocked)" --> ComputeFrontier
+    FrontierCheck -- "Yes (Zero assumptions left)" --> SharedUnderstanding(["Sharpened Plan in Mind or Feed to /to-spec"])
+```
+
 The skill asks the questions, but **you** own the scope. That is the part people miss, and it separates a session that turns an idea into decisions from one that produces confident nonsense.
 
 The failure mode is **passivity**: answering "agreed, agreed, agreed" for forty questions and coming out with a plan the agent wrote and you nodded at. It feels productive because it was long. Nothing was actually decided, and the result carries a certainty it hasn't earned.

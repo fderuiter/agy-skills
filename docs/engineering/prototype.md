@@ -21,6 +21,25 @@ You will also arrive here without choosing to. [wayfinder](https://fderuiter.git
 
 ## Two branches
 
+```mermaid
+flowchart TD
+    Question(["Unresolved Design Question\n(Talking cannot settle)"]) --> Fork{"Question Type"}
+    
+    Fork -- "Logic & State Model" --> HTMLDemo["Single Shareable HTML File\n(Pure logic module + guided walkthrough tabs)"]
+    Fork -- "UI & Layout Aesthetics" --> UIVariants["Radically Different UI Variants\n(?variant= param + mockup previews)"]
+    
+    HTMLDemo --> UserEvaluate["Stakeholder Tests / Free-play Interactions"]
+    UIVariants --> UserEvaluate
+    
+    UserEvaluate --> Verdict{"Design Validated?"}
+    Verdict -- "No (Flaws exposed)" --> Pivot["Pivot State Model or Layout Structure"]
+    Pivot --> UserEvaluate
+    
+    Verdict -- "Yes (Answer settled)" --> Preserve["Preserve Answer & Park Prototype"]
+    Preserve --> ProdCode["Lift pure logic or layout into production spec"]
+    Preserve --> Branch["Commit runnable code to prototype/<name> branch"]
+```
+
 The question picks the branch, and the branches produce very different artifacts:
 
 - **"Does this logic / state model feel right?"**: a **single shareable HTML file**. One self-contained page, no build and no server, that someone opens by double-clicking. It carries a labelled state panel that re-renders after every click, free-play buttons for poking at the model in any order, and tabbed **guided walkthroughs** (one scenario per tab, each with the ordered buttons to press underneath it). Everything is labelled in domain language, so you can hand it to a designer, a PM or a domain expert and let them feel the model themselves. The logic behind the page is a small pure module (a reducer, a machine, a set of functions) kept clean of the DOM so the validated version lifts straight into the real code.

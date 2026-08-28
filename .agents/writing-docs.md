@@ -41,6 +41,15 @@ One to three short sections, in the skill's *own vocabulary*, that make it click
 
 The single non-negotiable: **surface the skill's leading word / defining idea** (`tight` feedback loop, `deep module`, throwaway-code-answers-a-question, red-green). It pays off twice: the reader learns what the skill *is*, and learns the word they'll later think with to *reach for* it.
 
+**Every page must include a Visual Mechanism Diagram:**
+Every promoted skill page includes a focused Mermaid diagram embedded within this middle section to give the reader an instant visual mental model of how the skill works.
+- Choose the diagram type that fits the skill's nature:
+  - **Flowcharts (`flowchart TD` / `flowchart LR`)**: For execution loops, pipelines, and artifact transforms.
+  - **Sequence Diagrams (`sequenceDiagram`)**: For multi-agent interactions, subagent orchestration, and back-and-forth interviews.
+  - **State Diagrams (`stateDiagram-v2`)**: For lifecycle states and triage state machines.
+- Keep diagrams concise and readable on both mobile and desktop screens.
+- Use clean node descriptions without implementation noise.
+
 ## Common questions
 
 The questions readers really ask about this skill, each in bold with the answer in the lines beneath it. No sub-headings.
@@ -88,6 +97,7 @@ Always present. Situate the skill in the system in a sentence or two:
 - `## Where it fits` names the role and links to `ask-fred`.
 - A prerequisite (workspace, prior setup, tooling) is stated where one exists, and the section is absent where none does.
 - The middle surfaces the leading word.
+- The middle includes a clear Visual Mechanism Diagram in Mermaid syntax.
 - Every AI Coding Dictionary term the page uses is spelt the dictionary's way, and its first use (and only its first use) links to the dictionary entry.
 - Every multi-way branch is a table or a list, not a paragraph the reader has to read in full.
 - The hunt for real questions ran (the wiki, the issues, the changelog), and `## Common questions` is sized to what it found, not padded to match a richer skill's page.

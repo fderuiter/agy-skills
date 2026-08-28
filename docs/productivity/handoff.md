@@ -28,6 +28,22 @@ For anything else (same harness, same directory, you are done [grilling](https:/
 
 ## Branching is the use people skip
 
+```mermaid
+flowchart TD
+    CurrentSession(["Active Agent Session\n(Context accumulating / Phase boundary)"]) --> EvaluateChoice{"Is context travelling outside this workspace or harness?"}
+    
+    EvaluateChoice -- "No (Same harness and directory)" --> OptionCompact["Run /compact or /clear"]
+    
+    EvaluateChoice -- "Yes (Different harness, directory, or fork)" --> InvokeHandoff["Invoke /handoff [Next Task Goal]"]
+    
+    InvokeHandoff --> GenerateDoc["Synthesize Portable Handoff Document\n- Live Task State & Context Pointers\n- Redacted Secrets\n- Suggested Skills for Next Agent\n(Saved to <tmpdir>/handoff-NNN.md)"]
+    
+    GenerateDoc --> DestinationChoice{"Destination Context"}
+    DestinationChoice -- "Side Quest or Spike" --> SpawnSub["Fork to Prototype or Subagent Session"]
+    DestinationChoice -- "New Harness or Machine" --> NewSession["Open New Session & Load Handoff File"]
+    DestinationChoice -- "Human Colleague" --> SendColleague["Share Markdown Summary with Collaborator"]
+```
+
 The skill's description reads like session resumption: write a summary, end here, resume there. Read that way it looks like a worse `/compact`, so it gets skimmed past. The fork case is the one worth knowing. You **stay in your session** and hand a copy of the accumulated context to a second agent working in parallel.
 
 That is what the detour through [prototype](https://fderuiter.github.io/agy-skills/skills-prototype) uses. You are deep in a design conversation, you hit a question that only running code will settle, and you do not want to spend the thread you built on finding out. Hand off to a prototype session, get the answer, hand the answer back, and reference it from the original thread. Two crossings, one live conversation, nothing re-explained.

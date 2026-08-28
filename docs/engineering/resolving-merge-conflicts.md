@@ -25,6 +25,26 @@ Reach for it when git has already stopped on conflicts it could not resolve itse
 
 ## Primary sources over `ours` and `theirs`
 
+```mermaid
+flowchart TD
+    Conflict(["In-Progress Git Merge or Rebase Conflict"]) --> ExtractHunks["1. Extract Conflict Hunks (Ours vs Theirs)"]
+    
+    ExtractHunks --> TraceIntent["2. Trace Intent to Primary Sources\n(Commit messages, PR descriptions, linked issues)"]
+    
+    TraceIntent --> Reconcile{"Semantic Compatibility"}
+    Reconcile -- "Both intents compatible" --> PreserveBoth["Combine both changes semantically"]
+    Reconcile -- "Direct contradiction" --> PickTarget["Select branch matching merge goal\n(Document trade-off explicitly)"]
+    
+    PreserveBoth --> RunFeedback["3. Run Automated Feedback Loops\n(Typecheck, lint, unit tests)"]
+    PickTarget --> RunFeedback
+    
+    RunFeedback --> TestsPass{"All checks pass?"}
+    TestsPass -- "No (Syntax or logic error)" --> FixHunk["Refine resolution hunk"]
+    FixHunk --> RunFeedback
+    
+    TestsPass -- "Yes (Green)" --> FinalCommit(["Finish Commit or Rebase Step (Never --abort)"])
+```
+
 The failure mode this exists to kill is resolving by flag: `--ours`, `--theirs`, or hand-deleting whichever block looks less important, so the markers go away and the build compiles. That resolution can be syntactically perfect and still silently drop a change somebody made on purpose.
 
 You cannot preserve an intent you have not read. So the work starts in the history (commits, PRs, [tickets](https://fderuiter.github.io/agy-skills/dictionary/ticket)) and only then moves to the diff. Another step in the loop exists for the same reason: the skill finds the repo's own [automated checks](https://fderuiter.github.io/agy-skills/dictionary/automated-check) and runs them before committing, because a merge is the easiest place in git to produce code that satisfies both branches and passes neither's tests.

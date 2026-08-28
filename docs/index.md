@@ -9,7 +9,7 @@ permalink: /
 
 Welcome to the documentation for **agy-skills**, agent skills for Google Antigravity (AGY) maintained by Fred de Ruiter.
 
-[**Skills Index**](#engineering-skills) | [**AI Coding Dictionary**](https://fderuiter.github.io/agy-skills/dictionary/)
+[**Skills Index**](#engineering-skills) | [**Workflow Topology**](#workflow-topology) | [**AI Coding Dictionary**](https://fderuiter.github.io/agy-skills/dictionary/)
 
 ---
 
@@ -24,6 +24,129 @@ Explore the comprehensive [**AI Coding Dictionary**](https://fderuiter.github.io
 - [**Handoffs**](https://fderuiter.github.io/agy-skills/dictionary/): Clearing, handoffs, compaction, specs, tickets, primary vs secondary sources.
 - [**Memory & Steering**](https://fderuiter.github.io/agy-skills/dictionary/): AGENTS.md, progressive disclosure, context pointers, skills, subagents.
 - [**Patterns of Work**](https://fderuiter.github.io/agy-skills/dictionary/): Human-in-the-loop (HITL), AFK execution, automated checks, grilling, prototyping, vibe coding.
+
+---
+
+## Workflow Topology
+
+### The Main Flow: Idea to Ship
+
+The primary pipeline taken by new features, architectural refactors, and planned enhancements.
+
+```mermaid
+flowchart TD
+    Start(["New Idea or Feature Requirement"]) --> Grill["/grill-with-docs\n(Interview, CONTEXT.md, ADRs)"]
+    
+    Grill --> PrototypeCheck{"Can every design\nquestion be settled\nin conversation?"}
+    
+    PrototypeCheck -- "No (Needs runnable validation)" --> HandoffOut["/handoff (Out)"]
+    HandoffOut --> Proto["/prototype\n(Throwaway code on prototype/* branch)"]
+    Proto --> HandoffIn["/handoff (Back)"]
+    HandoffIn --> ScopeCheck
+    
+    PrototypeCheck -- "Yes" --> ScopeCheck{"Is this a multi-session\nor multi-ticket build?"}
+    
+    ScopeCheck -- "Yes" --> ToSpec["/to-spec\n(Create formal specification)"]
+    ToSpec --> ToTickets["/to-tickets\n(Tracer bullets with blocking edges)"]
+    
+    ToTickets --> ExecChoice{"Execution Strategy"}
+    ExecChoice -- "Concurrent Subagents" --> ImplementSpec["/implement-spec\n(Orchestrate subagents on branch)"]
+    ExecChoice -- "Focused Sessions" --> ImplementTickets["/implement\n(One ticket per clean session)"]
+    
+    ScopeCheck -- "No" --> ImplementDirect["/implement\n(Same session implementation)"]
+    
+    ImplementSpec --> TDD["/tdd\n(Red-green-refactor slices)"]
+    ImplementTickets --> TDD
+    ImplementDirect --> TDD
+    
+    TDD --> CodeReview["/code-review\n(Two-axis review: Standards + Spec)"]
+    CodeReview --> Ship(["Commit & Merge to Main"])
+```
+
+### On-Ramps onto the Main Flow
+
+Structured entry points (bug triage, regressions, or massive greenfield initiatives) that prepare work before merging onto the main flow.
+
+```mermaid
+flowchart TD
+    subgraph TriageQueue ["Incoming Issues & Requests"]
+        RawIssues["Incoming Bug Reports / Requests"] --> Triage["/triage\n(Classify, assign roles, label)"]
+        Triage --> AgentReady["Agent-Ready Tickets\n(ready-for-agent)"]
+    end
+
+    subgraph BugDiagnosis ["Difficult Regressions & Defects"]
+        BugFound["Intermittent Flake or Complex Bug"] --> Diag["/diagnosing-bugs\n(Tight feedback loop & regression test)"]
+        Diag --> DiagPostMortem["Post-Mortem Findings"]
+    end
+
+    subgraph Wayfinding ["Large / Ambiguous Greenfield Efforts"]
+        FoggyIdea["Massive Greenfield Effort\n(Too big for single session)"] --> Wayfinder["/wayfinder\n(Chart decision map on tracker)"]
+        Wayfinder --> DecisionTickets["Resolve Decision Tickets\n(Decisions, not deliverables)"]
+        DecisionTickets --> ClearMap["Clear Strategic Map"]
+    end
+
+    AgentReady --> Implement["/implement (Main Flow)"]
+    DiagPostMortem -- "Architectural Seam Missing" --> ImproveArch["/improve-codebase-architecture"]
+    DiagPostMortem -- "Direct Bug Fix" --> CodeReview["/code-review (Main Flow)"]
+    ClearMap --> ToSpec["/to-spec (Main Flow)"]
+```
+
+### Codebase Upkeep & Architecture Health
+
+Continuous improvement loops that maintain codebase seams and tune agent instructions over time.
+
+```mermaid
+flowchart TD
+    TriggerArch(["Periodic Upkeep or Refactoring"]) --> ImproveArch["/improve-codebase-architecture\n(Scan for shallow modules and missing seams)"]
+    ImproveArch --> Candidates["Deepening Opportunities"]
+    Candidates --> CodebaseDesign["/codebase-design\n(Apply deep-module vocabulary and seam patterns)"]
+    CodebaseDesign --> MainFlow["Feed into /grill-with-docs"]
+
+    TriggerRetro(["Session Complete or Milestone"]) --> Retro["/retro\n(Analyze conversation transcripts)"]
+    Retro --> AuditResults["Audit Transcripts across 7 Categories"]
+    AuditResults --> EnvUpdates["Update AGENTS.md, Rules,\nAutomated Checks, & Navigation"]
+```
+
+### Writing and Thought Shaping
+
+Productivity workflows for mining raw fragments, shaping arguments paragraph by paragraph, and assembling narrative journeys.
+
+```mermaid
+flowchart LR
+    RawThoughts["Raw Unstructured Thoughts or Voice Memos"] --> WriteFrag["/writing-fragments\n(Mine raw notes into single quarry file)"]
+    WriteFrag --> Quarry["Structured Quarry File"]
+    
+    Quarry --> WriteShape["/writing-shape\n(Shape article block by block,\ndebate format choices)"]
+    WriteShape --> Draft["Structured Draft"]
+    
+    Draft --> WriteBeats["/writing-beats\n(Assemble narrative journey of beats,\nground concepts before leaning on them)"]
+    WriteBeats --> FinalProse(["Finished Article or Doc"])
+```
+
+### Standalone Utilities Matrix
+
+```mermaid
+flowchart TD
+    subgraph StandaloneSkills ["Standalone Utilities"]
+        GrillMe["/grill-me\n(Stateless interview outside a repository)"]
+        Grilling["/grilling\n(Reusable core interview engine)"]
+        Conflicts["/resolving-merge-conflicts\n(Intent-traced hunk resolution)"]
+        Research["/research\n(Background research on primary sources)"]
+        Questionnaire["/to-questionnaire\n(Asynchronous survey for stakeholders)"]
+        Wizard["/wizard\n(Interactive script for human-only operational steps)"]
+        WaitWhat["/wait-what\n(Mid-session re-explanation and vocabulary alignment)"]
+        Teach["/teach\n(Multi-session learning workspace)"]
+        WritingForAgents["/writing-for-agents\n(Reference for authoring agent documents)"]
+    end
+
+    subgraph EnvironmentSetup ["Environment & Preconditions"]
+        SetupAgy["/setup-agy-skills\n(Configure issue tracker and labels)"]
+        SetupMcp["/setup-mcp\n(Configure and verify MCP servers)"]
+        SetupDeep["/setup-ts-deep-modules\n(Enforce deep module boundaries)"]
+        SetupPyDeep["/setup-python-deep-modules\n(Enforce Python import-linter boundaries)"]
+        NewSkill["/new-skill\n(Scaffold new skill & doc page)"]
+    end
+```
 
 ---
 

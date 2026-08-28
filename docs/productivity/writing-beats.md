@@ -38,6 +38,22 @@ If a section tries to introduce three ideas and multiple subheadings, it is mult
 
 ## Grounding and reachability
 
+```mermaid
+flowchart TD
+    RawMaterial(["Raw Quarry Material\n(from /writing-fragments)"]) --> GroundPrereqs["1. Ground Audience Prerequisites\n(Define initial baseline concepts)"]
+    
+    GroundPrereqs --> CalcReachable["2. Calculate Reachable Candidate Beats\n(Only beats whose concept dependencies are satisfied)"]
+    
+    CalcReachable --> ChooseBranch["3. Choose-Your-Own-Adventure Prompt via ask_question\n(Branch A vs Branch B vs Branch C)"]
+    
+    ChooseBranch --> SelectBeat["4. User Selects Narrative Beat"]
+    SelectBeat --> CommitBeat["5. Commit Beat to target-story.md\n& Ground Newly Introduced Concepts"]
+    
+    CommitBeat --> JourneyCheck{"Reached Story Climax or Conclusion?"}
+    JourneyCheck -- "No" --> CalcReachable
+    JourneyCheck -- "Yes" --> FinishedStory(["Finished Narrative Journey"])
+```
+
 A candidate beat cannot be chosen unless every concept it relies upon is already grounded. Grounding creates the choose-your-own-adventure tree:
 
 - **Prerequisites**: Grounded before the first beat, establishing what the reader brings to the story.
