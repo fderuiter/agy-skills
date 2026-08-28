@@ -5,7 +5,8 @@ $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $Repo = Split-Path -Parent $ScriptDir
 $Dests = @(
     (Join-Path $HOME ".gemini\config\skills"),
-    (Join-Path $HOME ".agents\skills")
+    (Join-Path $HOME ".agents\skills"),
+    (Join-Path $Repo ".agents\skills")
 )
 
 $SkillFiles = Get-ChildItem -Path (Join-Path $Repo "skills") -Recurse -Filter "SKILL.md" | 

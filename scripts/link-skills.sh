@@ -13,7 +13,7 @@ set -euo pipefail
 # to keep installed skills up to date.
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-DESTS=("$HOME/.agents/skills" "$HOME/.gemini/config/skills")
+DESTS=("$HOME/.agents/skills" "$HOME/.gemini/config/skills" "$REPO/.agents/skills")
 
 # Collect the repo's skills once, link into every destination.
 names=()

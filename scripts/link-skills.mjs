@@ -11,7 +11,8 @@ const homeDir = os.homedir();
 
 const destDirs = [
   path.join(homeDir, '.gemini', 'config', 'skills'),
-  path.join(homeDir, '.agents', 'skills')
+  path.join(homeDir, '.agents', 'skills'),
+  path.join(repoRoot, '.agents', 'skills')
 ];
 
 function findSkillDirs(dir) {
