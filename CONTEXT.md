@@ -30,6 +30,18 @@ The structured hierarchy of subagents invoked via `invoke_subagent`, declaring r
 **Progressive disclosure seam**:
 The interface separating a lean `SKILL.md` procedural runbook from bulky reference catalogs placed in `references/`.
 
+**Timer guard**:
+A one-shot `schedule` timer bound to a specific subagent or task ID using `TimerCondition` to detect hangs or timeouts without manual polling loops.
+
+**Domain-specialized worker**:
+A dynamically defined subagent created via `define_subagent` tailored to a specific ticket boundary or architectural layer with custom system prompts and scoped tool permissions.
+
+**Visual mockup artifact**:
+An image artifact produced by `generate_image` or an interactive HTML/Mermaid component rendered via `generative_ui` for design validation.
+
+**Upstream verification**:
+The direct retrieval of third-party issues, changelogs, or schemas via `search_web` and `read_url_content` during diagnosis or configuration.
+
 ## Relationships
 
 - An **Issue tracker** holds many **Issues**
@@ -37,6 +49,10 @@ The interface separating a lean `SKILL.md` procedural runbook from bulky referen
 - A **Decision ticket** is an **Issue** (a child of a `wayfinder:map`)
 - A **Plugin package** bundles many **Skills**, a consolidated rule file, and optional **Lifecycle hooks**
 - A **Subagent topology** isolates work across **Workspace** modes with reactive notifications
+- A **Domain-specialized worker** executes a scoped ticket within a **Subagent topology**
+- A **Timer guard** supervises long-running subagent tasks or test bisections without polling loops
+- An **Upstream verification** grounds diagnosis and configuration against live primary documentation
+- A **Visual mockup artifact** validates user interface variants before implementation
 
 ## Flagged ambiguities
 

@@ -9,7 +9,7 @@ permalink: /skills-setup-mcp/
 
 `setup-mcp` configures [Model Context Protocol](https://fderuiter.github.io/agy-skills/dictionary/mcp) (MCP) servers for Antigravity, connecting the [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) to external databases, APIs, git repositories, filesystem scopes, and custom developer tools. It records server definitions in `.agents/mcp_config.json` for project-specific tools or `~/.gemini/config/mcp_config.json` for global machine-wide tools.
 
-It tests server connectivity, environment variables, and resource access before committing the configuration to disk. That verification prevents broken binaries, missing credentials, or unreachable endpoints from silently degrading the agent during normal workflows.
+It performs upstream verification via web research to fetch authoritative package schemas, and tests server connectivity, environment variables, and resource access before committing the configuration to disk. That verification prevents broken binaries, missing credentials, or unreachable endpoints from silently degrading the agent during normal workflows.
 
 ## When to reach for it
 

@@ -45,6 +45,7 @@ Layering (which packages may depend on which) is a *different* concern and is le
   - Check if project references (`references: [...]`) or monorepo workspaces are used.
 - **Packages root**: if `src/packages` exists use `src/packages`, else `packages` or `src/`. Confirm the choice with the user if the repo already has a different obvious convention.
 - **Existing config**: check for a `.dependency-cruiser.*` file. If one exists, do **not** overwrite it: merge the five rules and resolver options in, and tell the user what you added.
+- **Upstream verification**: When encountering non-standard bundler plugins, path aliases, or experimental TypeScript options, use `search_web` and `read_url_content` to inspect upstream `dependency-cruiser` documentation and release notes for the exact `enhancedResolveOptions` syntax.
 
 **Done when:** package manager, TypeScript module setup, packages root, and existing-config status are all known.
 

@@ -50,6 +50,8 @@ A 30-second flaky loop is barely better than no loop; a 2-second deterministic o
 
 The goal is not a clean repro but a **higher reproduction rate**. Loop the trigger 100×, parallelise, add stress, narrow timing windows, inject sleeps. A 50%-flake bug is debuggable; 1% is not, so keep raising the rate until it's debuggable.
 
+When running lengthy stress loops or automated bisection scripts in the background, attach a **timer guard** via `schedule` (e.g. `DurationSeconds: 300`, `TimerCondition: "<task-id>"`) to supervise execution and prevent runaway processes.
+
 ### When you genuinely cannot build a loop
 
 Stop and say so explicitly. List what you tried. Ask the user for: (a) access to whatever environment reproduces it, (b) a redacted captured artifact (HAR file, log dump, core dump, screen recording with timestamps), or (c) permission to add temporary production instrumentation. Do **not** proceed to hypothesise without a loop.
@@ -88,6 +90,9 @@ Do not proceed until you have reproduced **and** minimised.
 ## Phase 3: Hypothesise
 
 Generate **3 to 5 ranked hypotheses** before testing any of them. Single-hypothesis generation anchors on the first plausible idea.
+
+### Upstream verification
+When third-party dependencies, runtime environments, or platform APIs are in the stack trace, ground hypotheses against reality before guessing. Use `search_web` and `read_url_content` to check upstream issue trackers (e.g. GitHub issues), release changelogs, and deprecation notices for known bugs matching the exact error signature.
 
 Each hypothesis must be **falsifiable**: state the prediction it makes.
 

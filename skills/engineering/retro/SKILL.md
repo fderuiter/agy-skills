@@ -9,6 +9,8 @@ A structured discipline for analyzing Antigravity session logs to extract **syst
 
 When an agent struggles, the instinct is often to fix the immediate code or paste an angry reminder into `AGENTS.md`. This skill does the opposite: it analyzes the session's primary source (`transcript.jsonl`), diagnoses the root cause of friction, and updates the environment (linters, navigation pointers, review standards, tool efficiency, or log visibility) so future sessions run faster and cleaner.
 
+Retrospectives can be run on demand via `/retro` or scheduled as a recurring background review using `schedule` (e.g. `CronExpression: "0 17 * * 5"`, `Prompt: "Analyze weekly session transcripts for environment friction"`, `IsDaemon: true`).
+
 ## Process
 
 ### 1. Pin the Target Session and Load Transcripts

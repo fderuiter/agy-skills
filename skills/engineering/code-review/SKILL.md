@@ -59,9 +59,13 @@ Spawn two subagents concurrently using the `invoke_subagent` tool (`TypeName: "r
 
 If the spec is missing, skip the Spec subagent and note this in the final report.
 
-### 5. Aggregate
+### 5. Aggregate and format as an Artifact
 
-Present the two reports under `## Standards` and `## Spec` headings, verbatim or lightly cleaned. Do not merge or rerank findings, because the two axes are deliberately separate (see _Why two axes_).
+Present the two reports under `## Standards` and `## Spec` headings, verbatim or lightly cleaned, rendered as a structured Antigravity Artifact (or formatted markdown output). Do not merge or rerank findings, because the two axes are deliberately separate (see _Why two axes_).
+
+Leverage `generative_ui` patterns when presenting findings in the artifact:
+- Use markdown carousels (` ````carousel `) to display before-and-after diff snippets sequentially across multiple findings.
+- Render visual status cards (e.g. `Pass`, `Smell / Judgement Call`, `Spec Deviation`) and structured scorecards.
 
 End with a one-line summary: total findings per axis, and the worst issue within each axis (if any). Do not pick a single winner across axes: that is the reranking the separation exists to prevent.
 

@@ -77,13 +77,16 @@ Create the target feature branch for the entire spec (e.g. `feat/spec-name`), an
 ### 4. Dispatch Implementer Subagents on the Frontier
 
 For each unblocked ticket on the frontier:
-1. Launch an implementer subagent using `invoke_subagent` with `TypeName: "self"`, `Model: "inherit"` (or `"pro"`), and `Workspace: "branch"` (or create a dedicated git worktree if running in a shell environment without branch workspace support).
-2. Provide the subagent with minimal context pointers:
+1. Declare or select a domain-specialized worker. If the ticket requires specialized system instructions or tool scopes, use `define_subagent` (e.g. `TypeName: "worker-database"`, `enable_write_tools: true`, `enable_subagent_tools: false`). Otherwise use `TypeName: "self"`.
+2. Launch the implementer subagent using `invoke_subagent` with `Model: "inherit"` (or `"pro"`), and `Workspace: "branch"` (or create a dedicated git worktree if running in a shell environment without branch workspace support).
+3. Provide the subagent with minimal context pointers:
    - Spec file path or URL
    - Ticket identifier and description
    - Pointers to relevant ADRs or domain models in `CONTEXT.md`
    - Instruction to follow `/implement` discipline: write tests first with `/tdd`, run typechecks and test suite, and commit cleanly to its branch.
-3. Stop calling tools and let Antigravity's reactive wakeup notify you when the subagent finishes. Do not poll in a loop.
+4. Optionally attach a **timer guard** via the `schedule` tool (e.g. `DurationSeconds: 900`, `TimerCondition: "<subagent-id>"`) to supervise long-running tasks and recover from hangs without active polling loops.
+5. If intermediate communication or status checks are necessary, send instructions using `send_message` rather than interrupting worker execution.
+6. Stop calling tools and let Antigravity's reactive wakeup notify you when the subagent finishes or the timer guard triggers. Do not poll in a loop.
 
 ### 5. Merge Completed Tickets into the PR Branch
 

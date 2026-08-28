@@ -15,7 +15,7 @@ The second thing that separates it from labelling by hand: it recommends and wai
 
 ## When to reach for it
 
-You invoke this by typing `/triage` and then describing what you want in plain language. The [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) won't reach for it on its own. "Show me anything that needs my attention", "let's look at #42", "move #42 to ready-for-agent".
+You invoke this by typing `/triage` and then describing what you want in plain language, or configure a recurring background sweep via `/schedule`. The [agent](https://fderuiter.github.io/agy-skills/dictionary/agent) won't reach for it on its own. "Show me anything that needs my attention", "let's look at #42", "move #42 to ready-for-agent", or "run a triage sweep every two hours".
 
 | What you have | Where to go |
 | --- | --- |

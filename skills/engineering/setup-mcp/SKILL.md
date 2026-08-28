@@ -274,6 +274,7 @@ Ask the developer what service, database, or tool they want to connect:
   - **Project-level (`.agents/mcp_config.json`)**: Default for repo-specific tools.
   - **Global (`~/.gemini/config/mcp_config.json`)**: For personal tools and machine-wide access.
 - Check if the target config file already exists and parse its existing `mcpServers`.
+- **Upstream verification**: If configuring an unfamiliar or external MCP package, use `search_web` and `read_url_content` to fetch the authoritative npm/PyPI documentation, required environment variables, and CLI argument schema from primary sources before drafting the JSON.
 
 ### 2. Configure Server Entry
 

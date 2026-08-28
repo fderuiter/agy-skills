@@ -28,11 +28,12 @@ It writes into the repo you run it in:
 | `issue-tracker.md` | `docs/agents/` |
 | `domain.md` | `docs/agents/` |
 | `triage-labels.md` | `docs/agents/`, only when the `triage` skill is installed |
+| `.agents/hooks.json` | `.agents/`, if lifecycle hooks safety guardrails are accepted |
 | An `## Agent skills` block | whichever of `CLAUDE.md` / `AGENTS.md` already exists |
 
-All of it is committed markdown. There is no user-level or global mode: the config lives in the repo, so every repo gets its own copy.
+All of it is committed markdown and JSON. There is no user-level or global mode: the config lives in the repo, so every repo gets its own copy.
 
-## The three decisions
+## The decisions
 
 It leads each section with interactive selectable choices using `ask_question` (marking recommendations with `(Recommended)`, with fallback to chat text), and skips whatever exploration already settled. Most runs are two confirmations and done.
 
@@ -41,6 +42,7 @@ It leads each section with interactive selectable choices using `ask_question` (
 | **Issue tracker** | the one matching your `git remote` | always: this is the one real choice |
 | **Triage labels** | keep the five canonical names (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`) | only if the `triage` skill is installed |
 | **Domain docs** | single-context: one `CONTEXT.md` plus `docs/adr/` at the root | only if it spots monorepo signals, and then it offers a multi-context `CONTEXT-MAP.md` |
+| **Lifecycle hooks** | enable `.agents/hooks.json` git safety and prose checks | always: prompt for recommended guardrails |
 
 The tracker options:
 

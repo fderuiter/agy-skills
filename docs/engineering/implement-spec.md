@@ -29,11 +29,13 @@ As each implementer subagent completes its ticket and merges into the target bra
 
 ## Worktrees and concurrency
 
-Each implementer subagent works in its own isolated Git worktree:
+Each implementer subagent works in its own isolated Git worktree or branched workspace:
 
-1. **Isolation**: Subagents never overwrite each other's uncommitted files, node_modules caches, or temporary build outputs.
-2. **Context pointers**: The orchestrator hands subagents compact pointers (spec file path, ticket ID, ADR numbers) rather than copying full file trees into prompts.
-3. **Integration loop**: Merges happen back onto the central PR branch using non-fast-forward merges (`git merge --no-ff`), running the test suite after each integration to catch regressions early.
+1. **Domain-specialized workers**: The orchestrator can declare specialized workers via `define_subagent` (e.g. database worker, frontend worker) with scoped tool permissions and dedicated system prompts.
+2. **Isolation**: Subagents never overwrite each other's uncommitted files, node_modules caches, or temporary build outputs.
+3. **Context pointers**: The orchestrator hands subagents compact pointers (spec file path, ticket ID, ADR numbers) rather than copying full file trees into prompts.
+4. **Timer guards**: Long-running subagents are monitored with one-shot `schedule` timer guards using `TimerCondition` to handle hangs without polling loops.
+5. **Integration loop**: Merges happen back onto the central PR branch using non-fast-forward merges (`git merge --no-ff`), running the test suite after each integration to catch regressions early.
 
 ## Common questions
 

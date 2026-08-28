@@ -53,6 +53,8 @@ Draft each variant. Hold each one to:
 
 Variants must be **structurally different**: different layout, different information hierarchy, different primary affordance, not just different colours. Three slightly-tweaked card grids isn't a UI prototype, it's wallpaper. If two drafts come out too similar, redo one with explicit "do not use a card grid" guidance.
 
+**Visual mockups via `generate_image`**: When exploring brand new visual directions or screen architectures before or alongside writing code, use the `generate_image` tool to render candidate interface layouts (e.g. `AspectRatio: "16:9"` or `"4:3"`). Save them as visual mockup artifacts and embed them in chat so the user can quickly inspect the high-level aesthetic and layout before flipping through code variants.
+
 ### 3. Wire them together
 
 Create a single switcher component on the route:

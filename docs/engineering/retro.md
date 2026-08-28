@@ -13,7 +13,7 @@ Its defining constraint is that it analyzes past session transcripts to extract 
 
 ## When to reach for it
 
-You invoke this by typing `/retro`, and the agent won't reach for it on its own.
+You invoke this by typing `/retro`, or configure a recurring retrospective cron via `/schedule` or the `schedule` tool. The agent won't reach for it on its own.
 
 | Your situation | Reach for |
 | --- | --- |

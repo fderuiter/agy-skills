@@ -51,6 +51,11 @@ The maintainer invokes `/triage` and describes what they want in natural languag
 - "Let's look at #42" (issue or PR)
 - "Move #42 to ready-for-agent"
 - "What's ready for agents to pick up?"
+- "Set up a background triage sweep every 2 hours" (configure a recurring cron via `schedule` tool or `/schedule` slash command)
+
+### Background sweeps via `schedule`
+
+When the user asks to monitor issues continuously or perform recurring triage evaluations, configure a background cron schedule via `schedule` (e.g. `CronExpression: "0 */2 * * *"`, `Prompt: "Perform triage sweep on unlabeled issues"`, `IsDaemon: true`). When the cron fires, execute the **Show what needs attention** routine automatically.
 
 ## Show what needs attention
 

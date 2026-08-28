@@ -61,9 +61,9 @@ Offer **multi-context** (a root `CONTEXT-MAP.md` pointing to per-context `CONTEX
 
 **Section D: Antigravity Lifecycle Hooks.** Ask whether the user wants to enable recommended safety guardrails in `.agents/hooks.json` (recommended: **yes**):
 
-> Would you like to enable Antigravity lifecycle hooks (e.g. blocking destructive git commands like `git push` or `git reset --hard`)? (recommended: **yes**)
+> Would you like to enable Antigravity lifecycle hooks (such as blocking destructive git commands like `git push` or `git reset --hard`, and enforcing prose formatting invariants)? (recommended: **yes**)
 
-On **yes**, scaffold `.agents/hooks.json` and `.agents/hooks/block-dangerous-git.js`.
+On **yes**, scaffold `.agents/hooks.json`, `.agents/hooks/block-dangerous-git.js`, and `.agents/hooks/check-prose-invariants.js`.
 
 ### 3. Confirm and edit
 
