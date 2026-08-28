@@ -50,7 +50,7 @@ Each candidate is a card: the files involved, the friction, a plain-English solu
 | `Worth exploring` | Plausible deepening, but the payoff depends on where the code is going next. |
 | `Speculative` | Surfaced for completeness. Most of these are safe to ignore. |
 
-The report ends with a **Top recommendation** (the one it would tackle first), and then the skill stops and asks which candidate you want to explore. Nothing has been decided at that point, and no code has moved.
+The report ends with a **Top recommendation** (the one it would tackle first), and then the skill stops and presents the candidates as interactive selectable choices using `ask_question` (or chat fallback) to ask which candidate you want to explore. Nothing has been decided at that point, and no code has moved.
 
 ## What happens after you pick one
 

@@ -43,7 +43,7 @@ A candidate beat cannot be chosen unless every concept it relies upon is already
 - **Prerequisites**: Grounded before the first beat, establishing what the reader brings to the story.
 - **Introduced concepts**: Grounded when a beat lands, unlocking subsequent candidate beats that depend on them.
 
-Each time a beat is committed, the skill presents 2 to 3 candidate next beats reachable from the current grounded set, showing what concepts each candidate would unlock down the path.
+Each time a beat is committed, the skill presents 2 to 3 candidate next beats as selectable options using `ask_question` (with recommendations marked `(Recommended)` and reachable from the current grounded set), showing what concepts each candidate would unlock down the path.
 
 ## Common questions
 
@@ -61,7 +61,7 @@ The skill will not offer it until its prerequisite concepts are grounded. You ca
 
 ## It's working if
 
-- You are offered 2 to 3 distinct candidate beats at each step, each opening different narrative directions.
+- You are offered 2 to 3 distinct candidate beats via interactive choice buttons (`ask_question`), each opening different narrative directions.
 - No beat assumes concepts or terminology that have not yet been grounded.
 - The article advances one beat at a time with noticeable narrative pacing and momentum.
 - You can preview what future beats become unlocked when selecting a candidate path.

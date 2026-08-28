@@ -31,7 +31,7 @@ Three ideas carry the whole skill.
 
 The **design tree** is the model of the subject: decisions with decisions hanging off them. The **frontier** is the set of decisions whose prerequisites are all settled: the only questions that can honestly be asked yet. A **round** is one frontier, asked in full and answered in full.
 
-Inside a round every question arrives in a fixed shape: numbered and titled behind a `❓`, then the body, then the agent's recommended answer alone on a `➡️` line. That is what makes a round answerable by number ("1 yes, 2 the second option, 3 no, here's why") instead of by quoting questions back. The format has one known rough edge: the recommendation sometimes argues *against* the question as it was worded, so agreeing with the recommendation means answering "no" to the question. When that happens, answer the recommendation and say so.
+Inside a round, questions arrive via interactive UI controls using the `ask_question` tool (providing selectable options with the recommended answer marked `(Recommended)` and a write-in field for customization), or fall back to numbered questions behind a `❓` and `➡️` recommendation lines in text-only environments. That is what makes a round answerable in a single click or by number instead of by quoting questions back. The format has one known rough edge: the recommendation sometimes argues *against* the question as it was worded, so agreeing with the recommendation means answering "no" to the question. When that happens, answer the recommendation and say so.
 
 The other half of the design is the split between facts and decisions. Facts are the skill's own job: when a frontier question needs something the [environment](https://fderuiter.github.io/agy-skills/dictionary/environment) can settle, it dispatches a [sub-agent](https://fderuiter.github.io/agy-skills/dictionary/subagent) to go and find out rather than asking you. It does not block on that; only the questions downstream of a running exploration wait. Decisions are yours, and it must wait for them. An agent running `grilling` that answers its own decisions has broken the skill, not interpreted it liberally. The session ends when the frontier is empty, and it will not act on what you agreed until you confirm you have reached a shared understanding.
 
@@ -81,7 +81,7 @@ A real and unfixed rough edge, reported across [harnesses](https://fderuiter.git
 
 ## It's working if
 
-- A round arrives as a numbered list, each question with its recommendation on a separate `➡️` line, and you can answer the whole round by number.
+- A round arrives with interactive choice buttons via `ask_question` (or as a numbered list with recommendations on fallback), allowing you to select choices or write in responses.
 - Nothing in a round needs another question in the same round answered first.
 - Later rounds ask things the first round could not have asked.
 - It goes and looks facts up (reading files, dispatching a sub-agent) rather than asking you something it could have found out.

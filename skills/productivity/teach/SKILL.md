@@ -69,13 +69,13 @@ A shared stylesheet is the first component every workspace earns: every lesson l
 
 ## The Mission
 
-Every lesson should be tied into the mission - the reason that the user is interested in learning about the topic.
+Every lesson should be tied into the mission: the reason that the user is interested in learning about the topic.
 
-If the user is unclear about the mission, or the `MISSION.md` is not populated, your first job should be to question the user on why they want to learn this.
+If the user is unclear about the mission, or the `MISSION.md` is not populated, your first job should be to question the user on why they want to learn this. Use the `ask_question` tool with suggested learning goals and trajectories (or chat fallback) to ground the direction.
 
 Failing to understand the mission will mean knowledge acquisition is not grounded in real-world goals. Lessons will feel too abstract. You will have no way of judging what the user should do next.
 
-Missions may change as the user develops more skills and knowledge. This is normal - make sure to update the `MISSION.md` and add a learning record to capture the change. Confirm with the user before changing the mission.
+Missions may change as the user develops more skills and knowledge. This is normal; make sure to update the `MISSION.md` and add a learning record to capture the change. Confirm with the user before changing the mission.
 
 ## Zone Of Proximal Development
 
@@ -91,7 +91,7 @@ The user may specify an exact thing they want to learn. If they don't, figure ou
 
 Lessons should be designed around a skill the user is going to learn. The knowledge in the lesson should be only what's required to acquire that skill. You teach the knowledge first, then get the user to practice the skills via an interactive feedback loop.
 
-Knowledge should first be gathered from trusted resources. Use `RESOURCES.md` to keep track of them. Lessons should be littered with citations - links to external resources to back up any claim made. This increases the trustworthiness of the lesson.
+Knowledge should first be gathered from trusted resources. Use `RESOURCES.md` to keep track of them. Lessons should be littered with citations (links to external resources) to back up any claim made. This increases the trustworthiness of the lesson.
 
 For acquiring knowledge, difficulty is the enemy. It eats working memory you need for understanding.
 
@@ -101,10 +101,10 @@ If knowledge is all about acquisition, skills are about durability and flexibili
 
 For skill acquisition, difficulty is the tool. Effortful retrieval is what builds storage strength. Skills should be taught through interactive lessons. There are several tools at your disposal:
 
-- Interactive lessons, using quizzes and light in-browser tasks
+- Interactive lessons, using quizzes (presenting questions with selectable options via `ask_question` or in-browser HTML widgets) and light in-browser tasks
 - Lessons which guide the user through a list of real-world steps to take (for instance, yoga poses)
 
-Each of these should be based on a **feedback loop**, where the user receives feedback on their performance. This feedback loop should be as tight as possible, giving feedback immediately - and ideally automatically.
+Each of these should be based on a **feedback loop**, where the user receives feedback on their performance. This feedback loop should be as tight as possible, giving feedback immediately and ideally automatically.
 
 For quizzes, each answer should be exactly the same number of words (and characters, if possible). Don't give the user any clues about the answer through formatting.
 

@@ -19,8 +19,8 @@ If the user did not say where to save the article, ask once and remember the pat
 
 1. **Read the pile.** Read the input file in full. Form a sense of what is in it.
 2. **Establish the prerequisites.** Settle with the user what the reader knows walking in: the concepts that are **grounded** from the start. Everything else must be grounded by a block before a later block can lean on it. See [Grounding](#grounding).
-3. **Draft 2 to 3 candidate openings.** Each opening should imply a different thesis or angle for the article. Show all of them. Force the user to pick or compose a hybrid. The chosen opening defines what the rest of the article must do.
-4. **Grow paragraph by paragraph.** After the opening lands, ask "given this opening, what does the reader need to hear next?" Pull material from the pile to answer. The next block may only lean on grounded concepts, and grounds new ones as it lands. Argue about the form the next block takes: a paragraph, a list, a table, a callout, a quote, a code block. Each format choice should be deliberate and defensible.
+3. **Draft 2 to 3 candidate openings.** Each opening should imply a different thesis or angle for the article. Present them as selectable choices via `ask_question` (or chat fallback) with your top pick marked `(Recommended)`. Force the user to pick or compose a hybrid. The chosen opening defines what the rest of the article must do.
+4. **Grow paragraph by paragraph.** After the opening lands, ask "given this opening, what does the reader need to hear next?" Pull material from the pile to answer. The next block may only lean on grounded concepts, and grounds new ones as it lands. Argue about the form the next block takes: a paragraph, a list, a table, a callout, a quote, a code block. Present format choices and candidate block drafts via `ask_question` when evaluating tradeoffs. Each format choice should be deliberate and defensible.
 5. **Append to the article file as you go.** Do not batch. Write each agreed paragraph or block immediately so the user can see the article taking shape.
 6. **Loop step 4 until the article is done.** The user decides when it is done.
 

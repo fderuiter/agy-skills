@@ -11,7 +11,7 @@ permalink: /skills-triage/
 
 It is only for issues **you didn't create**. Raw bug reports, incoming feature requests, an external pull request that arrived unannounced: work that landed in the tracker from outside, in whatever shape the reporter left it. [Tickets](https://fderuiter.github.io/agy-skills/dictionary/ticket) that [to-tickets](https://fderuiter.github.io/agy-skills/skills-to-tickets) produced are already agent-ready by construction, and running `triage` over them is wasted work at best. The rule is flat: `/triage` is only for incoming issues, not for issues you created yourself.
 
-The second thing that separates it from labelling by hand: it recommends and waits. It tells you its category and state call with reasoning, plus what it found in the codebase, and applies nothing until you direct it.
+The second thing that separates it from labelling by hand: it recommends and waits. It presents category and state recommendations with reasoning as interactive choices via `ask_question` (or chat fallback), plus what it found in the codebase, and applies nothing until you direct it.
 
 ## When to reach for it
 

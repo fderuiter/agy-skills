@@ -52,7 +52,7 @@ Every ticket carries a `wayfinder:<type>` label, and is either **[HITL](https://
 
 | Type | Mode | Reach for it when | Resolved by |
 | --- | --- | --- | --- |
-| `grilling` | HITL | The default. The question can be settled by talking it through. | [grilling](https://fderuiter.github.io/agy-skills/skills-grilling) plus [domain-modeling](https://fderuiter.github.io/agy-skills/skills-domain-modeling), in a fresh session |
+| `grilling` | HITL | The default. The question can be settled by talking it through. | [grilling](https://fderuiter.github.io/agy-skills/skills-grilling) plus [domain-modeling](https://fderuiter.github.io/agy-skills/skills-domain-modeling), in a fresh session using interactive `ask_question` rounds |
 | `prototype` | HITL | "How should this look" or "how should this behave": a question talking cannot settle. | [prototype](https://fderuiter.github.io/agy-skills/skills-prototype), with the built artifact linked from the ticket as an asset |
 | `research` | AFK | A fact outside the working directory is blocking a decision. | A [research](https://fderuiter.github.io/agy-skills/skills-research) [subagent](https://fderuiter.github.io/agy-skills/dictionary/subagent), fired at charting time and burned down in parallel on a `research/<name>` branch |
 | `task` | Either | Nothing to decide, but manual work blocks a decision, such as provisioning access, signing up for a service, or moving data so its shape can be seen. | The agent alone where it can, otherwise a precise checklist for the human |

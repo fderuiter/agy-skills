@@ -5,11 +5,11 @@ description: "Mine raw writing fragments with no structure yet, capturing ideas 
 
 <what-to-do>
 
-This is pure **explore**: widen the space of what could be written without committing to structure. Committing is _exploit_, a separate skill's job. Run a grilling session that produces fragments, interviewing the user relentlessly about whatever they want to write about. Imposing phases, outlines, or article structure is out of scope here.
+This is pure **explore**: widen the space of what could be written without committing to structure. Committing is _exploit_, a separate skill's job. Run a grilling session that produces fragments, interviewing the user relentlessly about whatever they want to write about. Use `ask_question` with recommended angles or prompt directions when digging into a topic (or chat fallback if absent). Imposing phases, outlines, or article structure is out of scope here.
 
 As fragments emerge from either side of the conversation, append them to a single markdown file.
 
-If the user did not pass a path, ask once where to save the document, then remember it for the rest of the session.
+If the user did not pass a path, ask once (via `ask_question` with suggested file paths or chat fallback) where to save the document, then remember it for the rest of the session.
 
 Capture fragments from the very first thing the user says, including the initial prompt.
 

@@ -30,9 +30,9 @@ Look at the current repo to understand its starting state. Read whatever exists;
 
 ### 2. Present findings and ask
 
-Summarise what's present and what's missing. Then take the sections in order. One section, one answer, then the next.
+Summarise what's present and what's missing. Then take the sections in order using the `ask_question` tool (with chat fallback if absent). One section, one interactive choice, then the next.
 
-Lead each section with the recommended answer so the user can accept it in a word. Give a one-line explainer only when the choice genuinely branches; skip the section entirely when exploration already settled it (Section B when `triage` isn't installed, Section C when there's no monorepo).
+Present options via `ask_question` with the recommended answer marked `(Recommended)`. Give a one-line explainer only when the choice genuinely branches; skip the section entirely when exploration already settled it (Section B when `triage` isn't installed, Section C when there's no monorepo).
 
 **Section A: Issue tracker.**
 

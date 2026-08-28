@@ -56,11 +56,11 @@ End the report with a **Top recommendation** section: which candidate you'd tack
 
 See [HTML-REPORT.md](HTML-REPORT.md) for the full HTML scaffold, diagram patterns, and styling guidance.
 
-Do NOT propose interfaces yet. After the file is written, ask the user: "Which of these would you like to explore?"
+Do NOT propose interfaces yet. After the file is written, present the candidates to the user as selectable choices using `ask_question` (marking your top recommendation with `(Recommended)` and summarizing trade-offs, with chat fallback if absent): "Which of these would you like to explore?"
 
 ### 3. Grilling loop
 
-Once the user picks a candidate, call the Skill tool with "grilling" to walk the decision tree with them: constraints, dependencies, the shape of the deepened module, what sits behind the seam, what tests survive.
+Once the user picks a candidate, call the Skill tool with "grilling" to walk the decision tree with them using `ask_question`: constraints, dependencies, the shape of the deepened module, what sits behind the seam, what tests survive.
 
 Side effects happen inline as decisions crystallize; call the Skill tool with "domain-modeling" to keep the domain model current as you go:
 

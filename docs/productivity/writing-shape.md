@@ -35,7 +35,7 @@ Setting prerequisites tightly prevents early blocks from drowning in dictionary 
 
 ## Arguing format choices
 
-Rather than defaulting to continuous prose, `writing-shape` actively weighs presentation formats block by block:
+Rather than defaulting to continuous prose, `writing-shape` actively weighs presentation formats block by block, presenting candidate openings and format tradeoffs as interactive choices via `ask_question`:
 
 - **Prose versus list**: Prose builds momentum and carries arguments; lists present parallel, scannable items.
 - **Inline versus callout**: Callouts hold warnings or notes that would otherwise derail the main narrative.
