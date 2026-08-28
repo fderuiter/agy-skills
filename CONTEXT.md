@@ -18,11 +18,25 @@ A `wayfinder` unit: a child **Issue** of a `wayfinder:map` holding a *question* 
 **Triage role**:
 A canonical state-machine label applied to an **Issue** during triage (e.g. `needs-triage`, `ready-for-afk`). Each role maps to a real label string in the **Issue tracker** via `docs/agents/triage-labels.md`.
 
+**Plugin package**:
+A self-contained Antigravity distribution directory (`.agents/plugins/<name>/`) bundling `plugin.json`, `skills/`, `rules/AGENTS.md`, and optional `hooks.json` or `mcp_config.json`.
+
+**Lifecycle hook**:
+A deterministic script executed at agent loop boundaries (`PreToolUse`, `PostToolUse`, `PreInvocation`, `PostInvocation`, `Stop`) configured in `.agents/hooks.json`.
+
+**Subagent topology**:
+The structured hierarchy of subagents invoked via `invoke_subagent`, declaring role, model tier (`flash`, `pro`, `inherit`), and workspace isolation (`branch`, `share`, `inherit`).
+
+**Progressive disclosure seam**:
+The interface separating a lean `SKILL.md` procedural runbook from bulky reference catalogs placed in `references/`.
+
 ## Relationships
 
 - An **Issue tracker** holds many **Issues**
 - An **Issue** carries one **Triage role** at a time
 - A **Decision ticket** is an **Issue** (a child of a `wayfinder:map`)
+- A **Plugin package** bundles many **Skills**, a consolidated rule file, and optional **Lifecycle hooks**
+- A **Subagent topology** isolates work across **Workspace** modes with reactive notifications
 
 ## Flagged ambiguities
 

@@ -17,38 +17,46 @@ These skills are small, composable, and easy to adapt. They integrate cleanly wi
 
 ## Installation
 
-Antigravity discovers skills in your project workspace or global configuration directory.
+agy-skills is distributed for Google Antigravity (AGY).
 
-### Method 1: Per-Repo via `skills.json` (Recommended)
+### Method 1: Antigravity Plugin (Recommended)
 
-Add `.agents/skills.json` to the root of your target repository:
+Copy or symlink `.agents/plugins/agy-skills` into your project's `.agents/plugins/` directory:
+
+```bash
+git clone https://github.com/fderuiter/agy-skills.git
+# In your target repo:
+mkdir -p .agents/plugins
+ln -s /path/to/agy-skills/.agents/plugins/agy-skills .agents/plugins/agy-skills
+```
+
+### Method 2: Per-repo via skills.json
+
+Add `.agents/skills.json` to the target project, pointing at this repository:
 
 ```json
 {
   "entries": [
     {
-      "path": "path/to/agy-skills/skills"
+      "path": "path/to/agy-skills/skills/engineering"
+    },
+    {
+      "path": "path/to/agy-skills/skills/productivity"
     }
   ]
 }
 ```
 
-### Method 2: Global Installation
+### Method 3: Global Installation
 
-Link or copy the `skills/` folder into your global Antigravity configuration directory:
+Run `npm run link` in this repository to automatically link all skills into your local Antigravity directories:
 
-- **Windows**: `%USERPROFILE%\.gemini\config\skills\`
-- **macOS / Linux**: `~/.gemini/config/skills/`
+- Windows: `%USERPROFILE%\.gemini\config\skills\` and `%USERPROFILE%\.agents\skills\`
+- macOS / Linux: `~/.gemini/config/skills/` and `~/.agents/skills/`
 
-For developers maintaining this repository, run:
-```bash
-npm run link
-```
-(Or use `scripts/link-skills.ps1` on Windows / `scripts/link-skills.sh` on macOS/Linux).
+### Method 4: Manual Workspace Copy
 
-### Method 3: Direct Workspace Copy
-
-Copy any individual skill folder from `skills/` into your project's `.agents/skills/` directory.
+Copy any individual skill folder from `skills/` directly into your workspace `.agents/skills/` directory.
 
 ---
 

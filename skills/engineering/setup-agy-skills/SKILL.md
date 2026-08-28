@@ -59,12 +59,19 @@ The defaults are the five canonical roles, each label string equal to its name: 
 
 Offer **multi-context** (a root `CONTEXT-MAP.md` pointing to per-context `CONTEXT.md` files) only when exploration found monorepo signals. Then confirm which layout they want.
 
+**Section D: Antigravity Lifecycle Hooks.** Ask whether the user wants to enable recommended safety guardrails in `.agents/hooks.json` (recommended: **yes**):
+
+> Would you like to enable Antigravity lifecycle hooks (e.g. blocking destructive git commands like `git push` or `git reset --hard`)? (recommended: **yes**)
+
+On **yes**, scaffold `.agents/hooks.json` and `.agents/hooks/block-dangerous-git.js`.
+
 ### 3. Confirm and edit
 
 Show the user a draft of:
 
 - The `## Agent skills` block to add to whichever rule file (`AGENTS.md`, `GEMINI.md`, or `CLAUDE.md`) is being edited (see step 4 for selection rules)
 - The contents of `docs/agents/issue-tracker.md`, `docs/agents/domain.md`, and `docs/agents/triage-labels.md` (the last only when `triage` is installed)
+- The `.agents/hooks.json` configuration (if Section D was accepted)
 
 Let them edit before writing.
 

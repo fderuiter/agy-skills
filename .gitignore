@@ -1,6 +1,10 @@
 node_modules
 .agents/skills
+.agents/plugins/agy-skills/skills
+.agents/plugins/agy-skills/rules
 .scratch
 .notes
 .claude
+.agents/.agents
+.agents/plugins/agy-skills/.agents
 

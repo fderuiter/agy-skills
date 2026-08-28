@@ -12,7 +12,8 @@ const homeDir = os.homedir();
 const destDirs = [
   path.join(homeDir, '.gemini', 'config', 'skills'),
   path.join(homeDir, '.agents', 'skills'),
-  path.join(repoRoot, '.agents', 'skills')
+  path.join(repoRoot, '.agents', 'skills'),
+  path.join(repoRoot, '.agents', 'plugins', 'agy-skills', 'skills')
 ];
 
 function findSkillDirs(dir) {
@@ -65,6 +66,22 @@ for (const dest of destDirs) {
     } catch (err) {
       console.error(`Failed to link ${skillName} to ${dest}: ${err.message}`);
     }
+  }
+}
+
+// Link AGENTS.md into plugin rules
+const pluginRulesDir = path.join(repoRoot, '.agents', 'plugins', 'agy-skills', 'rules');
+if (!fs.existsSync(pluginRulesDir)) {
+  fs.mkdirSync(pluginRulesDir, { recursive: true });
+}
+const pluginAgentsMd = path.join(pluginRulesDir, 'AGENTS.md');
+const srcAgentsMd = path.join(repoRoot, 'AGENTS.md');
+if (fs.existsSync(srcAgentsMd)) {
+  try {
+    fs.copyFileSync(srcAgentsMd, pluginAgentsMd);
+    console.log(`Synced rules -> ${pluginAgentsMd}`);
+  } catch (err) {
+    console.error(`Failed to sync rules to plugin: ${err.message}`);
   }
 }
 

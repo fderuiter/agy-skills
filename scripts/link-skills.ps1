@@ -6,7 +6,8 @@ $Repo = Split-Path -Parent $ScriptDir
 $Dests = @(
     (Join-Path $HOME ".gemini\config\skills"),
     (Join-Path $HOME ".agents\skills"),
-    (Join-Path $Repo ".agents\skills")
+    (Join-Path $Repo ".agents\skills"),
+    (Join-Path $Repo ".agents\plugins\agy-skills\skills")
 )
 
 $SkillFiles = Get-ChildItem -Path (Join-Path $Repo "skills") -Recurse -Filter "SKILL.md" | 
@@ -36,6 +37,17 @@ foreach ($Dest in $Dests) {
         New-Item -ItemType Junction -Path $TargetPath -Target $SkillDir.FullName | Out-Null
         Write-Host "Linked $SkillName -> $($SkillDir.FullName) ($Dest)"
     }
+}
+
+$PluginRulesDir = Join-Path $Repo ".agents\plugins\agy-skills\rules"
+if (-not (Test-Path $PluginRulesDir)) {
+    New-Item -ItemType Directory -Path $PluginRulesDir -Force | Out-Null
+}
+$SrcAgentsMd = Join-Path $Repo "AGENTS.md"
+$DestAgentsMd = Join-Path $PluginRulesDir "AGENTS.md"
+if (Test-Path $SrcAgentsMd) {
+    Copy-Item -Path $SrcAgentsMd -Destination $DestAgentsMd -Force
+    Write-Host "Synced rules -> $DestAgentsMd"
 }
 
 Write-Host "`nAll skills linked successfully into Antigravity directories!"

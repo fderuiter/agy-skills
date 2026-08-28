@@ -77,16 +77,13 @@ Create the target feature branch for the entire spec (e.g. `feat/spec-name`), an
 ### 4. Dispatch Implementer Subagents on the Frontier
 
 For each unblocked ticket on the frontier:
-1. Create a dedicated worktree and branch:
-   ```bash
-   git worktree add -b "ticket/<ticket-id>" ".worktrees/ticket-<ticket-id>" "feat/spec-name"
-   ```
-2. Spawn an implementer subagent pointing to the worktree path.
-3. Provide the subagent with minimal context pointers:
+1. Launch an implementer subagent using `invoke_subagent` with `TypeName: "self"`, `Model: "inherit"` (or `"pro"`), and `Workspace: "branch"` (or create a dedicated git worktree if running in a shell environment without branch workspace support).
+2. Provide the subagent with minimal context pointers:
    - Spec file path or URL
    - Ticket identifier and description
    - Pointers to relevant ADRs or domain models in `CONTEXT.md`
    - Instruction to follow `/implement` discipline: write tests first with `/tdd`, run typechecks and test suite, and commit cleanly to its branch.
+3. Stop calling tools and let Antigravity's reactive wakeup notify you when the subagent finishes. Do not poll in a loop.
 
 ### 5. Merge Completed Tickets into the PR Branch
 
@@ -98,7 +95,7 @@ When an implementer subagent finishes:
    ```
 2. Run the test suite to verify integration on the PR branch.
 3. If conflicts arise, use `/resolving-merge-conflicts` to resolve them cleanly preserving intent.
-4. Remove the temporary worktree:
+4. Clean up the subagent workspace or temporary worktree:
    ```bash
    git worktree remove ".worktrees/ticket-<ticket-id>" --force
    ```

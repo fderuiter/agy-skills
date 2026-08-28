@@ -1,15 +1,25 @@
 ---
 name: handoff
-description: Compact the current conversation into a handoff document for another agent to pick up.
-argument-hint: "What will the next session be used for?"
+description: Compact the current conversation into a handoff document or immediately launch a background subagent to continue the work.
+argument-hint: "What will the next session or subagent be used for?"
 ---
 
-Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the temporary directory of the user's OS - not the current workspace.
+# Handoff
 
-Include a "suggested skills" section in the document, naming which skills the next agent should call the Skill tool for.
+Write a handoff summary of the current conversation so another agent or subagent can seamlessly pick up the work.
 
-Do not duplicate content already captured in other artifacts (specs, plans, ADRs, issues, commits, diffs). Reference them by path or URL instead.
+## Modes
 
-Redact any sensitive information, such as API keys, passwords, or personally identifiable information.
+### 1. Document Handoff (Default)
+Write a clean handoff document and save it to the OS temporary directory (or as an Antigravity artifact):
+- Include a "Suggested skills" section, naming which skills the next agent should call.
+- Reference existing files, specs, plans, ADRs, issues, and commit SHAs by path instead of duplicating text.
+- Redact all secrets, API keys, passwords, and credentials.
+- If the user passed arguments, tailor the summary directly to those goals.
 
-If the user passed arguments, treat them as a description of what the next session will focus on and tailor the doc accordingly.
+### 2. Immediate Subagent Handoff
+If the user requests to continue immediately in the background:
+- Launch a subagent using `invoke_subagent` with `TypeName: "self"` (or a specialized subagent), `Model: "inherit"`, and `Workspace: "inherit"` (or `"branch"` if isolating code changes).
+- Seed the subagent prompt with the handoff summary, context pointers, and goals.
+- Stop calling tools to let Antigravity's reactive notification handle completion.
+

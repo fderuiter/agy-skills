@@ -13,7 +13,7 @@ set -euo pipefail
 # to keep installed skills up to date.
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-DESTS=("$HOME/.agents/skills" "$HOME/.gemini/config/skills" "$REPO/.agents/skills")
+DESTS=("$HOME/.agents/skills" "$HOME/.gemini/config/skills" "$REPO/.agents/skills" "$REPO/.agents/plugins/agy-skills/skills")
 
 # Collect the repo's skills once, link into every destination.
 names=()
@@ -54,3 +54,9 @@ for DEST in "${DESTS[@]}"; do
     echo "linked $name -> $src ($DEST)"
   done
 done
+
+mkdir -p "$REPO/.agents/plugins/agy-skills/rules"
+if [ -f "$REPO/AGENTS.md" ]; then
+  cp -f "$REPO/AGENTS.md" "$REPO/.agents/plugins/agy-skills/rules/AGENTS.md"
+  echo "synced rules -> $REPO/.agents/plugins/agy-skills/rules/AGENTS.md"
+fi
