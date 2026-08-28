@@ -20,6 +20,7 @@ Reachable primarily when triggered by the user as a slash command.
 - **[wayfinder](./wayfinder/SKILL.md)**: Plan a huge chunk of work (more than one agent session can hold) as a shared map of decision tickets on the issue tracker, resolved one at a time until the way to the destination is clear.
 - **[retro](./retro/SKILL.md)**: Analyze session transcripts to extract systemic environment improvements (steering files, coding standards, automated checks, tool economy).
 - **[new-skill](./new-skill/SKILL.md)**: Scaffold a new skill, documentation page, test fixture, and router registration with interactive quality checks.
+- **[setup-python-deep-modules](./setup-python-deep-modules/SKILL.md)**: Wire import-linter into a Python repo so each package is a deep module, with implementation hidden in subfolders and reachable only through its entry-point files.
 
 ## Model-invoked
 

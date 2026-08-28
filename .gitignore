@@ -9,4 +9,7 @@ node_modules
 .agents/plugins/agy-skills/.agents
 skills/custom/*
 !skills/custom/.gitkeep
+__pycache__/
+*.pyc
+
 

@@ -103,5 +103,6 @@ Off the main flow entirely.
 - **`/new-skill`**: scaffold a new skill, documentation page, test fixture, and router registration with interactive quality checks.
 
 <!-- USER_SKILLS_START -->
+- **`/setup-python-deep-modules`**: Wire import-linter into a Python repo so each package is a deep module, with implementation hidden in subfolders and reachable only through its entry-point files.
 <!-- USER_SKILLS_END -->
 

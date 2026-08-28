@@ -123,6 +123,7 @@ Daily code workflows.
 - **[wayfinder](./skills/engineering/wayfinder/SKILL.md)**: Chart and resolve large efforts as decision tickets.
 - **[retro](./skills/engineering/retro/SKILL.md)**: Analyze session transcripts to extract systemic environment improvements.
 - **[new-skill](./skills/engineering/new-skill/SKILL.md)**: Scaffold a new skill, documentation page, test fixture, and router registration.
+- **[setup-python-deep-modules](./skills/engineering/setup-python-deep-modules/SKILL.md)**: Wire import-linter into a Python repo so each package is a deep module, with implementation hidden in subfolders and reachable only through its entry-point files.
 
 **Model-invoked**
 - **[prototype](./skills/engineering/prototype/SKILL.md)**: Build throwaway prototypes to answer design questions.
