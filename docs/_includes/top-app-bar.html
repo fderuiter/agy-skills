@@ -1,0 +1,35 @@
+<header class="m3-top-app-bar">
+  <div class="m3-top-app-bar-start">
+    <button class="m3-icon-button m3-mobile-menu-btn" id="menu-toggle-btn" aria-label="Toggle navigation drawer">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+    <a href="{{ '/' | relative_url }}" class="m3-brand-link">
+      <span class="material-symbols-outlined" style="color: var(--md-sys-color-primary); font-size: 26px;">bolt</span>
+      <span>agy-skills</span>
+      <span class="m3-brand-badge">AGY 2.0</span>
+    </a>
+  </div>
+
+  <div class="m3-top-app-bar-center">
+    <button class="m3-search-trigger" data-action="open-search" aria-label="Search documentation">
+      <div class="m3-search-trigger-content">
+        <span class="material-symbols-outlined" style="font-size: 20px;">search</span>
+        <span>Search skills, dictionary, and guides...</span>
+      </div>
+      <span class="m3-search-shortcut">Ctrl+K</span>
+    </button>
+  </div>
+
+  <div class="m3-top-app-bar-end">
+    <button class="m3-icon-button m3-mobile-search-btn" data-action="open-search" aria-label="Open search dialog" style="display: none;">
+      <span class="material-symbols-outlined">search</span>
+    </button>
+    <button class="m3-icon-button" id="theme-toggle-btn" aria-label="Toggle dark and light theme">
+      <span class="material-symbols-outlined" id="theme-toggle-icon">dark_mode</span>
+    </button>
+    <a href="https://github.com/fderuiter/agy-skills" class="m3-icon-button" aria-label="View on GitHub" target="_blank" rel="noopener">
+      <span class="material-symbols-outlined">code</span>
+    </a>
+  </div>
+</header>
+

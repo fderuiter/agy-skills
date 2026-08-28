@@ -42,6 +42,18 @@ An image artifact produced by `generate_image` or an interactive HTML/Mermaid co
 **Upstream verification**:
 The direct retrieval of third-party issues, changelogs, or schemas via `search_web` and `read_url_content` during diagnosis or configuration.
 
+**M3 Design Token**:
+A canonical design property key (such as color roles, shape corner radius, typography styles, and elevation levels) specified by Material Design 3 and exposed as CSS custom properties across documentation themes.
+
+**Tonal Palette**:
+A luminance-calibrated scale of thirteen tones (from tone 0 to tone 100) generated from a brand seed color, defining consistent light and dark color contrast pairings.
+
+**Adaptive Navigation Shell**:
+A responsive documentation layout shell implementing a Material Design 3 Top App Bar and collapsible Navigation Drawer across mobile, tablet, and desktop viewports.
+
+**Surface Tint Container**:
+An elevated or outlined card container using Material Design 3 surface tonal color roles (`surface-container-lowest` through `highest`) to establish visual hierarchy without heavy borders.
+
 ## Relationships
 
 - An **Issue tracker** holds many **Issues**
@@ -53,6 +65,8 @@ The direct retrieval of third-party issues, changelogs, or schemas via `search_w
 - A **Timer guard** supervises long-running subagent tasks or test bisections without polling loops
 - An **Upstream verification** grounds diagnosis and configuration against live primary documentation
 - A **Visual mockup artifact** validates user interface variants before implementation
+- An **Adaptive Navigation Shell** arranges documentation pages and dictionary terms using **M3 Design Tokens**
+- A **Surface Tint Container** structures markdown sections and code blocks using dynamic **Tonal Palettes**
 
 ## Flagged ambiguities
 

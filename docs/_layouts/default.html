@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% seo %}
+  {% include head-custom.html %}
+</head>
+<body>
+  {% include top-app-bar.html %}
+
+  <div class="m3-app-shell">
+    {% include nav-drawer.html %}
+
+    <main class="m3-main-content">
+      <div class="m3-content-wrapper">
+        <nav class="m3-breadcrumbs" aria-label="Breadcrumb navigation">
+          <a href="{{ '/' | relative_url }}">Home</a>
+          {% if page.category %}
+            <span class="m3-breadcrumbs-separator">/</span>
+            <a href="{{ '/' | relative_url }}#{{ page.category }}-skills">{{ page.category | capitalize }}</a>
+          {% endif %}
+          <span class="m3-breadcrumbs-separator">/</span>
+          <span>{{ page.title | default: page.name }}</span>
+        </nav>
+
+        <article class="m3-markdown-body">
+          {{ content }}
+        </article>
+      </div>
+
+      <footer class="m3-footer">
+        <div class="m3-footer-inner">
+          <div class="m3-footer-links">
+            <a href="{{ '/' | relative_url }}">Overview</a>
+            <a href="{{ '/dictionary/' | relative_url }}">AI Coding Dictionary</a>
+            <a href="https://github.com/fderuiter/agy-skills" target="_blank" rel="noopener">GitHub Repository</a>
+          </div>
+          <div>agy-skills: Agent Skills for Google Antigravity &copy; 2026 Fred de Ruiter. Built with Material Design 3.</div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  {% include search-dialog.html %}
+
+  <script src="{{ '/assets/js/m3-theme.js' | relative_url }}"></script>
+</body>
+</html>
+

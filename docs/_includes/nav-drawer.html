@@ -1,0 +1,155 @@
+<aside class="m3-nav-drawer" id="nav-drawer">
+  <div class="m3-nav-section">
+    <div class="m3-nav-section-title">Navigation</div>
+    <a href="{{ '/' | relative_url }}" class="m3-nav-item {% if page.url == '/' or page.url == '/index.html' %}active{% endif %}">
+      <span class="material-symbols-outlined">home</span>
+      <span>Overview</span>
+    </a>
+    <a href="{{ '/dictionary/' | relative_url }}" class="m3-nav-item {% if page.category == 'dictionary' %}active{% endif %}">
+      <span class="material-symbols-outlined">menu_book</span>
+      <span>AI Dictionary</span>
+    </a>
+  </div>
+
+  <div class="m3-nav-section">
+    <div class="m3-nav-section-title">Engineering Skills (User)</div>
+    <a href="{{ '/skills-ask-fred/' | relative_url }}" class="m3-nav-item {% if page.url contains 'ask-fred' %}active{% endif %}">
+      <span class="material-symbols-outlined">alt_route</span>
+      <span>ask-fred</span>
+    </a>
+    <a href="{{ '/skills-grill-with-docs/' | relative_url }}" class="m3-nav-item {% if page.url contains 'grill-with-docs' %}active{% endif %}">
+      <span class="material-symbols-outlined">psychology</span>
+      <span>grill-with-docs</span>
+    </a>
+    <a href="{{ '/skills-triage/' | relative_url }}" class="m3-nav-item {% if page.url contains 'triage' %}active{% endif %}">
+      <span class="material-symbols-outlined">rule</span>
+      <span>triage</span>
+    </a>
+    <a href="{{ '/skills-to-spec/' | relative_url }}" class="m3-nav-item {% if page.url contains 'to-spec' %}active{% endif %}">
+      <span class="material-symbols-outlined">description</span>
+      <span>to-spec</span>
+    </a>
+    <a href="{{ '/skills-to-tickets/' | relative_url }}" class="m3-nav-item {% if page.url contains 'to-tickets' %}active{% endif %}">
+      <span class="material-symbols-outlined">checklist</span>
+      <span>to-tickets</span>
+    </a>
+    <a href="{{ '/skills-implement/' | relative_url }}" class="m3-nav-item {% if page.url contains 'implement' and page.url != '/skills-implement-spec/' %}active{% endif %}">
+      <span class="material-symbols-outlined">code</span>
+      <span>implement</span>
+    </a>
+    <a href="{{ '/skills-implement-spec/' | relative_url }}" class="m3-nav-item {% if page.url contains 'implement-spec' %}active{% endif %}">
+      <span class="material-symbols-outlined">hub</span>
+      <span>implement-spec</span>
+    </a>
+    <a href="{{ '/skills-improve-codebase-architecture/' | relative_url }}" class="m3-nav-item {% if page.url contains 'improve-codebase-architecture' %}active{% endif %}">
+      <span class="material-symbols-outlined">architecture</span>
+      <span>improve-codebase</span>
+    </a>
+    <a href="{{ '/skills-wayfinder/' | relative_url }}" class="m3-nav-item {% if page.url contains 'wayfinder' %}active{% endif %}">
+      <span class="material-symbols-outlined">map</span>
+      <span>wayfinder</span>
+    </a>
+    <a href="{{ '/skills-retro/' | relative_url }}" class="m3-nav-item {% if page.url contains 'retro' %}active{% endif %}">
+      <span class="material-symbols-outlined">history</span>
+      <span>retro</span>
+    </a>
+    <a href="{{ '/skills-setup-agy-skills/' | relative_url }}" class="m3-nav-item {% if page.url contains 'setup-agy-skills' %}active{% endif %}">
+      <span class="material-symbols-outlined">settings</span>
+      <span>setup-agy-skills</span>
+    </a>
+    <a href="{{ '/skills-setup-mcp/' | relative_url }}" class="m3-nav-item {% if page.url contains 'setup-mcp' %}active{% endif %}">
+      <span class="material-symbols-outlined">extension</span>
+      <span>setup-mcp</span>
+    </a>
+    <a href="{{ '/skills-setup-ts-deep-modules/' | relative_url }}" class="m3-nav-item {% if page.url contains 'setup-ts-deep-modules' %}active{% endif %}">
+      <span class="material-symbols-outlined">folder_special</span>
+      <span>setup-ts-deep</span>
+    </a>
+  </div>
+
+  <div class="m3-nav-section">
+    <div class="m3-nav-section-title">Engineering Skills (Model)</div>
+    <a href="{{ '/skills-code-review/' | relative_url }}" class="m3-nav-item {% if page.url contains 'code-review' %}active{% endif %}">
+      <span class="material-symbols-outlined">rate_review</span>
+      <span>code-review</span>
+    </a>
+    <a href="{{ '/skills-tdd/' | relative_url }}" class="m3-nav-item {% if page.url contains 'tdd' %}active{% endif %}">
+      <span class="material-symbols-outlined">verified</span>
+      <span>tdd</span>
+    </a>
+    <a href="{{ '/skills-diagnosing-bugs/' | relative_url }}" class="m3-nav-item {% if page.url contains 'diagnosing-bugs' %}active{% endif %}">
+      <span class="material-symbols-outlined">bug_report</span>
+      <span>diagnosing-bugs</span>
+    </a>
+    <a href="{{ '/skills-research/' | relative_url }}" class="m3-nav-item {% if page.url contains 'research' %}active{% endif %}">
+      <span class="material-symbols-outlined">travel_explore</span>
+      <span>research</span>
+    </a>
+    <a href="{{ '/skills-domain-modeling/' | relative_url }}" class="m3-nav-item {% if page.url contains 'domain-modeling' %}active{% endif %}">
+      <span class="material-symbols-outlined">schema</span>
+      <span>domain-modeling</span>
+    </a>
+    <a href="{{ '/skills-codebase-design/' | relative_url }}" class="m3-nav-item {% if page.url contains 'codebase-design' %}active{% endif %}">
+      <span class="material-symbols-outlined">draw</span>
+      <span>codebase-design</span>
+    </a>
+    <a href="{{ '/skills-prototype/' | relative_url }}" class="m3-nav-item {% if page.url contains 'prototype' %}active{% endif %}">
+      <span class="material-symbols-outlined">science</span>
+      <span>prototype</span>
+    </a>
+    <a href="{{ '/skills-resolving-merge-conflicts/' | relative_url }}" class="m3-nav-item {% if page.url contains 'resolving-merge-conflicts' %}active{% endif %}">
+      <span class="material-symbols-outlined">merge</span>
+      <span>merge-conflicts</span>
+    </a>
+    <a href="{{ '/skills-wizard/' | relative_url }}" class="m3-nav-item {% if page.url contains 'wizard' %}active{% endif %}">
+      <span class="material-symbols-outlined">auto_fix_high</span>
+      <span>wizard</span>
+    </a>
+  </div>
+
+  <div class="m3-nav-section">
+    <div class="m3-nav-section-title">Productivity Skills</div>
+    <a href="{{ '/skills-grill-me/' | relative_url }}" class="m3-nav-item {% if page.url contains 'grill-me' %}active{% endif %}">
+      <span class="material-symbols-outlined">quiz</span>
+      <span>grill-me</span>
+    </a>
+    <a href="{{ '/skills-handoff/' | relative_url }}" class="m3-nav-item {% if page.url contains 'handoff' %}active{% endif %}">
+      <span class="material-symbols-outlined">move_up</span>
+      <span>handoff</span>
+    </a>
+    <a href="{{ '/skills-teach/' | relative_url }}" class="m3-nav-item {% if page.url contains 'teach' %}active{% endif %}">
+      <span class="material-symbols-outlined">school</span>
+      <span>teach</span>
+    </a>
+    <a href="{{ '/skills-to-questionnaire/' | relative_url }}" class="m3-nav-item {% if page.url contains 'to-questionnaire' %}active{% endif %}">
+      <span class="material-symbols-outlined">ballot</span>
+      <span>to-questionnaire</span>
+    </a>
+    <a href="{{ '/skills-wait-what/' | relative_url }}" class="m3-nav-item {% if page.url contains 'wait-what' %}active{% endif %}">
+      <span class="material-symbols-outlined">help</span>
+      <span>wait-what</span>
+    </a>
+    <a href="{{ '/skills-writing-beats/' | relative_url }}" class="m3-nav-item {% if page.url contains 'writing-beats' %}active{% endif %}">
+      <span class="material-symbols-outlined">format_list_numbered</span>
+      <span>writing-beats</span>
+    </a>
+    <a href="{{ '/skills-writing-fragments/' | relative_url }}" class="m3-nav-item {% if page.url contains 'writing-fragments' %}active{% endif %}">
+      <span class="material-symbols-outlined">edit_note</span>
+      <span>writing-fragments</span>
+    </a>
+    <a href="{{ '/skills-writing-shape/' | relative_url }}" class="m3-nav-item {% if page.url contains 'writing-shape' %}active{% endif %}">
+      <span class="material-symbols-outlined">shape_line</span>
+      <span>writing-shape</span>
+    </a>
+    <a href="{{ '/skills-grilling/' | relative_url }}" class="m3-nav-item {% if page.url contains 'grilling' %}active{% endif %}">
+      <span class="material-symbols-outlined">forum</span>
+      <span>grilling (model)</span>
+    </a>
+    <a href="{{ '/skills-writing-for-agents/' | relative_url }}" class="m3-nav-item {% if page.url contains 'writing-for-agents' %}active{% endif %}">
+      <span class="material-symbols-outlined">smart_toy</span>
+      <span>writing-for-agents</span>
+    </a>
+  </div>
+</aside>
+<div class="m3-drawer-backdrop" id="drawer-backdrop"></div>
+

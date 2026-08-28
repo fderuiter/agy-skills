@@ -9,7 +9,6 @@ author:
 twitter:
   username: "fderuiter"
 logo: "/assets/images/og-card.png"
-theme: jekyll-theme-cayman
 
 plugins:
   - jekyll-relative-links

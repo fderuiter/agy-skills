@@ -1,0 +1,24 @@
+<div class="m3-search-modal" id="search-modal" role="dialog" aria-modal="true" aria-label="Search Documentation">
+  <div class="m3-search-backdrop-overlay" id="search-backdrop"></div>
+  <div class="m3-search-card">
+    <div class="m3-search-header">
+      <span class="material-symbols-outlined" style="color: var(--md-sys-color-primary);">search</span>
+      <input type="text" class="m3-search-input" id="search-input" placeholder="Search skills, workflows, dictionary terms..." autocomplete="off">
+      <button class="m3-icon-button" id="search-close-btn" aria-label="Close search">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="m3-search-results-list" id="search-results">
+      <!-- Populated dynamically via m3-theme.js -->
+    </div>
+    <div class="m3-search-footer">
+      <div class="m3-search-keys">
+        <span class="m3-search-key-item"><kbd class="m3-search-shortcut">↑</kbd> <kbd class="m3-search-shortcut">↓</kbd> Navigate</span>
+        <span class="m3-search-key-item"><kbd class="m3-search-shortcut">↵</kbd> Open</span>
+        <span class="m3-search-key-item"><kbd class="m3-search-shortcut">ESC</kbd> Close</span>
+      </div>
+      <span>Powered by M3 Search</span>
+    </div>
+  </div>
+</div>
+
