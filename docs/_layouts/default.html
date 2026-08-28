@@ -15,13 +15,24 @@
     <main class="m3-main-content">
       <div class="m3-content-wrapper">
         <nav class="m3-breadcrumbs" aria-label="Breadcrumb navigation">
-          <a href="{{ '/' | relative_url }}">Home</a>
-          {% if page.category %}
-            <span class="m3-breadcrumbs-separator">/</span>
-            <a href="{{ '/' | relative_url }}#{{ page.category }}-skills">{{ page.category | capitalize }}</a>
-          {% endif %}
-          <span class="m3-breadcrumbs-separator">/</span>
-          <span>{{ page.title | default: page.name }}</span>
+          <div class="m3-breadcrumbs-links">
+            <a href="{{ '/' | relative_url }}">Home</a>
+            {% if page.url contains '/dictionary/' and page.url != '/dictionary/' and page.url != '/dictionary' %}
+              <span class="m3-breadcrumbs-separator">/</span>
+              <a href="{{ '/dictionary/' | relative_url }}">Dictionary</a>
+              <span class="m3-breadcrumbs-separator">/</span>
+              <span>{{ page.title | default: page.name }}</span>
+            {% elsif page.url contains '/skills-' or page.category %}
+              <span class="m3-breadcrumbs-separator">/</span>
+              <a href="{{ '/' | relative_url }}#{{ page.category | default: 'engineering' }}-skills">{{ page.category | default: "Skills" | capitalize }}</a>
+              <span class="m3-breadcrumbs-separator">/</span>
+              <span>{{ page.title | default: page.name }}</span>
+            {% else %}
+              <span class="m3-breadcrumbs-separator">/</span>
+              <span>{{ page.title | default: page.name }}</span>
+            {% endif %}
+          </div>
+          <div id="m3-page-badge-slot" class="m3-page-badge-slot"></div>
         </nav>
 
         <article class="m3-markdown-body">

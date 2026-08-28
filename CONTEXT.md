@@ -54,6 +54,15 @@ A responsive documentation layout shell implementing a Material Design 3 Top App
 **Surface Tint Container**:
 An elevated or outlined card container using Material Design 3 surface tonal color roles (`surface-container-lowest` through `highest`) to establish visual hierarchy without heavy borders.
 
+**Interactive Mermaid Renderer**:
+A client-side diagram renderer integrated into the documentation site layout that renders flowchart and sequence syntax dynamically with Material Design 3 light and dark theme awareness.
+
+**Skill Classification Badge**:
+A visual metadata chip displayed on documentation pages, search items, and README listings denoting whether a skill is User-invoked or Model-invoked.
+
+**Pre-commit Integrity Gate**:
+A local git lifecycle check running automated test scripts before commit creation to prevent rule regressions, invalid front matter, or em-dash violations from entering version control.
+
 ## Relationships
 
 - An **Issue tracker** holds many **Issues**
@@ -67,8 +76,12 @@ An elevated or outlined card container using Material Design 3 surface tonal col
 - A **Visual mockup artifact** validates user interface variants before implementation
 - An **Adaptive Navigation Shell** arranges documentation pages and dictionary terms using **M3 Design Tokens**
 - A **Surface Tint Container** structures markdown sections and code blocks using dynamic **Tonal Palettes**
+- An **Interactive Mermaid Renderer** visualizes workflow and architectural diagrams with dynamic theme integration
+- A **Skill Classification Badge** categorizes skill invocability across documentation and search interfaces
+- A **Pre-commit Integrity Gate** enforces test and formatting invariants at commit time
 
 ## Flagged ambiguities
 
 - "backlog" was previously used to mean both the *tool* hosting issues and the *body of work* inside it. Resolved: the tool is the **Issue tracker**; "backlog" is no longer used as a domain term.
 - "backlog backend" / "backlog manager". Resolved: collapsed into **Issue tracker**.
+

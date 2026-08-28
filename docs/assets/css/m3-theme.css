@@ -500,10 +500,18 @@ body {
 .m3-breadcrumbs {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.m3-breadcrumbs-links {
+  display: flex;
+  align-items: center;
   gap: 8px;
   font-size: var(--md-sys-typescale-label-medium-size);
   color: var(--md-sys-color-on-surface-variant);
-  margin-bottom: 24px;
   flex-wrap: wrap;
 }
 
@@ -519,6 +527,43 @@ body {
 
 .m3-breadcrumbs-separator {
   color: var(--md-sys-color-outline);
+}
+
+.m3-page-badge-slot {
+  display: flex;
+  align-items: center;
+}
+
+.m3-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--md-sys-shape-corner-small);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.m3-badge-user-invoked {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  border: 1px solid var(--md-sys-color-primary);
+}
+
+.m3-badge-model-invoked {
+  background-color: var(--md-sys-color-tertiary-container);
+  color: var(--md-sys-color-on-tertiary-container);
+  border: 1px solid var(--md-sys-color-tertiary);
+}
+
+.m3-badge-dictionary {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  border: 1px solid var(--md-sys-color-secondary);
 }
 
 /* Markdown Typography & Elements */
@@ -748,6 +793,25 @@ body {
   color: var(--md-sys-color-on-surface);
 }
 
+/* Mermaid Diagrams Container */
+.m3-mermaid-container {
+  background-color: var(--md-sys-color-surface-container-low);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: 24px;
+  margin: 24px 0;
+  overflow-x: auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+.m3-mermaid-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Search Modal / Dialog */
 .m3-search-modal {
   display: none;
@@ -812,6 +876,41 @@ body {
 
 .m3-search-input::placeholder {
   color: var(--md-sys-color-on-surface-variant);
+}
+
+.m3-search-filter-bar {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--md-sys-color-surface-container-high);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  overflow-x: auto;
+}
+
+.m3-filter-chip {
+  background: transparent;
+  border: 1px solid var(--md-sys-color-outline-variant);
+  color: var(--md-sys-color-on-surface-variant);
+  padding: 4px 12px;
+  border-radius: var(--md-sys-shape-corner-small);
+  font-family: var(--md-sys-typescale-plain-font);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.m3-filter-chip:hover:not(.active) {
+  background-color: var(--md-sys-color-surface-container-highest);
+  color: var(--md-sys-color-on-surface);
+}
+
+.m3-filter-chip.active {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  border-color: var(--md-sys-color-secondary);
+  font-weight: 600;
 }
 
 .m3-search-results-list {

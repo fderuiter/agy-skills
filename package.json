@@ -17,6 +17,8 @@
     "changeset": "changeset",
     "version": "changeset version && node scripts/sync-plugin-version.mjs",
     "check-plugin-version": "node scripts/sync-plugin-version.mjs --check",
+    "setup-hooks": "node scripts/setup-git-hooks.mjs",
+    "prepare": "node scripts/setup-git-hooks.mjs",
     "sync-wiki": "node scripts/sync-wiki.mjs"
   },
   "devDependencies": {
