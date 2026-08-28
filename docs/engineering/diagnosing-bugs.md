@@ -54,7 +54,7 @@ The phases are gates, not a checklist. Each one refuses to open until something 
 | --- | --- |
 | Into Phase 2 | A named command, already run and pasted with its output, that can go red on this bug (using timer guards if running long stress loops) |
 | Into Phase 3 | The repro is reproduced *and* minimised: every remaining element is load-bearing |
-| Into Phase 4 | 3 to 5 ranked, falsifiable hypotheses exist (grounded by upstream verification of changelogs and issues), each stating its prediction, presented to you via `ask_question` (or chat fallback) before any is tested |
+| Into Phase 4 | 3 to 5 ranked, falsifiable hypotheses exist (grounded by upstream verification and optional parallel hypothesis subagents in `Workspace: "share"`), each stating its prediction, presented to you via `ask_question` (or chat fallback) before any is tested |
 | Into Phase 5 | Probes map to a specific prediction, one variable at a time, every debug log tagged `[DEBUG-a4f2]`-style so cleanup is one grep |
 | Done | Original repro no longer reproduces, instrumentation gone, and the hypothesis that turned out correct is written into the commit message |
 

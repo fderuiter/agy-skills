@@ -77,38 +77,49 @@ Create the target feature branch for the entire spec (e.g. `feat/spec-name`), an
 ### 4. Dispatch Implementer Subagents on the Frontier
 
 For each unblocked ticket on the frontier:
-1. Declare or select a domain-specialized worker. If the ticket requires specialized system instructions or tool scopes, use `define_subagent` (e.g. `TypeName: "worker-database"`, `enable_write_tools: true`, `enable_subagent_tools: false`). Otherwise use `TypeName: "self"`.
-2. Launch the implementer subagent using `invoke_subagent` with `Model: "inherit"` (or `"pro"`), and `Workspace: "branch"` (or create a dedicated git worktree if running in a shell environment without branch workspace support).
-3. Provide the subagent with minimal context pointers:
-   - Spec file path or URL
-   - Ticket identifier and description
-   - Pointers to relevant ADRs or domain models in `CONTEXT.md`
-   - Instruction to follow `/implement` discipline: write tests first with `/tdd`, run typechecks and test suite, and commit cleanly to its branch.
-4. Optionally attach a **timer guard** via the `schedule` tool (e.g. `DurationSeconds: 900`, `TimerCondition: "<subagent-id>"`) to supervise long-running tasks and recover from hangs without active polling loops.
-5. If intermediate communication or status checks are necessary, send instructions using `send_message` rather than interrupting worker execution.
-6. Stop calling tools and let Antigravity's reactive wakeup notify you when the subagent finishes or the timer guard triggers. Do not poll in a loop.
+1. Declare a domain-specialized worker via `define_subagent` tailored to the ticket boundary (e.g. `name: "worker-database"`, `description: "Database and schema implementer"`, `system_prompt: "...", `enable_write_tools: true`, `enable_subagent_tools: false`). If generic implementation suffices, use `TypeName: "self"`.
+2. Apply the **Scoped Worktree Strategy**:
+   - Default to `Workspace: "share"` (shared worktree) when tickets touch disjoint subdirectories or non-conflicting modules, avoiding unnecessary disk duplication.
+   - Use `Workspace: "branch"` only when the ticket executes full-tree refactors or risky build mutations.
+3. Launch the worker using `invoke_subagent` (`Model: "inherit"` or `"pro"`).
+4. Send the initial task assignment via `send_message` formatted using the **Structured Envelope**:
+   ```json
+   {
+     "type": "task_assignment",
+     "taskId": "<ticket-id>",
+     "status": "in_progress",
+     "payload": {
+       "specPath": "docs/specs/feature-spec.md",
+       "ticketId": "<ticket-id>",
+       "requirements": "...",
+       "adrPointers": ["docs/adr/0008-antigravity-multi-agent-swarms-and-sdk-evals.md"]
+     },
+     "nextAction": "Implement test-first using /tdd and notify orchestrator upon completion."
+   }
+   ```
+5. Optionally attach a **timer guard** via the `schedule` tool (e.g. `DurationSeconds: 900`, `TimerCondition: "<subagent-id>"`) to supervise long-running tasks and recover from hangs without active polling loops.
+6. The worker communicates progress, blockers, or completion using matching structured envelopes (`type: "checkpoint"`, `type: "blocker"`, `type: "task_completion"`).
+7. Stop calling tools and let Antigravity's reactive wakeup notify you when the worker finishes, sends a message, or the timer guard triggers. Do not poll in a loop.
 
 ### 5. Merge Completed Tickets into the PR Branch
 
-When an implementer subagent finishes:
-1. Switch to the PR branch and merge the ticket branch:
+When an implementer subagent reports `task_completion`:
+1. If using `Workspace: "branch"`, switch to the PR branch and merge the ticket branch:
    ```bash
    git checkout feat/spec-name
    git merge --no-ff "ticket/<ticket-id>" -m "feat: implement ticket <ticket-id>"
    ```
-2. Run the test suite to verify integration on the PR branch.
-3. If conflicts arise, use `/resolving-merge-conflicts` to resolve them cleanly preserving intent.
-4. Clean up the subagent workspace or temporary worktree:
-   ```bash
-   git worktree remove ".worktrees/ticket-<ticket-id>" --force
-   ```
+2. If using `Workspace: "share"`, verify that all modified files pass the test suite on the shared branch.
+3. Run the test suite to verify integration on the PR branch.
+4. If conflicts arise, use `/resolving-merge-conflicts` to resolve them cleanly preserving intent.
+5. Clean up any temporary branches or workspaces.
 
 ### 6. Advance the Frontier
 
 Check the task graph:
 - Mark the completed ticket as resolved.
 - Identify newly unblocked tickets whose dependencies are now all satisfied.
-- Spawn new implementer subagents for the new frontier.
+- Spawn new implementer subagents for the new frontier using the **Dynamic Worker Mesh**.
 - Repeat steps 4 through 6 until all tickets in the graph are complete.
 
 ### 7. Review, Polish, and Finalize

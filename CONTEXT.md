@@ -78,6 +78,29 @@ An automated validation script (`check-links.mjs`) ensuring that all relative ma
 **Terminology Enforcement Linter**:
 An automated validation script (`check-terminology.mjs`) scanning markdown documentation and skill prose to prevent the reintroduction of forbidden or ambiguous domain terms.
 
+**Inter-agent Protocol**:
+A standardized message passing contract between orchestrator agents and subagents using **Structured Envelopes** over `send_message`.
+_Avoid_: ad-hoc message formatting, raw text pinging
+
+**Shared Worktree Workspace**:
+An Antigravity subagent workspace mode (`Workspace: "share"`) that shares the parent repository directory without disk duplication, enabling concurrent branchless editing across disjoint subpaths.
+_Avoid_: shared disk hack, symlinked workspace
+
+**Headless SDK Evals**:
+An automated testing and benchmarking suite built on the `google-antigravity` Python SDK (`pytest`) that evaluates skill trajectories, tool call sequences, and lifecycle hooks against test fixtures.
+_Avoid_: manual skill testing, unverified prompt tuning
+
+**Context Hygiene Hook**:
+A deterministic `PreInvocation` lifecycle hook in `.agents/hooks.json` that validates workspace invariants, monitors context constraints, and cleans up transient state before model execution.
+_Avoid_: pre-prompt cleanup script
+
+**Structured Envelope**:
+A typed JSON payload (`type`, `taskId`, `status`, `payload`, `nextAction`) fenced in markdown code blocks used within the **Inter-agent Protocol** for machine-parsable agent coordination.
+_Avoid_: json blob message
+
+**Dynamic Worker Mesh**:
+A runtime coordination pattern combining dynamically defined subagents (`define_subagent`), **Shared Worktree Workspaces**, and **Structured Envelopes** for concurrent execution across a task graph.
+
 ## Relationships
 
 - An **Issue tracker** holds many **Issues**
@@ -98,6 +121,10 @@ An automated validation script (`check-terminology.mjs`) scanning markdown docum
 - A **Scroll Reading Progress Bar** tracks reading position across **Adaptive Navigation Shell** viewports
 - A **Link and Anchor Integrity Gate** validates markdown references within the **Pre-commit Integrity Gate**
 - A **Terminology Enforcement Linter** ensures repo-wide adherence to **Language** standards
+- An **Inter-agent Protocol** uses **Structured Envelopes** to coordinate a **Dynamic Worker Mesh**
+- A **Dynamic Worker Mesh** executes across **Shared Worktree Workspaces**
+- **Headless SDK Evals** verify skill trajectories and **Lifecycle hooks**
+- A **Context Hygiene Hook** executes before model invocations within Antigravity
 
 ## Flagged ambiguities
 

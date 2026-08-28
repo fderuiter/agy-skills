@@ -43,7 +43,30 @@ Two rules bind it:
 
 ### 4. Spawn both subagents in parallel
 
-Spawn two subagents concurrently using the `invoke_subagent` tool (`TypeName: "research"` or `TypeName: "self"`, `Model: "inherit"`, `Workspace: "inherit"`). Because Antigravity is reactive, do not poll in a loop; wait for the subagents to report back.
+Spawn two subagents concurrently using the `invoke_subagent` tool (`TypeName: "research"`, `Model: "inherit"`, `Workspace: "share"`). Because Antigravity is reactive, do not poll in a loop; wait for the subagents to report back.
+
+Subagents return their findings using the **Structured Envelope** over `send_message` or in their final completion payload:
+
+```json
+{
+  "type": "review_finding",
+  "taskId": "code-review-<axis>",
+  "status": "completed",
+  "payload": {
+    "axis": "standards" | "spec",
+    "findings": [
+      {
+        "file": "path/to/file",
+        "lineRange": "L10-L20",
+        "severity": "violation" | "smell" | "deviation",
+        "description": "Description of finding",
+        "quote": "Code or spec snippet"
+      }
+    ]
+  },
+  "nextAction": "Aggregate findings into review artifact."
+}
+```
 
 **Standards subagent prompt** should include:
 

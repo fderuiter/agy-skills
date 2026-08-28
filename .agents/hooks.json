@@ -1,4 +1,12 @@
 {
+  "pre-invocation-hygiene": {
+    "PreInvocation": [
+      {
+        "type": "command",
+        "command": "node hooks/pre-invocation-hygiene.js"
+      }
+    ]
+  },
   "git-safety": {
     "PreToolUse": [
       {
@@ -7,6 +15,19 @@
           {
             "type": "command",
             "command": "node hooks/block-dangerous-git.js"
+          }
+        ]
+      }
+    ]
+  },
+  "post-tool-formatter": {
+    "PostToolUse": [
+      {
+        "matcher": "write_to_file|replace_file_content",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node hooks/post-tool-formatter.js"
           }
         ]
       }
@@ -32,4 +53,5 @@
     ]
   }
 }
+
 

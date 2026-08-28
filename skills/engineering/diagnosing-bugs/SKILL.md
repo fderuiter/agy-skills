@@ -91,8 +91,27 @@ Do not proceed until you have reproduced **and** minimised.
 
 Generate **3 to 5 ranked hypotheses** before testing any of them. Single-hypothesis generation anchors on the first plausible idea.
 
-### Upstream verification
+### Upstream verification & Parallel Hypothesis Exploration
+
 When third-party dependencies, runtime environments, or platform APIs are in the stack trace, ground hypotheses against reality before guessing. Use `search_web` and `read_url_content` to check upstream issue trackers (e.g. GitHub issues), release changelogs, and deprecation notices for known bugs matching the exact error signature.
+
+For complex bugs with multiple independent candidate root causes:
+- Dispatch parallel investigation subagents using `invoke_subagent` (`TypeName: "research"`, `Model: "flash"`, `Workspace: "share"`).
+- Each subagent investigates a specific hypothesis in read-only mode and reports findings back via the **Structured Envelope**:
+  ```json
+  {
+    "type": "checkpoint",
+    "taskId": "hypothesis-eval-<id>",
+    "status": "completed",
+    "payload": {
+      "hypothesis": "...",
+      "prediction": "...",
+      "verdict": "confirmed" | "falsified" | "inconclusive",
+      "evidence": "..."
+    },
+    "nextAction": "Proceed to Phase 4 instrumentation or test next hypothesis."
+  }
+  ```
 
 Each hypothesis must be **falsifiable**: state the prediction it makes.
 
